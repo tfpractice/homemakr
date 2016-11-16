@@ -1,0 +1,12 @@
+{
+  "name": "homemakr",
+  "version": "1.0.0",
+  "description": "a chore management app for roommates",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:tfpractice/homemakr.git",
+    "type": "git"
+  },
+  "author": "theory f practice",
+  "license": "MIT"
+}
