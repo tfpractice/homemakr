@@ -9,6 +9,8 @@ module.exports = `
   </head>
   <body>
     <div id="root"></div>
+    <script type="application/javascript" src="/bundle.js"></script>
+
   </body>
 </html>
 `;

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "a chore management app for roommates",
   "main": "index.js",
+  "scripts": {
+    "build": "webpack --progress --color -p --config ./config/webpack.config.prod.js"
+  },
   "repository": {
     "url": "git@github.com:tfpractice/homemakr.git",
     "type": "git"
@@ -30,6 +33,10 @@
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
-    "babel-preset-latest": "^6.16.0"
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-object-rest-spread": "^6.19.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0"
   }
 }

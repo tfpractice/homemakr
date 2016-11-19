@@ -1,2 +1,2 @@
-node_modules;
-dist;
+import { app } from './app';
+export {app};
