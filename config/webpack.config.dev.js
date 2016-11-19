@@ -2,28 +2,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import prodCfg from './webpack.prod.config.js';
-
-const BABEL_QUERY = {
-    presets: [
-        'react', 'es2015',
-    ],
-    plugins: [
-        ['transform-object-rest-spread'],
-        ['transform-class-properties'],
-        ['transform-decorators-legacy'],
-        [
-            'react-transform', {
-                transforms: [
-                    {
-                        transform: 'react-transform-hmr',
-                        imports: ['react'],
-                        locals: ['module'],
-                    },
-                ]
-            },
-        ],
-    ],
-};
+import {BABEL_QUERY} from './constants';
 
 export default function(app) {
     const config = Object.assign(prodCfg, {

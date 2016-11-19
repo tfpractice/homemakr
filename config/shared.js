@@ -1,21 +1,6 @@
-const {resolve} = require('path');
-const validate = require('webpack-validator');
-const webpack = require('webpack');
-
-const ROOT_PATH = resolve('./');
-const SRC_DIR = resolve(ROOT_PATH, 'src');
-const APP_PATH = resolve(SRC_DIR, 'client/index');
-
-console.log('============process.env.npm_lifecycle_event=============');
-console.log(process.env.npm_lifecycle_event);
-
-const PATHS = {
-    app: resolve(SRC_DIR, 'client/index'),
-    dist: resolve(ROOT_PATH, 'dist')
-};
-
-console.log('============APP_PATH=============');
-console.log(PATHS.app);
+import webpack from 'webpack';
+import validate from 'webpack-validator';
+import {PATHS, ROOT_PATH} from './constants';
 
 const common = validate({
     context: ROOT_PATH,
