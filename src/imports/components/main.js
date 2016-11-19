@@ -4,9 +4,9 @@ class Main extends Component {
   render() {
     return (
         <div id='main-view' className='container'>
-          <h1>I AM THE MAIN Component</h1>
-          <hr/> {this.props.children}
-        </div>
+                <h1>I AM THE MAIN Component</h1>
+                <hr/> {this.props.children}
+            </div>
     );
   };
 }
