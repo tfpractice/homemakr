@@ -4,13 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const markup = require('./markup');
-// import mongoose from 'mongoose'; import { TaskRoutes } from './routes';
-// import { handleRequest } from './requestHandler'; import cookieParser from
-// 'cookie-parser'; import session from 'express-session'; import flash from
-// 'express-flash'; import passport from 'passport'; import { Strategy as
-// LocalStrategy } from 'passport-local'; import expressValidator from
-// 'express-validator'; import { server as srvConf } from '../config'; const {
-// mongoURL } = srvConf; express initialize
+
+// initialize express
 const app = express();
 console.log("path.resolve('src')", path.resolve('src'));
 
@@ -24,7 +19,7 @@ console.log('DIIRRRR NAMEEEEE ======', path.resolve(__dirname, '../../../dist'))
 // Set Static Folder
 app.use(express.static(path.resolve(__dirname, '../../../dist')));
 
-app.get('/', function (req, res){
+app.get('/', function(req, res) {
     res.send(markup);
   });
 
