@@ -1,10 +1,7 @@
 import webpack from 'webpack';
-// import assign from 'object-assign';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import prodCfg from './webpack.prod.config.js';
-
-// Object.assign = assign;
 
 const BABEL_QUERY = { presets: [
         'react', 'es2015',
