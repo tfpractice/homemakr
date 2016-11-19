@@ -5,7 +5,8 @@ import {PATHS, ROOT_PATH} from './constants';
 const common = validate({
     context: ROOT_PATH,
     entry: {
-        app: PATHS.app
+        app: PATHS.app,
+        vendor: ['react']
     },
     resolve: {
         modulesDirectories: [
