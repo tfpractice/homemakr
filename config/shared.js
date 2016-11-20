@@ -1,12 +1,12 @@
 import webpack from 'webpack';
 import validate from 'webpack-validator';
 import {PATHS, ROOT_PATH} from './constants';
-
+console.log('===============PATHS=======')
+console.log(PATHS)
 const common = validate({
     context: ROOT_PATH,
     entry: {
-        app: PATHS.app,
-        vendor: ['react']
+        app: PATHS.app
     },
     resolve: {
         modulesDirectories: [
@@ -17,7 +17,7 @@ const common = validate({
     output: {
         path: PATHS.dist,
         filename: '[name].bundle.js',
-        publicPath: '/'
+        publicPath: '/',
     },
     module: {
         loaders: [
@@ -37,6 +37,9 @@ const common = validate({
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
+            },
+            mangle: {
+                except: ['webpackJsonp']
             }
         }),
     ],

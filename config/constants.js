@@ -8,7 +8,7 @@ export const APP_PATH = resolve(SRC_DIR, 'client/index');
 
 export const PATHS = {
     app: resolve(SRC_DIR, 'client/index'),
-    dist: resolve(ROOT_PATH, 'dist')
+    dist: resolve(ROOT_PATH, 'dist'),
 };
 
 // respond to npm_lifecycle_event (e.g. "npm run build")
@@ -16,7 +16,11 @@ export const DEV = 'dev'
 export const BUILD = 'build';
 export const CONFIG_EVENTS = new Set([BUILD, DEV,]);
 
-export const BUILD_CONFIG = {};
+export const BUILD_CONFIG = {
+    entry: {
+        vendor: ['react']
+    }
+};
 export const DEV_CONFIG = {
     devtool: 'inline-source-map',
     entry: [
@@ -28,7 +32,7 @@ export const DEV_CONFIG = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel',
-                query: BABEL_QUERY
+                query: BABEL_QUERY,
             },
         ]
     },
@@ -41,7 +45,7 @@ export const DEV_CONFIG = {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
         }),
-    ]
+    ],
 };
 
 export const BABEL_QUERY = {
@@ -58,10 +62,10 @@ export const BABEL_QUERY = {
                     {
                         transform: 'react-transform-hmr',
                         imports: ['react'],
-                        locals: ['module']
+                        locals: ['module'],
                     },
                 ]
             },
         ],
-    ]
+    ],
 };
