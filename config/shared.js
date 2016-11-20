@@ -1,8 +1,10 @@
 import webpack from 'webpack';
 import validate from 'webpack-validator';
-import {PATHS, ROOT_PATH} from './constants';
+import {PATHS, ROOT_PATH,} from './constants';
+
 console.log('===============PATHS=======')
 console.log(PATHS)
+
 const common = validate({
     context: ROOT_PATH,
     entry: {
@@ -12,19 +14,21 @@ const common = validate({
         modulesDirectories: [
             'node_modules',
         ],
-        extensions: ['', '.js', '.jsx',]
+        extensions: [
+            '', '.js', '.jsx',
+        ],
     },
     output: {
         path: PATHS.dist,
         filename: '[name].bundle.js',
-        publicPath: '/',
+        publicPath: '/'
     },
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: ['babel']
+                loaders: ['babel'],
             },
         ]
     },
@@ -40,7 +44,7 @@ const common = validate({
             },
             mangle: {
                 except: ['webpackJsonp']
-            }
+            },
         }),
     ],
     node: {
@@ -48,8 +52,8 @@ const common = validate({
         net: 'mock',
         tls: 'mock',
         dns: 'mock',
-        net: 'mock'
-    },
+        net: 'mock',
+    }
 });
 
 export default common;

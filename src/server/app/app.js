@@ -4,10 +4,14 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const markup = require('./markup');
-// const {enableHotReload} = require('../../../config') initialize express
-const app = express();
+import {enableHotReload} from '../../../config'
 
-console.log("path.resolve('src')", path.resolve('src'));
+console.log(enableHotReload)
+
+// initialize express
+const app = enableHotReload(express());
+
+console.log("path.resolve('src')", path.resolve('config'));
 
 // BodyParser Middleware
 app.use(bodyParser.json({limit: '20mb'}));
