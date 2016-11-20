@@ -2,9 +2,9 @@ import React from 'react';
 import thunk from 'redux-thunk';
 import {render} from 'react-dom';
 import createLogger from 'redux-logger';
-import {browserHistory, Router} from 'react-router';
+import {browserHistory, Router,} from 'react-router';
 import {Provider} from 'react-redux';
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, combineReducers, applyMiddleware,} from 'redux';
 import routes from '../imports/routes';
 
 // import Main from '../imports/components/main'; import { todos } from
@@ -16,16 +16,16 @@ import routes from '../imports/routes';
 
 const numbers = (state = [
     1, 2, 3,
-], {type, curry,}) => type === 'INSERT_NUM'
+], {type, curry}) => type === 'INSERT_NUM'
     ? curry(state)
     : state
 const history = browserHistory;
-const reducer = combineReducers({number});
+const reducer = combineReducers({numbers});
 const logger = createLogger({
     collapsed: (getState, action) => action.type
 });
 
-const store = applyMiddleware(thunk, logger)(createStore)(reducer, initialState);
+const store = applyMiddleware(thunk, logger)(createStore)(reducer, [1, 2, 3,]);
 render(
     <Provider store={store}>
     <Router children={routes} history={history}/>
