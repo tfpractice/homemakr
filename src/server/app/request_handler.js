@@ -1,11 +1,29 @@
 import path from 'path';
 import Express from 'express';
 import React from 'react';
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
-import counterApp from './reducers';
-import App from './containers/App';
+import {render} from 'react-dom';
 import {renderToString} from 'react-dom/server';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import routes from '../imports/routes';
+import {root} from '../imports';
+
+// import {browserHistory, Router,} from 'react-router';
+
+const history = browserHistory;
+
+const reducer = root;
+const logger = createLogger({
+    collapsed: (getState, action) => action.type
+});
+
+const store = applyMiddleware(thunk, logger)(createStore)(reducer, [1, 2, 3,]);
+render(
+    <Provider store={store}>
+    <Router children={routes} history={history}/>
+</Provider>, document.getElementById('root'));
 
 function handleRender(req, res) {
     // Create a new Redux store instance

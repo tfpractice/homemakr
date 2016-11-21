@@ -1,2 +1,3 @@
 import root from './root_reducer';
-export {root}
+import routes from './routes';
+export {root, routes}
