@@ -4,6 +4,20 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import {enableHotReload} from '../../../config'
 import {requestHandler} from './request_handler';
+import mongoose from 'mongoose';
+import {dbConfig} from '../models';
+
+mongoose.Promise = global.Promise;
+
+// MongoDB Connection
+mongoose.connect(dbConfig.mongoURL, (error) => {
+    if (error) {
+        console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
+        throw error;
+    }
+
+    console.log('mongoose connected');
+});
 
 // initialize express
 const app = enableHotReload(express());

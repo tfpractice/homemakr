@@ -2,9 +2,6 @@ import webpack from 'webpack';
 import validate from 'webpack-validator';
 import {PATHS, ROOT_PATH,} from './constants';
 
-console.log('===============PATHS=======')
-console.log(PATHS)
-
 const common = validate({
     context: ROOT_PATH,
     entry: {

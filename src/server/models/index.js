@@ -1,4 +1,6 @@
-export const dbConfig = {
-    mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/isomorphic-todos',
-    port: process.env.PORT || 3000
+const dbConfig = {
+    mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/homemakr',
+    port: process.env.PORT || 3000,
 };
+import Task from './task';
+export {dbConfig, Task}
