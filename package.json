@@ -4,7 +4,7 @@
   "description": "a chore management app for roommates",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --color  -p --config ./config/webpack.config.prod.babel.js",
+    "build": "webpack --progress --color  -p --config ./config/webpack/config.babel.js",
     "dev": "nodemon ."
   },
   "repository": {
