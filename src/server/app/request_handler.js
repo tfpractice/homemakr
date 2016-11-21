@@ -3,60 +3,68 @@ import Express from 'express';
 import React from 'react';
 import {render} from 'react-dom';
 import {renderToString} from 'react-dom/server';
+import {createMemoryHistory, match, RouterContext,} from 'react-router';
+
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import routes from '../imports/routes';
-import {root} from '../imports';
-
-// import {browserHistory, Router,} from 'react-router';
-
-const history = browserHistory;
+import routes from '../../imports/routes';
+import {root} from '../../imports';
 
 const reducer = root;
-const logger = createLogger({
-    collapsed: (getState, action) => action.type
-});
 
-const store = applyMiddleware(thunk, logger)(createStore)(reducer, [1, 2, 3,]);
-render(
-    <Provider store={store}>
-    <Router children={routes} history={history}/>
-</Provider>, document.getElementById('root'));
-
-function handleRender(req, res) {
+export const requestHandler = (req, res) => {
+    const location = createMemoryHistory(req.url);
+    const logger = createLogger({
+        collapsed: (getState, action) => action.type
+    });
     // Create a new Redux store instance
-    const store = createStore(counterApp);
+    const store = applyMiddleware(thunk, logger)(createStore)(reducer)
 
-    // Render the component to a string
-    const html = renderToString(
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    );
+    match({
+        routes,
+        location
+    }, (error, redirectLocation, renderProps) => {
+        if (error) {
+            res.status(500).send(error.message)
+        } else if (redirectLocation) {
+            res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+        } else if (renderProps) {
+            // Grab the initial state from our Redux store
+            const preloadedState = store.getState();
+            // Render the component to a string
+            const markup = renderToString(
+                <Provider store={store}>
+                    <RouterContext {...renderProps}/>
+                </Provider>
+            );
+            // Send the rendered page back to the client
+            res.send(renderFullPage(markup, preloadedState));
+        } else {
+            res.status(404).send('Not found')
+        }
 
-    // Grab the initial state from our Redux store
-    const preloadedState = store.getState();
-
-    // Send the rendered page back to the client
-    res.send(renderFullPage(html, preloadedState));
+    })
 }
 
-function renderFullPage(html, preloadedState) {
+export const renderFullPage = (markup, preloadedState) => {
     return `
     <!doctype html>
     <html>
       <head>
-        <title>Redux Universal Example</title>
+        <title>HomeMakr App</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
       </head>
       <body>
-        <div id="root">${html}</div>
+        <div id="root">${markup}</div>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
         </script>
-        <script src="/static/bundle.js"></script>
-      </body>
+        <script type="application/javascript" src="vendor.bundle.js"></script>
+        <script type="application/javascript" src="app.bundle.js"></script>      </body>
     </html>
     `;
 }

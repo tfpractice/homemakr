@@ -9,12 +9,12 @@ import {root, routes,} from '../imports';
 
 const history = browserHistory;
 
-const reducer = root;
 const logger = createLogger({
     collapsed: (getState, action) => action.type
 });
-
-const store = applyMiddleware(thunk, logger)(createStore)(reducer, [1, 2, 3,]);
+const reducer = root;
+const preloadedState = window.__PRELOADED_STATE__;
+const store = applyMiddleware(thunk, logger)(createStore)(reducer, preloadedState);
 render(
     <Provider store={store}>
     <Router children={routes} history={history}/>

@@ -11,7 +11,6 @@ module.exports = `
     <div id="root"></div>
     <script type="application/javascript" src="vendor.bundle.js"></script>
     <script type="application/javascript" src="app.bundle.js"></script>
-
   </body>
 </html>
 `;
