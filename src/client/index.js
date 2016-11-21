@@ -15,7 +15,8 @@ const logger = createLogger({
 const reducer = root;
 const preloadedState = window.__PRELOADED_STATE__;
 const store = applyMiddleware(thunk, logger)(createStore)(reducer, preloadedState);
+
 render(
     <Provider store={store}>
-    <Router children={routes} history={history}/>
-</Provider>, document.getElementById('root'));
+      <Router children={routes} history={history}/>
+    </Provider>, document.getElementById('root'));
