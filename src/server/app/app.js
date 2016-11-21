@@ -6,8 +6,6 @@ const cookieParser = require('cookie-parser');
 const markup = require('./markup');
 import {enableHotReload} from '../../../config'
 
-console.log(enableHotReload)
-
 // initialize express
 const app = enableHotReload(express());
 
@@ -15,7 +13,7 @@ console.log("path.resolve('src')", path.resolve('config'));
 
 // BodyParser Middleware
 app.use(bodyParser.json({limit: '20mb'}));
-app.use(bodyParser.urlencoded({limit: '20mb', extended: false}));
+app.use(bodyParser.urlencoded({limit: '20mb', extended: false,}));
 app.use(cookieParser());
 
 console.log('DIIRRRR NAMEEEEE ======', __dirname);

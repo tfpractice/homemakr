@@ -2,10 +2,11 @@ import React from 'react';
 import thunk from 'redux-thunk';
 import {render} from 'react-dom';
 import createLogger from 'redux-logger';
-import {browserHistory, Router,} from 'react-router';
+import {browserHistory, Router} from 'react-router';
 import {Provider} from 'react-redux';
-import {createStore, combineReducers, applyMiddleware,} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import routes from '../imports/routes';
+import {root} from '../imports';
 
 // import Main from '../imports/components/main'; import { todos } from
 // '../imports/todos'; import { reducer as tasks, tasksReducer, requestStatus,
@@ -16,11 +17,12 @@ import routes from '../imports/routes';
 
 const numbers = (state = [
     1, 2, 3,
-], {type, curry}) => type === 'INSERT_NUM'
+], {type, curry,}) => type === 'INSERT_NUM'
     ? curry(state)
     : state
 const history = browserHistory;
-const reducer = combineReducers({numbers});
+// const reducer = combineReducers({numbers});
+const reducer = root;
 const logger = createLogger({
     collapsed: (getState, action) => action.type
 });
