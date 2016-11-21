@@ -38,7 +38,7 @@ export const DEV_CONFIG = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel',
+                loaders: ['babel'],
                 query: BABEL_QUERY
             },
         ]

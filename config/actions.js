@@ -4,7 +4,7 @@ import wpClean from 'clean-webpack-plugin';
 import sharedConf from './shared';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import {BUILD_CONFIG, DEV_CONFIG, PATHS} from './constants';
+import {BUILD_CONFIG, DEV_CONFIG, PATHS,} from './constants';
 
 const clean = (path) => ({
     plugins: [new wpClean([path], {root: process.cwd()})]
