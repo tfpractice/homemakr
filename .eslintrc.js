@@ -3,6 +3,7 @@ module.exports = {
     "plugins": [
         "react", "jsx-a11y", "import",
     ],
+    "parser": "babel-eslint",
     "env": {
         "node": true,
         "browser": true,
@@ -23,7 +24,6 @@ module.exports = {
         "curly": 0,
         "no-multi-spaces": 0,
         "no-alert": 0,
-
         // Warnings
         "no-debugger": 1,
         "no-empty": 1,
@@ -34,10 +34,10 @@ module.exports = {
         "no-spaced-func": 0,
         "handle-callback-err": 1,
         "camelcase": 1,
-        "max-len": [2, 80,],
-        "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 2 }],
-
-
+        "max-len": [2, 80, ],
+        "newline-per-chained-call": ["error", {
+            "ignoreChainWithDepth": 2
+        }],
         // Errors
         "no-undef": 2,
         "no-dupe-keys": 2,
@@ -49,7 +49,6 @@ module.exports = {
         "no-shadow-restricted-names": 2,
         "no-new-require": 2,
         "no-mixed-spaces-and-tabs": 2,
-
         // stylistic errors
         "new-cap": 2,
         "semi-spacing": 2,
@@ -61,7 +60,10 @@ module.exports = {
                 "align": "value"
             },
         ],
-
+        // "object-curly-spacing": ["error", "never"],
+        // "brace-style": ["error", "1tbs", {
+        //     "allowSingleLine": true
+        // }],
         // Plugin rules
         "jsx-quotes": 1,
         "react/jsx-no-undef": 1,
