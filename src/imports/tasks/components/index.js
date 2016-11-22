@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { reset } from 'redux-form';
 import TaskForm from './form';
+
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 const TasksView = ({ tasks, actions }) => (
-
   <div className="tasks-list">
     <TaskForm
       form={'newTaskForm'}
