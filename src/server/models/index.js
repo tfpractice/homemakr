@@ -3,4 +3,5 @@ const dbConfig = {
   port:     process.env.PORT || 3000,
 };
 import Task from './task';
-export { dbConfig, Task };
+import User from './user';
+export { dbConfig, Task, User };
