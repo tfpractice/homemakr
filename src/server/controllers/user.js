@@ -54,17 +54,13 @@ export const updateUser = (req, res) =>
  * @returns void
  */
 export const deleteUser = (req, res) => {
-  User.findOne({ id: req.params.id }).exec((err, user) => {
-    if (err) {
-      console.log('DB ERROR,', err);
-
-      res.status(500).send(err);
-    }
-
-    console.log('WEF OUND THE TASK TO REMOVE,', user);
-
-    user.remove(() => {
-      res.status(200).end();
-    });
-  });
+  User.findByIdAndRemove(req.params.id, { select: 'id' })
+      .exec().then((user) => {
+        console.log('suceessfully removed', user);
+        return res.json({ user });
+      })
+      .catch((err) => {
+        console.log('DB ERROR,', err);
+        return res.status(500).send(err);
+      });
 };

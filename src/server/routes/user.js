@@ -45,13 +45,13 @@ router.post('/register', UserController.addUser);
 
 
 // Get one user by id
-router.route('/users/:id').get(UserController.getUser);
+// router.route('/users/:id').get(UserController.getUser);
 
 // Add a new User
-router.route('/users').post(UserController.addUser);
+// router.route('/users').post(UserController.addUser);
 
 // Update a User
-router.route('/users/:id').patch(UserController.updateUser);
+// router.route('/users/:id').patch(UserController.updateUser);
 
 // Delete a user by id
 router.route('/users/:id').delete(UserController.deleteUser);
