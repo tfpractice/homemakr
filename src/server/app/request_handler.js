@@ -1,55 +1,53 @@
 import path from 'path';
 import Express from 'express';
 import React from 'react';
-import {render} from 'react-dom';
-import {renderToString} from 'react-dom/server';
-import {createMemoryHistory, match, RouterContext,} from 'react-router';
+import { render } from 'react-dom';
+import { renderToString } from 'react-dom/server';
+import { createMemoryHistory, match, RouterContext } from 'react-router';
 
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import routes from '../../imports/routes';
-import {root} from '../../imports';
+import { root } from '../../imports';
 
 const reducer = root;
 
 export const requestHandler = (req, res) => {
-    const location = createMemoryHistory(req.url);
-    const logger = createLogger({
-        collapsed: (getState, action) => action.type
-    });
+  const location = createMemoryHistory(req.url);
+  const logger = createLogger({
+    collapsed: (getState, action) => action.type,
+  });
     // Create a new Redux store instance
-    const store = applyMiddleware(thunk, logger)(createStore)(reducer)
+  const store = applyMiddleware(thunk, logger)(createStore)(reducer);
 
-    match({
-        routes,
-        location
-    }, (error, redirectLocation, renderProps) => {
-        if (error) {
-            res.status(500).send(error.message)
-        } else if (redirectLocation) {
-            res.redirect(302, redirectLocation.pathname + redirectLocation.search)
-        } else if (renderProps) {
+  match({
+    routes,
+    location,
+  }, (error, redirectLocation, renderProps) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else if (redirectLocation) {
+      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
             // Grab the initial state from our Redux store
-            const preloadedState = store.getState();
+      const preloadedState = store.getState();
             // Render the component to a string
-            const markup = renderToString(
-                <Provider store={store}>
-                    <RouterContext {...renderProps}/>
-                </Provider>
+      const markup = renderToString(
+        <Provider store={store}>
+          <RouterContext {...renderProps} />
+        </Provider>,
             );
             // Send the rendered page back to the client
-            res.send(renderFullPage(markup, preloadedState));
-        } else {
-            res.status(404).send('Not found')
-        }
+      res.send(renderFullPage(markup, preloadedState));
+    } else {
+      res.status(404).send('Not found');
+    }
+  });
+};
 
-    })
-}
-
-export const renderFullPage = (markup, preloadedState) => {
-    return `
+export const renderFullPage = (markup, preloadedState) => `
     <!doctype html>
     <html>
       <head>
@@ -67,4 +65,3 @@ export const renderFullPage = (markup, preloadedState) => {
         <script type="application/javascript" src="app.bundle.js"></script>      </body>
     </html>
     `;
-}

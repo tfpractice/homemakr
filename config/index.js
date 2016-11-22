@@ -1,2 +1,2 @@
-export {enableHotReload, common}
-from './webpack'
+export { enableHotReload, common }
+from './webpack';

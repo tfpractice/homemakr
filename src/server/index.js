@@ -1,2 +1,2 @@
-import {app} from './app';
-export {app};
+import { app } from './app';
+export { app };

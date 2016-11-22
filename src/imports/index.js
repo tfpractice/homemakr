@@ -1,4 +1,4 @@
-import * as components from './components'
+import * as components from './components';
 import root from './root_reducer';
 import routes from './routes';
-export {root, routes, components}
+export { root, routes, components };

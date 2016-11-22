@@ -1,15 +1,13 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-const Home = () => {
-    return (
-        <div id="homeDiv">
-          <h1>
+const Home = () => (
+  <div id="homeDiv">
+    <h1>
           YASS BITCH YASSSS NO ?NODEMON</h1>
-        </div>
+  </div>
     );
-};
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(Home);
