@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { renderToString } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
-
+import { fetchComponentData } from '../../imports';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -56,10 +56,11 @@ export const requestHandler = (req, res) => {
           <RouterContext {...renderProps} />
         </Provider>);
             // Send the rendered page back to the client
-      fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
-          .then(() => renderFullPage(markup, preloadedState))
-          .then(res.end).catch(err => res.end(err.message));
-            // res.send(renderFullPage(markup, preloadedState));
+      // fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
+      //     .then(() => renderFullPage(markup, preloadedState))
+      //     .then(res.end).catch(err => res.end(err.message));
+
+      res.send(renderFullPage(markup, preloadedState));
     } else {
       res.status(404).send('Not found');
     }
