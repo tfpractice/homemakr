@@ -51,18 +51,22 @@ export const getTask = (req, res) => Task.findOne({ cuid: req.params.cuid })
  * @returns void
  */
 export const deleteTask = (req, res) => {
-  Task.findOne({ id: req.params.id })
-      .exec((err, task) => {
-        if (err) {
-          console.log('DB ERROR,', err);
-          res.status(500)
-              .send(err);
-        }
-
-        console.log('WEF OUND THE TASK TO REMOVE,', task);
-        task.remove(() => {
-          res.status(200)
-              .end();
-        });
+  Task.findByIdAndRemove(req.params.id, { select: 'id' })
+      .exec().then((task) => {
+        console.log('suceessfully removed', task);
+        return res.json({ task });
+      })
+      .catch((err) => {
+        console.log('DB ERROR,', err);
+        return res.status(500).send(err);
       });
+
+          // console.log('WEF OUND THE TASK TO REMOVE,', task);
+        // task.remove(() => {
+          // res.status(200)
+              // .end();
+        // });
 };
+    // );
+  // );
+// };
