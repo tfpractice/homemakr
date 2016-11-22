@@ -2,9 +2,14 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import expressValidator from 'express-validator';
+import session from 'express-session';
+import flash from 'express-flash';
+import passport from 'passport';
+import { Strategy as LocalStrategy } from 'passport-local';
+import mongoose from 'mongoose';
 import { enableHotReload } from '../../../config';
 import { requestHandler } from './request_handler';
-import mongoose from 'mongoose';
 import { dbConfig } from '../models';
 import { TaskRoutes } from '../routes';
 
@@ -31,6 +36,26 @@ app.use(cookieParser());
 // Set Static Folder
 app.use(express.static(path.resolve(__dirname, '../../../dist')));
 
+// Express Session
+app.use(session({ secret: 'secret', saveUninitialized: true, resave: true }));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
+
+//  backend api routes
 app.use('/api', TaskRoutes);
 
 // establish server render
