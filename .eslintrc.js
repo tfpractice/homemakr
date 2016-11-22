@@ -22,7 +22,6 @@ module.exports = {
         'no-process-exit': 0,
         'no-warning-comments': 0,
         curly: 0,
-        'no-multi-spaces': 0,
         'no-alert': 0,
         // Warnings
         'no-debugger': 1,
@@ -48,6 +47,10 @@ module.exports = {
         'no-self-compare': 2,
         'valid-typeof': 2,
         'no-unused-vars': 2,
+        'no-multi-spaces': [2, {
+          exceptions: { Property: true },
+        },],
+        
         //  "handle-callback-err": 2,
         'no-shadow-restricted-names': 2,
         'no-new-require': 2,
@@ -55,7 +58,11 @@ module.exports = {
         // stylistic errors
         'new-cap': 2,
         'semi-spacing': 2,
-        indent: ['error', 2],
+        indent: ['error', 2, {
+          FunctionDeclaration:
+            { body: 2, parameters: 'first' },
+          MemberExpression: 2, },
+        ],
         quotes: [
             2, 'single',
         ],

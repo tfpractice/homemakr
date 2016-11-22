@@ -2,10 +2,10 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import {enableHotReload} from '../../../config';
-import {requestHandler} from './request_handler';
+import { enableHotReload } from '../../../config';
+import { requestHandler } from './request_handler';
 import mongoose from 'mongoose';
-import {dbConfig} from '../models';
+import { dbConfig } from '../models';
 
 mongoose.Promise = global.Promise;
 
@@ -23,8 +23,8 @@ mongoose.connect(dbConfig.mongoURL, (error) => {
 const app = enableHotReload(express());
 
 // BodyParser Middleware
-app.use(bodyParser.json({limit: '20mb'}));
-app.use(bodyParser.urlencoded({limit: '20mb', extended: false, }));
+app.use(bodyParser.json({ limit: '20mb' }));
+app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(cookieParser());
 
 // Set Static Folder
