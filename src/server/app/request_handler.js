@@ -56,11 +56,11 @@ export const requestHandler = (req, res) => {
           <RouterContext {...renderProps} />
         </Provider>);
             // Send the rendered page back to the client
-      // fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
-      //     .then(() => renderFullPage(markup, preloadedState))
-      //     .then(res.end).catch(err => res.end(err.message));
+      fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
+          .then(() => renderFullPage(markup, preloadedState))
+          .then(res.end).catch(err => res.end(err.message));
 
-      res.send(renderFullPage(markup, preloadedState));
+      // res.send(renderFullPage(markup, preloadedState));
     } else {
       res.status(404).send('Not found');
     }

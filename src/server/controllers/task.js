@@ -11,8 +11,7 @@ export const getTasks = (req, res) => Task.find()
     .sort('-dateAdded')
     .exec()
     .then(tasks => res.json({ tasks }))
-    .catch(err => res.status(500)
-        .send(err));
+    .catch(err => res.status(500).send(err));
 /**
  * Save a task
  * @param req
@@ -24,7 +23,7 @@ export const addTask = (req, res) => Task.create(req.body)
     .catch((err) => {
       console.error('Task model insert error', err);
       return res.status(500)
-            .send(err);
+          .send(err);
     });
 
 export const updateTask = (req, res) => Task.findByIdAndUpdate(req.params.id,
@@ -34,7 +33,7 @@ export const updateTask = (req, res) => Task.findByIdAndUpdate(req.params.id,
     .catch((err) => {
       console.log('error in Task Model Update', err);
       res.status(500)
-            .send(err);
+          .send(err);
     });
 /**
  * Get a single task
@@ -55,17 +54,17 @@ export const getTask = (req, res) => Task.findOne({ cuid: req.params.cuid })
  */
 export const deleteTask = (req, res) => {
   Task.findOne({ id: req.params.id })
-        .exec((err, task) => {
-          if (err) {
-            console.log('DB ERROR,', err);
-            res.status(500)
-                  .send(err);
-          }
+      .exec((err, task) => {
+        if (err) {
+          console.log('DB ERROR,', err);
+          res.status(500)
+              .send(err);
+        }
 
-          console.log('WEF OUND THE TASK TO REMOVE,', task);
-          task.remove(() => {
-            res.status(200)
-                    .end();
-          });
+        console.log('WEF OUND THE TASK TO REMOVE,', task);
+        task.remove(() => {
+          res.status(200)
+              .end();
         });
+      });
 };
