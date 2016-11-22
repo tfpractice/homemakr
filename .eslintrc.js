@@ -55,6 +55,7 @@ module.exports = {
         // stylistic errors
         'new-cap': 2,
         'semi-spacing': 2,
+        indent: ['error', 2],
         quotes: [
             2, 'single',
         ],
@@ -63,9 +64,9 @@ module.exports = {
                 align: 'value',
               },
         ],
-        'object-curly-spacing': [
-            'error', 'never',
-        ],
+        // 'object-curly-spacing': [
+        //     'error', 'never',
+        // ],
         'brace-style': [
             'error',
             '1tbs', {
