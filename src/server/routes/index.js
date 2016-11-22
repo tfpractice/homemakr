@@ -1,3 +1,3 @@
-import * as TaskRoutes from './task';
+import TaskRoutes from './task';
 
 export { TaskRoutes };

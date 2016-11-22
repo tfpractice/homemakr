@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-// import { TasksView } from '../tasks';
 import { bindActionCreators } from 'redux';
-import { actions as TaskActions, TasksView } from '../tasks';
 import { connect } from 'react-redux';
+import { actions as TaskActions, TasksView } from '../tasks';
+// console.log(TaskActions);
+// console.log(TasksView);
 
 const Home = ({ dispatch, tasks, tasksReducer }) => (
   <div id="todo-list">
@@ -17,12 +18,12 @@ Home.needs = [ TaskActions.getTasks ];
 //   dispatch: PropTypes.func.isRequired,
 // };
 
-// Home.contextTypes = {
-//   muiTheme: React.PropTypes.object,
-// };
+Home.contextTypes = {
+  muiTheme: React.PropTypes.object,
+};
 
-const mapStateToProps = ({ tasks, numbers }) =>
+const mapStateToProps = ({ tasks, numbers, tasksReducer }) =>
   // const { todos, tasks, tasksReducer } = state;
-   ({ tasks, numbers });
+   ({ tasks, numbers, tasksReducer });
 
 export default connect(mapStateToProps)(Home);

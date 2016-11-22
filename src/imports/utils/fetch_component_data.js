@@ -10,21 +10,21 @@ const compNeeds = component => isWrapped(component)
     ? getNeeds(component.WrappedComponent)
     : getNeeds(component);
 
-const needsArray = (prev = [], next) => [
-  ...prev,
-  next,
-];
+const flatten = (prev = [], next = []) => [ ...prev, ...next ];
 
 const fetchComponentData = (dispatch, components, params) => {
     // const needs = components.reduce((prev, current) => {     return current   ?
     // (compNeeds(current) || []).concat(prev)         : prev;   }, []);
+  console.log('=============components ARRAY==========');
   console.log(components);
-  console.log('============');
+  console.log('=============params ARRAY==========');
   console.log(params);
-  const needs = components.map(getNeeds).reduce(needsArray, []);
+  const needs = components.map(compNeeds).reduce(flatten, []);
+  console.log('=============NEEDS ARRAY==========');
   console.log(needs);
-  const promises = needs.map(need => dispatch(need(params)));
-
+  const promises = needs.map(need => Promise.resolve(dispatch(need(params))));
+  console.log('=============Promise ARRAY==========');
+  console.log(promises);
   return Promise.all(promises);
 };
 

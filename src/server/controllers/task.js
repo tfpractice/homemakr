@@ -1,6 +1,4 @@
-import {
-    Task,
-} from '../models';
+import { Task } from '../models';
 /**
  * Get all tasks
  * @param req

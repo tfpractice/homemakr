@@ -14,29 +14,29 @@ export const PATHS = {
 // respond to npm_lifecycle_event (e.g. "npm run build")
 export const DEV = 'dev';
 export const BUILD = 'build';
-export const CONFIG_EVENTS = new Set([BUILD, DEV,]);
+export const CONFIG_EVENTS = new Set([ BUILD, DEV ]);
 
 export const BUILD_CONFIG = {
   entry: {
         // app: ['webpack-hot-middleware/client', './client',]
 
-    vendor: ['react'],
+    vendor: [ 'react' ],
   },
 };
 export const DEV_CONFIG = {
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   entry:   {
     app: [
       PATHS.app, 'webpack-hot-middleware/client',
     ],
-    vendor: ['react', 'webpack-hot-middleware/client',],
+    vendor: [ 'react', 'webpack-hot-middleware/client' ],
   },
   module: {
     loaders: [
       {
         test:    /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel'],
+        loaders: [ 'babel' ],
         query:   BABEL_QUERY,
       },
     ],
@@ -58,16 +58,16 @@ export const BABEL_QUERY = {
     'react', 'es2015',
   ],
   plugins: [
-        ['transform-object-rest-spread'],
-        ['transform-class-properties'],
-        ['transform-decorators-legacy'],
+        [ 'transform-object-rest-spread' ],
+        [ 'transform-class-properties' ],
+        [ 'transform-decorators-legacy' ],
     [
       'react-transform', {
         transforms: [
           {
             transform: 'react-transform-hmr',
-            imports:   ['react'],
-            locals:    ['module'],
+            imports:   [ 'react' ],
+            locals:    [ 'module' ],
           },
         ],
       },

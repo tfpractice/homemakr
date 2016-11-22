@@ -1,4 +1,3 @@
-import * as TasksController from './task';
-export {
-    TasksController,
-};
+import * as TaskController from './task';
+
+export { TaskController };

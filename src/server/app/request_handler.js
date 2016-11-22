@@ -49,7 +49,7 @@ export const requestHandler = (req, res) => {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
             // Grab the initial state from our Redux store
-      const preloadedState = store.getState();
+      // const preloadedState = store.getState();
             // Render the component to a string
       const markup = renderToString(
         <Provider store={store}>
@@ -57,8 +57,24 @@ export const requestHandler = (req, res) => {
         </Provider>);
             // Send the rendered page back to the client
       fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
-          .then(() => renderFullPage(markup, preloadedState))
-          .then(res.end).catch(err => res.end(err.message));
+          .then((args, ...rest) => {
+            console.log('=========FETCH COMPONENT DATA ARG THEN 0 ========');
+            console.log(args);
+            console.log('rest', rest);
+            res.send(renderFullPage(markup, store.getState()));
+          })
+          // .then((arg2, ...rest) => {
+          //   console.log('=========FETCH COMPONENT DATA ARG THEN 1 ========');
+          //   console.log(arg2);
+          //   console.log('rest', rest);
+          //   return res.send(arg2);
+          // })
+          .catch((err) => {
+            console.log('=========FETCH COMPONENT DATA ERRR CATCH 0 ========');
+            console.log(err);
+
+            return res.end(err.message);
+          });
 
       // res.send(renderFullPage(markup, preloadedState));
     } else {

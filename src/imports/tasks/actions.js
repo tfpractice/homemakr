@@ -36,10 +36,9 @@ export const taskRequestFailure = err => (dispatch) => {
 export const getTasks = () => (dispatch) => {
   dispatch({ type: TASK_REQUEST_PENDING, curry: pending });
   console.log('RERIEVEING TASKS');
-  return axios.get(`${API_URL}/tasks`).then((res) => {
-    console.log('RESPONSE RECIVED', res);
-    return (taskRequestSucess(res)(dispatch));
-  }).catch(taskRequestFailure);
+  return axios.get(`${API_URL}/tasks`).then(res =>
+   // console.log('RESPONSE RECIVED', res);
+     (taskRequestSucess(res)(dispatch))).catch(taskRequestFailure);
 };
 
 export const insertTask = task => ({ type: INSERT_TASK, curry: insert(task) });
@@ -49,7 +48,10 @@ export const createTask = taskProps => dispatch =>
       .then(({ data: { task } }) => dispatch(insertTask(task)))
       .catch(err => console.error('there was an error in creation', err));
 
-export const updateTasks = tasks => ({ type: UPDATE_TASKS, curry: update(tasks) });
+export const updateTasks = (tasks) => {
+  console.log('DISPATCHING UPDATE_TASKS');
+  return ({ type: UPDATE_TASKS, curry: update(tasks) });
+};
 
 export const updateTask = task => ({ type: EDIT_TASK, curry: edit(task) });
 
@@ -63,4 +65,7 @@ export const removeTask = ({ id }) => ({
   curry: remove({ id }),
 });
 
-export const deleteTask = ({ id }) => dispatch => axios.delete(`${API_URL}/tasks/${id}`).then(() => dispatch(removeTask({ id }))).catch(err => console.error('there was an error in delete', err));
+export const deleteTask = ({ id }) => dispatch =>
+ axios.delete(`${API_URL}/tasks/${id}`)
+     .then(() => dispatch(removeTask({ id })))
+     .catch(err => console.error('there was an error in delete', err));

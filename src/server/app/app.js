@@ -6,6 +6,7 @@ import { enableHotReload } from '../../../config';
 import { requestHandler } from './request_handler';
 import mongoose from 'mongoose';
 import { dbConfig } from '../models';
+import { TaskRoutes } from '../routes';
 
 mongoose.Promise = global.Promise;
 
@@ -29,6 +30,9 @@ app.use(cookieParser());
 
 // Set Static Folder
 app.use(express.static(path.resolve(__dirname, '../../../dist')));
+
+app.use('/api', TaskRoutes);
+
 // establish server render
 app.use(requestHandler);
 
