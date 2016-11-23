@@ -3,7 +3,6 @@ import { UserController } from '../controllers';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 const router = new Router();
-// console.log(UserController);
 // passport setup
 passport.use(new LocalStrategy((username, password, done) => {
   User.findByUserName({ username })

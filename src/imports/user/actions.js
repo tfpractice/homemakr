@@ -61,11 +61,11 @@ const registerFail = registerError => state => ({
 
 export const registerUser = userProps => dispatch =>
   axios.post(`${API_URL}/register`, userProps)
-      .then(({ data: { user } }) => {
-        console.log('=============user created=============', user);
+    .then(({ data: { user } }) => {
+      console.log('=============user created=============', user);
         // dispatch(insertUser(user));
-      })
-      .catch(err => console.error('there was an error in creation', err));
+    })
+    .catch(err => console.error('there was an error in creation', err));
 
 const logout = () => state => ({
   ...state,
@@ -82,54 +82,46 @@ const logoutFail = logoutError => state => ({
   logoutError,
 });
 
-export function isLoaded(globalState) {
-    return globalState.auth && globalState.auth.loaded;
+function isLoaded(globalState) {
+  return globalState.auth && globalState.auth.loaded;
 }
 
-export function load() {
-    return {
-      types: [
-        LOAD, LOAD_SUCCESS, LOAD_FAIL,
-      ],
-      promise: client => client.get('/me'),
-    };
-}
+export const loadRQ = () => ({
+  types: [
+    LOAD, LOAD_SUCCESS, LOAD_FAIL,
+  ],
+  promise: client => client.get('/me'),
+});
 
-export function login(email, password) {
-    return {
-      types: [
-        LOGIN, LOGIN_SUCCESS, LOGIN_FAIL,
-      ],
-      promise: client => client.post('/login', {
-        data: {
-          email,
-          password,
-        },
-      }),
-    };
-}
+export const loginRQ = (email, password) => ({
+  types: [
+    LOGIN, LOGIN_SUCCESS, LOGIN_FAIL,
+  ],
+  promise: client => client.post('/login', {
+    data: {
+      email,
+      password,
+    },
+  }),
+});
 
-const register = (email, password) => dispatch => axios.post('/register', { email, password }).then((value) => {});
+const register0 = (email, password) => dispatch => axios.post('/register', { email, password }).then((value) => {});
 
-export function signup(email, password) {
-    return {
-      types: [
-        SIGNUP, SIGNUP_SUCCESS, SIGNUP_FAIL,
-      ],
-      promise: client => client.post('/signup', {
-        data: {
-          email,
-          password,
-        },
-      }),
-    };
-}
+export const signupRQ = (email, password) => ({
+  types: [
+    SIGNUP, SIGNUP_SUCCESS, SIGNUP_FAIL,
+  ],
+  promise: client => client.post('/signup', {
+    data: {
+      email,
+      password,
+    },
+  }),
+});
 
-export function logout() {
-    return {
-      types: [
-        LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL,
-      ],
-      promise: client => client.get('/logout'),
-    };
-}
+export const logoutRQ = () => ({
+  types: [
+    LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL,
+  ],
+  promise: client => client.get('/logout'),
+});

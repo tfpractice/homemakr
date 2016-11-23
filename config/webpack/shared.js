@@ -25,7 +25,7 @@ const common = validate({
       {
         test:    /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel'],
+        loaders: [ 'babel' ],
       },
     ],
   },
@@ -40,7 +40,7 @@ const common = validate({
         warnings: false,
       },
       mangle: {
-        except: ['webpackJsonp'],
+        except: [ 'webpackJsonp' ],
       },
     }),
   ],

@@ -1,6 +1,5 @@
 import { User } from '../models';
-// import cuid from 'cuid';
-// import sanitizeHtml from 'sanitize-html';
+
 
 /**
  * Get all users

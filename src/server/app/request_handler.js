@@ -39,18 +39,15 @@ export const requestHandler = (req, res) => {
 
   // Create a new Redux store instance
   const store = applyMiddleware(thunk, logger)(createStore)(reducer);
-  match({
-    routes,
-    location,
-  }, (error, redirectLocation, renderProps) => {
+  match({ routes, location }, (error, redirectLocation, renderProps) => {
     if (error) {
       res.status(500).send(error.message);
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-            // Grab the initial state from our Redux store
+      // Grab the initial state from our Redux store
       // const preloadedState = store.getState();
-            // Render the component to a string
+      // Render the component to a string
       const markup = renderToString(
         <Provider store={store}>
           <RouterContext {...renderProps} />
@@ -63,20 +60,11 @@ export const requestHandler = (req, res) => {
             console.log('rest', rest);
             res.send(renderFullPage(markup, store.getState()));
           })
-          // .then((arg2, ...rest) => {
-          //   console.log('=========FETCH COMPONENT DATA ARG THEN 1 ========');
-          //   console.log(arg2);
-          //   console.log('rest', rest);
-          //   return res.send(arg2);
-          // })
           .catch((err) => {
             console.log('=========FETCH COMPONENT DATA ERRR CATCH 0 ========');
             console.log(err);
-
             return res.end(err.message);
           });
-
-      // res.send(renderFullPage(markup, preloadedState));
     } else {
       res.status(404).send('Not found');
     }

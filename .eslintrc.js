@@ -30,7 +30,6 @@ module.exports = {
         'no-unused-expressions': 1,
         'no-native-reassign': 1,
         'no-fallthrough': 1,
-        'no-spaced-func': 0,
         'handle-callback-err': 1,
         camelcase: 1,
         'max-len': [
@@ -38,9 +37,10 @@ module.exports = {
         ],
         'newline-per-chained-call': [
             'error',
-            //  { ignoreChainWithDepth: 2, },,,
+             { ignoreChainWithDepth: 2, },
         ],
         // Errors
+        'func-call-spacing': [ 'error', 'never'],
         'no-undef': 2,
         'no-dupe-keys': 2,
         'no-empty-character-class': 2,
@@ -49,7 +49,7 @@ module.exports = {
         'no-unused-vars': 2,
         'no-multi-spaces': [ 2, {
           exceptions: { Property: true },
-        }, ],
+        },],
         
         //  "handle-callback-err": 2,
         'no-shadow-restricted-names': 2,
@@ -59,10 +59,12 @@ module.exports = {
         'new-cap': 2,
         'semi-spacing': 2,
         'array-bracket-spacing': [ 'error', 'always' ],
-        indent: [ 'error', 2, {
+        indent: ['error', 2, {
           FunctionDeclaration:
-            { body: 2, parameters: 'first' },
-          MemberExpression: 2, },
+            { body: 1, parameters: 'first' },
+          FunctionExpression:
+            { body: 1, parameters: 'first' },
+          MemberExpression: 1, },
         ],
         quotes: [
             2, 'single',
@@ -93,6 +95,6 @@ module.exports = {
         'react/react-in-jsx-scope': 1,
         'react/self-closing-comp': 1,
         'react/jsx-wrap-multilines': 1,
-        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx' ] }],
+        'react/jsx-filename-extension': [ 1, { extensions: [ '.js', '.jsx'] }],
       },
   };

@@ -60,13 +60,4 @@ export const deleteTask = (req, res) => {
         console.log('DB ERROR,', err);
         return res.status(500).send(err);
       });
-
-          // console.log('WEF OUND THE TASK TO REMOVE,', task);
-        // task.remove(() => {
-          // res.status(200)
-              // .end();
-        // });
 };
-    // );
-  // );
-// };
