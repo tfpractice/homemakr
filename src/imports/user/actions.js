@@ -59,6 +59,8 @@ const registerFail = registerError => state => ({
   registerError,
 });
 
+const registerUser = () => {};
+
 const logout = () => state => ({
   ...state,
   loggingOut: true,
