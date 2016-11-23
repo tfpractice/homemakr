@@ -56,7 +56,7 @@ app.use((req, res, next) => {
 });
 
 //  backend api routes
-// app.use('/api', TaskRoutes);
+app.use('/api', TaskRoutes);
 app.use('/api', UserRoutes);
 
 // establish server render
