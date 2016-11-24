@@ -49,7 +49,7 @@ module.exports = {
         'no-unused-vars': 2,
         'no-multi-spaces': [2, {
           exceptions: { Property: true },
-        }, ],
+        },],
         //  "handle-callback-err": 2,
         'no-shadow-restricted-names': 2,
         'no-new-require': 2,
