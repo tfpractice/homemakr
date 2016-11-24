@@ -1,15 +1,18 @@
-import { Router } from 'express';
-import { UserController } from '../controllers';
+import { Router, } from 'express';
 import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as LocalStrategy, } from 'passport-local';
+import { UserController, } from '../controllers';
+import { User, } from '../models';
+
 const router = new Router();
+
 // passport setup
 passport.use(new LocalStrategy((username, password, done) => {
-  User.findByUserName({ username })
-      .then(user => user.comparePassword(password)
-          .then(isValid => done(null, user))
-          .catch(err => done(null, false, { message: 'Incorrect password.' })))
-      .catch(done);
+  User.findByUserName({ username, })
+    .then(user => user.comparePassword(password)
+      .then(isValid => done(null, user))
+      .catch(err => done(null, false, { message: 'Incorrect password.', })))
+    .catch(done);
 }));
 
 passport.serializeUser((user, done) => done(null, user.id));

@@ -1,4 +1,5 @@
-import { AUTH_ACTIONS } from './constants';
+import { AUTH_ACTIONS, } from './constants';
+
 // There are three possible states for our login process and we need actions for
 // each of them
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -11,29 +12,16 @@ const load = () => state => ({
 });
 
 const loadSuccess = user => state => ({
-  ...state,
-  loading: false,
-  loaded:  true,
-  user,
+  ...state, loading: false, loaded:  true, user,
 });
 
 const loadFail = loadError => state => ({
-  ...state,
-  loading: false,
-  loaded:  false,
-  loadError,
+  ...state, loading: false, loaded:  false, loadError,
 });
 
-const login = () => state => ({
-  ...state,
-  loggingIn: true,
-});
+const login = () => state => ({ ...state, loggingIn: true, });
 
-const loginSuccess = user => state => ({
-  ...state,
-  loggingIn: false,
-  user,
-});
+const loginSuccess = user => state => ({ ...state, loggingIn: false, user, });
 const loginFail = loginError => state => ({
   ...state,
   loggingIn: false,
@@ -61,8 +49,9 @@ const registerFail = registerError => state => ({
 
 export const registerUser = userProps => dispatch =>
   axios.post(`${API_URL}/register`, userProps)
-    .then(({ data: { user } }) => {
+    .then(({ data: { user, }, }) => {
       console.log('=============user created=============', user);
+      
         // dispatch(insertUser(user));
     })
     .catch(err => console.error('there was an error in creation', err));
@@ -105,7 +94,7 @@ export const loginRQ = (email, password) => ({
   }),
 });
 
-const register0 = (email, password) => dispatch => axios.post('/register', { email, password }).then((value) => {});
+const register0 = (email, password) => dispatch => axios.post('/register', { email, password, }).then((value) => {});
 
 export const signupRQ = (email, password) => ({
   types: [
