@@ -40,14 +40,14 @@ module.exports = {
              { ignoreChainWithDepth: 2, },
         ],
         // Errors
-        'func-call-spacing': ['error', 'never'],
+        'func-call-spacing': [ 'error', 'never' ],
         'no-undef': 2,
         'no-dupe-keys': 2,
         'no-empty-character-class': 2,
         'no-self-compare': 2,
         'valid-typeof': 2,
         'no-unused-vars': 2,
-        'no-multi-spaces': [2, {
+        'no-multi-spaces': [ 2, {
           exceptions: { Property: true },
         },],
         //  "handle-callback-err": 2,
@@ -73,11 +73,18 @@ module.exports = {
         quotes: [
             2, 'single',
         ],
-        'key-spacing': [
-            2, {
-                align: 'value',
-              },
-        ],
+        'key-spacing': [2, {
+          singleLine: {
+              beforeColon: false,
+              afterColon: true,
+              mode: 'minimum',
+            },
+          multiLine: {
+              beforeColon: false,
+              // afterColon: true,
+              mode: 'minimum',
+              // align: 'value',
+            }, }, ],
         'lines-around-comment': [ 'error', { beforeBlockComment: true,
           afterBlockComment: false,
           beforeLineComment: true,
@@ -87,29 +94,29 @@ module.exports = {
           allowObjectStart: true,
           allowObjectEnd: true,
           allowArrayStart: true,
-          allowArrayEnd: true, },],
-        'object-curly-newline': [ 'error', {
+          allowArrayEnd: true, }, ],
+        'object-curly-newline': ['error', {
           ObjectExpression: { multiline: true, minProperties: 4 },
           ObjectPattern: { multiline: true },
-        }, ],
+        },],
         // 'object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-        'line-comment-position': [ 'error', { position: 'above' }],
+        'line-comment-position': ['error', { position: 'above' }],
         'brace-style': [
             'error',
             '1tbs', {
                 allowSingleLine: true,
               },
         ],
-        'comma-dangle': [ 'error', {
+        'comma-dangle': ['error', {
           arrays: 'always',
           objects: 'always',
           imports: 'always',
           exports: 'always',
           functions: 'ignore',
-        },],
-        'no-trailing-spaces': [ 'error', { skipBlankLines: true }],
-        'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 1 }],
-        'rest-spread-spacing': [ 'error', 'never'],
+        }, ],
+        'no-trailing-spaces': ['error', { skipBlankLines: true }],
+        'no-multiple-empty-lines': [ 'error', { max: 2, maxEOF: 1 }],
+        'rest-spread-spacing': ['error', 'never' ],
         //  Plugin rules
         'jsx-quotes': 1,
         'react/jsx-no-undef': 1,
@@ -122,6 +129,6 @@ module.exports = {
         'react/react-in-jsx-scope': 1,
         'react/self-closing-comp': 1,
         'react/jsx-wrap-multilines': 1,
-        'react/jsx-filename-extension': [1, { extensions: [ '.js', '.jsx'] }],
+        'react/jsx-filename-extension': [ 1, { extensions: ['.js', '.jsx'] }],
       },
   };
