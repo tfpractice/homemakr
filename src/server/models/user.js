@@ -1,5 +1,5 @@
 import mongoose, { Schema, } from 'mongoose';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs-then';
 
 const UserSchema = new Schema({
   username: { type: String, index: true, },
@@ -11,10 +11,10 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', function (next) {
   const user = this;
-
+  
    // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) return next();
-
+  
   // generate a salt and hash the password using our new salt
   bcrypt.hash(user.password, 10)
     .then((hash) => { user.password = hash; next(); })
