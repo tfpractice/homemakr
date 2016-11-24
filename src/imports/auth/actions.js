@@ -26,7 +26,20 @@ export const registerUser = userProps => (dispatch) => {
     .then(({ data: { user, }, }) => {
       console.log('=============user created=============', user);
       
-        // dispatch(insertUser(user));
+      // return user;
+      dispatch(registerSuccess(user));
     })
     .catch(err => console.error('there was an error in creation', err));
 };
+
+export const loginUser = userProps => dispatch =>
+ axios.post(`${API_URL}/login`)
+   .then((value, ...rest) => {
+     console.log('=============hitting passport=============');
+     console.log('=============user logged in=============', Object.keys(value));
+     console.log(value);
+     dispatch(registerSuccess(value));
+    
+    //  res.json({ value, });
+   })
+   .catch((err) => { console.error(err); });

@@ -1,4 +1,4 @@
-import { User } from '../models';
+import { User, } from '../models';
 
 
 /**
@@ -9,8 +9,8 @@ import { User } from '../models';
  */
 export const getUsers = (req, res) =>
   User.find().sort('-dateAdded').exec()
-      .then(users => res.json({ users }))
-      .catch(err => res.status(500).send(err));
+    .then(users => res.json({ users, }))
+    .catch(err => res.status(500).send(err));
 
 /**
  * Get a single user
@@ -19,9 +19,9 @@ export const getUsers = (req, res) =>
  * @returns void
  */
 export const getUser = (req, res) =>
-    User.findOne({ id: req.params.id }).exec()
-        .then(user => res.json({ user }))
-        .catch(err => res.status(500).send(err));
+    User.findOne({ id: req.params.id, }).exec()
+      .then(user => res.json({ user, }))
+      .catch(err => res.status(500).send(err));
 
 /**
  * Save a user
@@ -31,19 +31,27 @@ export const getUser = (req, res) =>
  */
 export const addUser = (req, res) =>
   User.create(req.body)
-      .then(user => res.json({ user }))
-      .catch((err) => {
-        console.error('User model insert error', err);
-        return res.status(500).send(err);
-      });
+    .then((user) => {
+      console.log('===========sucessful registration=====', user);
+      
+      // console.log('===========request object keyse=====', Object.keys(req));
+      // console.log('===========response object keyse=====', Object.keys(res));
+      res.json({ user, });
+    })
+    .catch((err) => {
+      console.error('User model insert error', err);
+      return res.status(500).send(err);
+    });
 
 export const updateUser = (req, res) =>
-  User.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec()
-      .then(user => res.json({ user }))
-      .catch((err) => {
-        console.log('error in User Model Update', err);
-        res.status(500).send(err);
-      });
+  User.findByIdAndUpdate(req.params.id, req.body, { new: true, }).exec()
+    .then((user) => {
+      res.json({ user, });
+    })
+    .catch((err) => {
+      console.log('error in User Model Update', err);
+      res.status(500).send(err);
+    });
 
 
 /**
@@ -53,13 +61,13 @@ export const updateUser = (req, res) =>
  * @returns void
  */
 export const deleteUser = (req, res) => {
-  User.findByIdAndRemove(req.params.id, { select: 'id' })
-      .exec().then((user) => {
-        console.log('suceessfully removed', user);
-        return res.json({ user });
-      })
-      .catch((err) => {
-        console.log('DB ERROR,', err);
-        return res.status(500).send(err);
-      });
+  User.findByIdAndRemove(req.params.id, { select: 'id', })
+    .exec().then((user) => {
+      console.log('suceessfully removed', user);
+      return res.json({ user, });
+    })
+    .catch((err) => {
+      console.log('DB ERROR,', err);
+      return res.status(500).send(err);
+    });
 };

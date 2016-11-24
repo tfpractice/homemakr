@@ -23,9 +23,18 @@ passport.deserializeUser((id, done) => User.findById(id, (err, user) => {
 
 // login && set current user
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/api/tasks',
   failureRedirect: '/login',
-}));
+}), (req, res, next) => {
+  console.log('========CALLBACK INVOKED======');
+  console.log(Object.keys(req));
+  console.log(Object.keys(res));
+  console.log(Object.keys(next));
+  next();
+});
+
+//
+// }
 
 // Get all Users router.route('/users').get(UserController.getUsers); register
 // new user router.get('/register', UserController.addUser); register new user

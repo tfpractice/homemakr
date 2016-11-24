@@ -11,13 +11,9 @@ const load = () => state => ({
   loading: true,
 });
 
-const loadSuccess = user => state => ({
-  ...state, loading: false, loaded:  true, user,
-});
+const loadSuccess = user => state => ({ ...state, loading: false, loaded:  true, user, });
 
-const loadFail = loadError => state => ({
-  ...state, loading: false, loaded:  false, loadError,
-});
+const loadFail = loadError => state => ({ ...state, loading: false, loaded:  false, loadError, });
 
 const login = () => state => ({ ...state, loggingIn: true, });
 
@@ -47,10 +43,16 @@ const registerFail = registerError => state => ({
   registerError,
 });
 
+export const loginUser = userProps => dispatch =>
+ axios.post(`${API_URL}/login`, userProps)
+   .then((value) => { console.log(value); })
+   .catch((err) => { console.error(err); });
+
 export const registerUser = userProps => dispatch =>
   axios.post(`${API_URL}/register`, userProps)
     .then(({ data: { user, }, }) => {
       console.log('=============user created=============', user);
+      
       
         // dispatch(insertUser(user));
     })

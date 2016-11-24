@@ -6,12 +6,12 @@ import expressValidator from 'express-validator';
 import session from 'express-session';
 import flash from 'express-flash';
 import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as LocalStrategy, } from 'passport-local';
 import mongoose from 'mongoose';
-import { enableHotReload } from '../../../config';
-import { requestHandler } from './request_handler';
-import { dbConfig } from '../models';
-import { TaskRoutes, UserRoutes } from '../routes';
+import { enableHotReload, } from '../../../config';
+import { requestHandler, } from './request_handler';
+import { dbConfig, } from '../models';
+import { TaskRoutes, UserRoutes, } from '../routes';
 
 mongoose.Promise = global.Promise;
 
@@ -21,7 +21,7 @@ mongoose.connect(dbConfig.mongoURL, (error) => {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
   }
-
+  
   console.log('mongoose connected');
 });
 
@@ -29,15 +29,15 @@ mongoose.connect(dbConfig.mongoURL, (error) => {
 const app = enableHotReload(express());
 
 // BodyParser Middleware
-app.use(bodyParser.json({ limit: '20mb' }));
-app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
+app.use(bodyParser.json({ limit: '20mb', }));
+app.use(bodyParser.urlencoded({ limit: '20mb', extended: false, }));
 app.use(cookieParser());
 
 // Set Static Folder
 app.use(express.static(path.resolve(__dirname, '../../../dist')));
 
 // Express Session
-app.use(session({ secret: 'secret', saveUninitialized: true, resave: true }));
+app.use(session({ secret: 'secret', saveUninitialized: true, resave: true, }));
 
 // Passport init
 app.use(passport.initialize());

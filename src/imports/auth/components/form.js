@@ -12,6 +12,15 @@ const RegisterFormComp = ({ handleSubmit, }) => (
     <FlatButton label="submit" type="submit" />
   </form>
 );
+const LoginFormComp = ({ handleSubmit, }) => (
+  <form onSubmit={handleSubmit}>
+    <Field name="username" component={TextField} hintText="username" />
+    <Field name="password" component={TextField} type="password" hintText="password" />
+    <FlatButton label="submit" type="submit" />
+  </form>
+);
 
-const RegisterForm = reduxForm()(RegisterFormComp);
-export default RegisterForm;
+export const RegisterForm = reduxForm()(RegisterFormComp);
+export const LoginForm = reduxForm()(LoginFormComp);
+
+// export default RegisterForm;
