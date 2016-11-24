@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class Main extends Component {
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: 'all' })}>
+      <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: 'all', })}>
         <div id="main-view" className="container">
           <h1>Tasks chane</h1>
           <hr />
@@ -16,6 +16,6 @@ class Main extends Component {
   }
 }
 
-Main.contextTypes = { muiTheme: React.PropTypes.object };
+Main.contextTypes = { muiTheme: React.PropTypes.object, };
 
 export default Main;

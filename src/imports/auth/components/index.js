@@ -5,13 +5,17 @@ import { Checkbox, TextField, Toggle, } from 'redux-form-material-ui';
 import RegisterForm from './form';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
-const Register = ({ user, }) => (
-  <div className="registration">
-    <RegisterForm
-      form={'registerForm'}
-      onSubmitSuccess={resetForm('registerForm')}
-    />
-  </div>);
+const Register = ({ actions, }) => {
+  console.log('==========ATUH ACTIONS PROP========', actions);
+  return (
+    <div className="registration">
+      <RegisterForm
+        form={'registerForm'}
+        onSubmit={actions.registerUser}
+        onSubmitSuccess={resetForm('registerForm')}
+      />
+    </div>);
+};
 
 Register.contextTypes = { muiTheme: React.PropTypes.object, };
 

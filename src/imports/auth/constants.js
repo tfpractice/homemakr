@@ -15,4 +15,4 @@ export const LOGIN_ACTIONS = asyncActions('LOGIN');
 export const LOGOUT_ACTIONS = asyncActions('LOGOUT');
 
 const SET_USER = 'SET_USER';
-export const USER_ACTIONS = new Set([SET_USER, ]);
+export const USER_ACTIONS = new Set([SET_USER,]);

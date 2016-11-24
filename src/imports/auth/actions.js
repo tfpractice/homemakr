@@ -1,5 +1,7 @@
+import axios from 'axios';
 import * as CONSTANTS from './constants';
 
+const { API_URL, } = CONSTANTS;
 const pending = () => state =>
  ({ status: 'pending', updatedAt: Date.now(), });
 
