@@ -22,7 +22,9 @@ const registerFailure = error =>
 
 export const registerUser = userProps => (dispatch) => {
   dispatch(registerPending());
-  return axios.post(`${API_URL}/register`, userProps)
+
+  // return axios.post(`${API_URL}/register`, userProps)
+  return axios.post('/register', userProps)
     .then(({ data: { user, }, }) => {
       console.log('=============user created=============', user);
       

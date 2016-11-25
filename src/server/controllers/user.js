@@ -37,7 +37,8 @@ export const registerUser = (req, username, password, done) => {
       if (usr) {
         done(null, false, { message: 'Username already exists.', });
       } else {
-        done(null, false);
+        User.create(req.body)
+          .then(user => done(null, user));
       }
     })
     .catch(done);
@@ -52,6 +53,7 @@ export const registerUser = (req, username, password, done) => {
 export const addUser = (req, res) =>
   User.create(req.body)
     .then((user) => {
+      console.log('===========sucessful registration=====', req.body);
       console.log('===========sucessful registration=====', user);
       
       // console.log('===========request object keyse=====', Object.keys(req));

@@ -23,7 +23,7 @@ const router = new Router();
 
 export const configStrategies = (passport) => {
   passport.use('local-register',
-    new LocalStrategy({ passReqToCallback: true, }, UserController.addUser));
+    new LocalStrategy({ passReqToCallback: true, }, UserController.registerUser));
   passport.use('local-login',
     new LocalStrategy({ passReqToCallback: true, }, UserController.loginUser));
 };
