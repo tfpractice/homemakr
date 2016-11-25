@@ -11,7 +11,7 @@ import mongoose from 'mongoose';
 import { enableHotReload, } from '../../../config';
 import { requestHandler, } from './request_handler';
 import { dbConfig, } from '../models';
-import { TaskRoutes, UserRoutes, } from '../routes';
+import { TaskRoutes, UserRoutes, applyRoutes, } from '../routes';
 
 mongoose.Promise = global.Promise;
 
@@ -57,7 +57,9 @@ app.use((req, res, next) => {
 
 //  backend api routes
 app.use('/api', TaskRoutes);
-app.use('/api', UserRoutes);
+applyRoutes(app, passport);
+
+// app.use('/api', UserRoutes);
 
 // establish server render
 app.use(requestHandler);

@@ -1,4 +1,4 @@
 import TaskRoutes from './task';
-import UserRoutes from './user';
+import UserRoutes, { applyRoutes, } from './user';
 
-export { TaskRoutes, UserRoutes };
+export { TaskRoutes, UserRoutes, applyRoutes, };

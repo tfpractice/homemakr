@@ -4,4 +4,4 @@ const dbConfig = {
 };
 import Task from './task';
 import User from './user';
-export { dbConfig, Task, User };
+export { dbConfig, Task, User, };

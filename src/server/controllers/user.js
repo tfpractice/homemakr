@@ -23,6 +23,26 @@ export const getUser = (req, res) =>
       .then(user => res.json({ user, }))
       .catch(err => res.status(500).send(err));
 
+export const loginUser = (req, username, password, done) => {
+  User.findByUserName({ username, })
+    .then(user => user.comparePassword(password)
+      .then(isValid => done(null, user))
+      .catch(err => done(null, false, { message: 'Incorrect password.', })))
+    .catch(done);
+};
+
+export const registerUser = (req, username, password, done) => {
+  User.findByUserName({ username, })
+    .then((usr) => {
+      if (usr) {
+        done(null, false, { message: 'Username already exists.', });
+      } else {
+        done(null, false);
+      }
+    })
+    .catch(done);
+};
+
 /**
  * Save a user
  * @param req
