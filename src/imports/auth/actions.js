@@ -40,7 +40,7 @@ export const loginUser = userProps => (dispatch) => {
     .then(({ data: { user, }, }) => {
       console.log(__filename, '\n=============user logged in=============', user);
       
-      dispatch(registerSuccess(user));
+      dispatch(loginSuccess(user));
     })
     .catch((err) => { console.error(err); });
 };

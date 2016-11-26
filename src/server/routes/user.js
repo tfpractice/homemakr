@@ -14,8 +14,6 @@ export const configStrategies = (passport) => {
 };
 
 export const configSerial = (passport) => {
-  console.log(__filename, '=======serializeUser CALLBACK=======');
-  
   passport.serializeUser((user, done) => done(null, user.id));
   passport.deserializeUser((id, done) => User.findById(id, (err, user) => {
     done(err, user);
@@ -29,7 +27,7 @@ export const applyRoutes = (app, passport) => {
   
   // app.post('/login', passport.authenticate('local-login'));
   
-  app.post('/login', passport.authenticate('local-login'), (req, res, next) => {
+  app.post('/login', passport.authenticate('local-login'), (req, res) => {
     console.log(__filename, '=======AUTHENTICATION CALLBACK=======', Object.keys(req));
     
     res.json({ user: req.user, });
