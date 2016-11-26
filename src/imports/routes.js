@@ -9,6 +9,7 @@ injectTapEventPlugin();
 const Root = (
   <Route name="app" component={Main} path="/">
     <IndexRoute component={Home} >
+      <Route path="register" component={Register} />
       <Route path="login" component={Login} />
     </IndexRoute>
 

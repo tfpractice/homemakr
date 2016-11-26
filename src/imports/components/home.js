@@ -14,7 +14,7 @@ const Home = ({ dispatch, tasks, tasksReducer, children, }) => (
   </div>
     );
 
-Home.needs = [TaskActions.getTasks, ];
+Home.needs = [TaskActions.getTasks,];
 
 Home.contextTypes = { muiTheme: React.PropTypes.object, };
 
