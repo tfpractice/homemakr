@@ -1,26 +1,26 @@
 import axios from 'axios';
 import * as CONSTANTS from './constants';
 
-const { API_URL, SET_USER, } = CONSTANTS;
-export const set = user => state => user;
+const { SET_USER, } = CONSTANTS;
+export const set = user => () => user;
 export const setUser = user => ({ type: SET_USER, curry: set(user), });
 
-const pending = () => state =>
+const pending = () => () =>
  ({ status: 'pending', updatedAt: Date.now(), });
 
-const success = user => state =>
+const success = user => () =>
  ({ status: 'suceeded', updatedAt: Date.now(), });
 
-const failure = error => state =>
+const failure = error => () =>
  ({ status: 'failed', updatedAt: Date.now(), error, });
 
-const registerPending = () =>
+export const registerPending = () =>
   ({ type: 'REGISTRATION_PENDING', curry: pending(), });
 
-const registerSuccess = user =>
+export const registerSuccess = user =>
  ({ type: 'REGISTRATION_SUCCESS', curry: success(user), });
 
-const registerFailure = error =>
+export const registerFailure = error =>
   ({ type: 'REGISTRATION_FAILURE', curry: failure(error), });
 
 export const registerUser = userProps => (dispatch) => {
@@ -30,32 +30,30 @@ export const registerUser = userProps => (dispatch) => {
     .catch(err => dispatch(registerFailure(err)));
 };
 
-const loginPending = () =>
+export const loginPending = () =>
   ({ type: 'LOGIN_PENDING', curry: pending(), });
 
-const loginSuccess = user =>
+export const loginSuccess = user =>
  ({ type: 'LOGIN_SUCCESS', curry: success(user), });
 
-const loginFailure = error =>
+export const loginFailure = error =>
   ({ type: 'LOGIN_FAILURE', curry: failure(error), });
 
 export const loginUser = userProps => (dispatch) => {
   dispatch(loginPending());
   return axios.post('/login', userProps)
-    .then(({ data: { user, }, }) => {
-      dispatch(loginSuccess(user));
-      return dispatch(setUser(user));
-    })
+    .then(({ data: { user, }, }) =>
+      dispatch(loginSuccess(user)) && dispatch(setUser(user)))
     .catch(err => dispatch(loginFailure(err)));
 };
 
-const logoutPending = () =>
+export const logoutPending = () =>
 ({ type: 'LOGOUT_PENDING', curry: pending(), });
 
-const logoutSuccess = user =>
+export const logoutSuccess = user =>
  ({ type: 'LOGOUT_SUCCESS', curry: success(user), });
 
-const logoutFailure = error =>
+export const logoutFailure = error =>
   ({ type: 'LOGOUT_FAILURE', curry: failure(error), });
 
 export const logoutUser = userProps => (dispatch) => {

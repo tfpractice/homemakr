@@ -23,20 +23,20 @@ export const configSerial = (passport) => {
 export const applyRoutes = (app, passport) => {
   configStrategies(passport);
   configSerial(passport);
-  
+
   // app.post('/register', passport.authenticate('local-register'), UserController.addUser);
   app.post('/register', passport.authenticate('local-register'), (req, res) => {
     console.log(__filename, '\n============ registraiton from passport====', req.user);
     res.json({ user: true, });
   });
-  
+
   // app.post('/login', passport.authenticate('local-login'));
-  
+
   app.post('/login', passport.authenticate('local-login'), (req, res) => {
     console.log(__filename, '=======AUTHENTICATION CALLBACK=======', req.user,);
-    
+
     res.json({ user: req.user, });
-    
+
     // next();
   });
 };
@@ -46,7 +46,7 @@ function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on
   if (req.isAuthenticated())
     return next();
-  
+
     // if they aren't redirect them to the home page
   res.redirect('/');
 }

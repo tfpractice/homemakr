@@ -14,5 +14,12 @@ export const REGISTRATION_ACTIONS = asyncActions('REGISTRATION');
 export const LOGIN_ACTIONS = asyncActions('LOGIN');
 export const LOGOUT_ACTIONS = asyncActions('LOGOUT');
 
-const SET_USER = 'SET_USER';
-export const USER_ACTIONS = new Set([SET_USER,]);
+export const SET_USER = 'SET_USER';
+export const USER_ACTIONS = new Set([ SET_USER, ]);
+
+export const AUTH_ACTIONS = new Set([
+  ...REGISTRATION_ACTIONS,
+  ...LOGIN_ACTIONS,
+  ...LOGOUT_ACTIONS,
+  ...USER_ACTIONS,
+]);

@@ -6,12 +6,16 @@ import { browserHistory, Router, } from 'react-router';
 import { Provider, } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, } from 'redux';
 import { root, routes, } from '../imports';
+import { AUTH_ACTIONS, } from '../imports/auth/constants';
 
 const history = browserHistory;
-
-const logger = createLogger({ collapsed: (getState, action) => action.type, });
 const reducer = root;
 const preloadedState = window.__PRELOADED_STATE__;
+
+const predicate = (getState, { type, }) => AUTH_ACTIONS.has(type);
+const collapsed = (getState, action) => action.type;
+const logger = createLogger({ collapsed, predicate, });
+
 const store = applyMiddleware(thunk, logger)(createStore)(reducer, preloadedState);
 
 render(
