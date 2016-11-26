@@ -12,7 +12,7 @@ const history = browserHistory;
 const logger = createLogger({ collapsed: (getState, action) => action.type, });
 const reducer = root;
 const preloadedState = window.__PRELOADED_STATE__;
-const store = applyMiddleware(thunk, logger)(createStore)(reducer, preloadedState);
+const store = applyMiddleware(thunk)(createStore)(reducer, preloadedState);
 
 render(
   <Provider store={store}>

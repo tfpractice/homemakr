@@ -39,12 +39,13 @@ app.use(express.static(path.resolve(__dirname, '../../../dist')));
 // Express Session
 app.use(session({ secret: 'secret', saveUninitialized: true, resave: true, }));
 
+// Connect Flash
+app.use(flash());
+
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Connect Flash
-app.use(flash());
 
 // Global Vars
 app.use((req, res, next) => {

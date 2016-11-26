@@ -22,11 +22,11 @@ const registerFailure = error =>
 
 export const registerUser = userProps => (dispatch) => {
   dispatch(registerPending());
-
+  
   // return axios.post(`${API_URL}/register`, userProps)
   return axios.post('/register', userProps)
     .then(({ data: { user, }, }) => {
-      console.log('=============user created=============', user);
+      console.log(__filename, '=============user created=============', user);
       
       // return user;
       dispatch(registerSuccess(user));
@@ -34,14 +34,15 @@ export const registerUser = userProps => (dispatch) => {
     .catch(err => console.error('there was an error in creation', err));
 };
 
-export const loginUser = userProps => dispatch =>
- axios.post(`${API_URL}/login`)
-   .then((value, ...rest) => {
-     console.log('=============hitting passport=============');
-     console.log('=============user logged in=============', Object.keys(value));
-     console.log(value);
-     dispatch(registerSuccess(value));
-    
-    //  res.json({ value, });
-   })
-   .catch((err) => { console.error(err); });
+export const loginUser = userProps => (dispatch) => {
+  console.log(__filename, 'userProps', userProps);
+  
+// axios.post(`${API_URL}/login`)
+  axios.post('/login', userProps)
+    .then(({ data: { user, }, }) => {
+      console.log(__filename, '\n=============user logged in=============', user);
+      
+      dispatch(registerSuccess(user));
+    })
+    .catch((err) => { console.error(err); });
+};

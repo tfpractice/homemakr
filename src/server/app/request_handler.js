@@ -1,14 +1,14 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { renderToString } from 'react-dom/server';
-import { createMemoryHistory, match, RouterContext } from 'react-router';
-import { fetchComponentData } from '../../imports';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
+import { render, } from 'react-dom';
+import { renderToString, } from 'react-dom/server';
+import { createMemoryHistory, match, RouterContext, } from 'react-router';
+import { fetchComponentData, } from '../../imports';
+import { createStore, combineReducers, applyMiddleware, } from 'redux';
+import { Provider, } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import routes from '../../imports/routes';
-import { root } from '../../imports';
+import { root, } from '../../imports';
 
 const reducer = root;
 
@@ -33,18 +33,22 @@ export const renderFullPage = (markup, preloadedState) => `
 
 export const requestHandler = (req, res) => {
   const location = createMemoryHistory(req.url);
-  const logger = createLogger({
-    collapsed: (getState, action) => action.type,
-  });
-
+  const logger = createLogger({ collapsed: (getState, action) => action.type, });
+  
   // Create a new Redux store instance
-  const store = applyMiddleware(thunk, logger)(createStore)(reducer);
-  match({ routes, location }, (error, redirectLocation, renderProps) => {
+  const store = applyMiddleware(thunk)(createStore)(reducer);
+  match({ routes, location, }, (error, redirectLocation, renderProps) => {
     if (error) {
+      console.log(__filename, '\n ========ROUTER ERROR========', error);
+      
       res.status(500).send(error.message);
     } else if (redirectLocation) {
+      console.log(__filename, '\n ========REDIRECT REQUEST========');
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
+      console.log(__filename, '\n ========success REQUEST========', Object.keys(req));
+      console.log(__filename, '\n ========success REQUEST========', location);
+      
       // Grab the initial state from our Redux store
       // const preloadedState = store.getState();
       // Render the component to a string
@@ -52,19 +56,20 @@ export const requestHandler = (req, res) => {
         <Provider store={store}>
           <RouterContext {...renderProps} />
         </Provider>);
+      
             // Send the rendered page back to the client
       fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
-          .then((args, ...rest) => {
-            console.log('=========FETCH COMPONENT DATA ARG THEN 0 ========');
-            console.log(args);
-            console.log('rest', rest);
-            res.send(renderFullPage(markup, store.getState()));
-          })
-          .catch((err) => {
-            console.log('=========FETCH COMPONENT DATA ERRR CATCH 0 ========');
-            console.log(err);
-            return res.end(err.message);
-          });
+        .then((args, ...rest) => {
+          console.log('=========FETCH COMPONENT DATA ARG THEN 0 ========');
+          console.log(args);
+          console.log('rest', rest);
+          res.send(renderFullPage(markup, store.getState()));
+        })
+        .catch((err) => {
+          console.log('=========FETCH COMPONENT DATA ERRR CATCH 0 ========');
+          console.log(err);
+          return res.end(err.message);
+        });
     } else {
       res.status(404).send('Not found');
     }

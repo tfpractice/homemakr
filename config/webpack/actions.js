@@ -17,9 +17,7 @@ export const build = (common) => {
 };
 
 export const dev = (common) => {
-  console.log('run dev was called');
   const dConf = validate(merge(common, DEV_CONFIG));
-  console.log('devCOnfig', dConf);
   return dConf;
 };
 

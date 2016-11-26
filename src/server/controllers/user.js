@@ -2,6 +2,30 @@ import { User, } from '../models';
 
 
 /**
+ * Save a user
+ * @param req
+ * @param res
+ * @returns void
+ */
+export const addUser = (req, res) => {
+  User.create(req.body)
+    .then((user) => {
+      console.log(__filename, '===========sucessful registration request =====', req.body);
+      console.log(__filename, '===========sucessful registration=====', user);
+      
+      // req.flash('success_msg', 'you can now register');
+      
+      // console.log('===========request object keyse=====', Object.keys(req));
+      // console.log('===========response object keyse=====', Object.keys(res));
+      res.json({ user, });
+    })
+    .catch((err) => {
+      console.error('User model insert error', err);
+      return res.status(500).send(err);
+    });
+};
+
+/**
  * Get all users
  * @param req
  * @param res
@@ -22,48 +46,6 @@ export const getUser = (req, res) =>
     User.findOne({ id: req.params.id, }).exec()
       .then(user => res.json({ user, }))
       .catch(err => res.status(500).send(err));
-
-export const loginUser = (req, username, password, done) => {
-  User.findByUserName({ username, })
-    .then(user => user.comparePassword(password)
-      .then(isValid => done(null, user))
-      .catch(err => done(null, false, { message: 'Incorrect password.', })))
-    .catch(done);
-};
-
-export const registerUser = (req, username, password, done) => {
-  User.findByUserName({ username, })
-    .then((usr) => {
-      if (usr) {
-        done(null, false, { message: 'Username already exists.', });
-      } else {
-        User.create(req.body)
-          .then(user => done(null, user));
-      }
-    })
-    .catch(done);
-};
-
-/**
- * Save a user
- * @param req
- * @param res
- * @returns void
- */
-export const addUser = (req, res) =>
-  User.create(req.body)
-    .then((user) => {
-      console.log('===========sucessful registration=====', req.body);
-      console.log('===========sucessful registration=====', user);
-      
-      // console.log('===========request object keyse=====', Object.keys(req));
-      // console.log('===========response object keyse=====', Object.keys(res));
-      res.json({ user, });
-    })
-    .catch((err) => {
-      console.error('User model insert error', err);
-      return res.status(500).send(err);
-    });
 
 export const updateUser = (req, res) =>
   User.findByIdAndUpdate(req.params.id, req.body, { new: true, }).exec()
@@ -92,4 +74,37 @@ export const deleteUser = (req, res) => {
       console.log('DB ERROR,', err);
       return res.status(500).send(err);
     });
+};
+
+export const loginUser = (req, username, password, done) => {
+  console.log(__filename, '\n=======LOGIN PRE DB=======');
+  console.log(Object.keys(req), username, password, done);
+  
+  User.findByUserName(username)
+    .then((user) => {
+      if (user) {
+        return user.comparePassword(password)
+          .then((isValid) => {
+            console.log(__filename, '\n=======LOGIN loginUser IS VALID CALLBACK=======', user);
+            return isValid ? done(null, user) : done(null, false, { message: 'Incorrect password.', });
+          })
+          .catch(err => done(null, false, { message: 'Incorrect password.', }));
+      } else {
+        return done(null, false, { message: 'Invalid username .', });
+      }
+    })
+    .catch(done);
+};
+
+export const registerUser = (req, username, password, done) => {
+  User.findByUserName(username)
+    .then((usr) => {
+      if (usr) {
+        done(null, false, { message: 'Username already exists.', });
+      } else {
+        User.create(req.body)
+          .then(user => done(null, user));
+      }
+    })
+    .catch(done);
 };
