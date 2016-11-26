@@ -8,8 +8,8 @@ const Home = ({ dispatch, tasks, tasksReducer, children, }) => (
   <div id="todo-list">
     <h1> JUST AN H1 new TAG</h1>
     <TasksView tasks={tasks} actions={(bindActionCreators(TaskActions, dispatch))} />
-    <Register actions={(bindActionCreators(AuthActions, dispatch))} />
-    <Login actions={(bindActionCreators(AuthActions, dispatch))} />
+    {/* <Register actions={(bindActionCreators(AuthActions, dispatch))} /> */}
+    {/* <Login actions={(bindActionCreators(AuthActions, dispatch))} /> */}
     {children}
   </div>
     );

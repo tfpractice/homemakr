@@ -3,7 +3,7 @@ import { reset, } from 'redux-form';
 import { LoginForm, } from './form';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
-import { actions as AuthActions, } from '../actions';
+import * as AuthActions from '../actions';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
@@ -22,7 +22,7 @@ const LoginC = ({ actions, }, { router, }) =>
 
 const mapStateToProps = ({ auth, }) => ({ auth, });
 const mapDispatchToProps = dispatch =>
-  ({ actions: bindActionCreators(AuthActions)(dispatch), });
+  ({ actions: bindActionCreators(AuthActions, dispatch), });
 
 const Login = connect(mapStateToProps, mapDispatchToProps)(LoginC);
 

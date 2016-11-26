@@ -1,9 +1,9 @@
 import React, { PropTypes, } from 'react';
-import { reset, } from 'redux-form';
-import { RegisterForm, } from './form';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
-import { actions as AuthActions, } from '../actions';
+import { reset, } from 'redux-form';
+import { RegisterForm, } from './form';
+import * as AuthActions from '../actions';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 const RegisterComp = ({ actions, }, { router, }) =>
@@ -26,7 +26,7 @@ RegisterComp.contextTypes = {
 
 const mapStateToProps = ({ auth, }) => ({ auth, });
 const mapDispatchToProps = dispatch =>
-({ actions: bindActionCreators(AuthActions)(dispatch), });
+  ({ actions: bindActionCreators(AuthActions, dispatch), });
 
 const Register = connect(mapStateToProps, mapDispatchToProps)(RegisterComp);
 
