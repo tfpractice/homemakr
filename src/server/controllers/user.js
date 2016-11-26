@@ -4,8 +4,15 @@ export const registerUser = (req, username, password, done) => {
   User.findByUserName(username)
     .then(usr =>
       !usr ? User.create(req.body) : done(null, false, { message: 'Username already exists.', }))
-    .then(user => done(null, user))
-    .catch(done);
+    .then((user) => {
+      if (user) {
+        console.log('new user created');
+      } else {
+        console.log('username taken');
+      }
+      return done(null, user);
+    })
+    .catch((err) => { console.log('ann error in registration', err); return done(err); });
 };
 
 export const loginUser = (req, username, password, done) =>
@@ -17,11 +24,10 @@ export const loginUser = (req, username, password, done) =>
               isValid ? done(null, user)
               : done(null, false, { message: 'Invalid password.', }));
       }
-      
+
       return done(null, false, { message: 'Invalid username.', });
     })
     .catch(done);
-
 
 /**
  * Save a user
@@ -34,12 +40,12 @@ export const addUser = (req, res, next) => {
     .then((user) => {
       console.log(__filename, '===========sucessful registration request =====', req.body);
       console.log(__filename, '===========sucessful registration=====', user);
-      
+
       req.flash('success_msg', 'you can now register');
-      
+
       // res.redirect('/login');
       next();
-      
+
       // res.json({ user, });
     })
     .catch((err) => {
@@ -79,7 +85,6 @@ export const updateUser = (req, res) =>
       console.log('error in User Model Update', err);
       res.status(500).send(err);
     });
-
 
 /**
  * Delete a user

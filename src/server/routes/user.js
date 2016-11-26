@@ -25,10 +25,11 @@ export const applyRoutes = (app, passport) => {
   configSerial(passport);
 
   // app.post('/register', passport.authenticate('local-register'), UserController.addUser);
-  app.post('/register', passport.authenticate('local-register'), (req, res) => {
-    console.log(__filename, '\n============ registraiton from passport====', req.user);
-    res.json({ user: true, });
-  });
+  app.post('/register', passport.authenticate('local-register',
+   { faliureRedirect: '/register', }), (req, res) => {
+     console.log(__filename, '\n============ registraiton from passport====', req.user);
+     res.json({ user: true, });
+   });
 
   // app.post('/login', passport.authenticate('local-login'));
 
