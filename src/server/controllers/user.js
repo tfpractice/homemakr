@@ -1,5 +1,27 @@
 import { User, } from '../models';
 
+export const registerUser = (req, username, password, done) => {
+  User.findByUserName(username)
+    .then(usr =>
+      !usr ? User.create(req.body) : done(null, false, { message: 'Username already exists.', }))
+    .then(user => done(null, user))
+    .catch(done);
+};
+
+export const loginUser = (req, username, password, done) =>
+  User.findByUserName(username)
+    .then((user) => {
+      if (user) {
+        return user.comparePassword(password)
+          .then(isValid =>
+              isValid ? done(null, user)
+              : done(null, false, { message: 'Invalid password.', }));
+      }
+      
+      return done(null, false, { message: 'Invalid username.', });
+    })
+    .catch(done);
+
 
 /**
  * Save a user
@@ -75,38 +97,4 @@ export const deleteUser = (req, res) => {
       console.log('DB ERROR,', err);
       return res.status(500).send(err);
     });
-};
-
-export const loginUser = (req, username, password, done) => {
-  console.log(__filename, '\n=======LOGIN PRE DB=======');
-  console.log(Object.keys(req), username, password, done);
-  
-  User.findByUserName(username)
-    .then((user) => {
-      if (user) {
-        return user.comparePassword(password)
-          .then((isValid) => {
-            console.log(__filename, '\n=======LOGIN loginUser IS VALID CALLBACK=======', user);
-            return isValid ? done(null, user) : done(null, false, { message: 'Incorrect password.', });
-          })
-          .catch(err => done(null, false, { message: 'Incorrect password.', }));
-      } else {
-        return done(null, false, { message: 'Invalid username .', });
-      }
-    })
-    .catch(done);
-};
-
-export const registerUser = (req, username, password, done) => {
-  User.findByUserName(username)
-    .then((usr) => {
-      if (usr) {
-        done(null, false, { message: 'Username already exists.', });
-        return null;
-      }
-      
-      return User.create(req.body);
-    })
-    .then(user => done(null, user))
-    .catch(done);
 };

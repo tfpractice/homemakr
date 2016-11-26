@@ -7,7 +7,7 @@ import * as AuthActions from '../actions';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
-const LoginC = ({ actions, pushLogin, }, { router, }) =>
+const LoginC = ({ actions, }, { router, }) =>
 
   // console.log('==========LOGIN ACTIONS PROP========', actions);
   // console.log('==========LOGIN context PROP========', router);
@@ -16,7 +16,7 @@ const LoginC = ({ actions, pushLogin, }, { router, }) =>
        <LoginForm
          form={'loginForm'}
          onSubmit={actions.loginUser}
-         onSubmitSuccess={(act, dis) => { resetForm('loginForm')(act, dis); return pushLogin(); }}
+         onSubmitSuccess={(act, dis) => { resetForm('loginForm')(act, dis); return router.push('/'); }}
 
        />
      </div>);
@@ -26,11 +26,7 @@ LoginC.contextTypes = {
   router: React.PropTypes.object,
 };
 
-const mapStateToProps = ({ auth, }, { router, }) => {
-  console.log('=======alt LOGIN props(=======', router);
-  const pushLogin = () => router.push('/');
-  return ({ auth, pushLogin, });
-};
+const mapStateToProps = ({ auth, }, { router, }) => ({ auth, });
 
 const mapDispatchToProps = dispatch =>
   ({ actions: bindActionCreators(AuthActions, dispatch), });

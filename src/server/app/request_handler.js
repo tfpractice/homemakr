@@ -36,18 +36,17 @@ export const requestHandler = (req, res) => {
   const logger = createLogger({ collapsed: (getState, action) => action.type, });
   
   // Create a new Redux store instance
-  const store = applyMiddleware(thunk)(createStore)(reducer);
+  const store = applyMiddleware(thunk, logger)(createStore)(reducer);
   match({ routes, location, }, (error, redirectLocation, renderProps) => {
     if (error) {
       console.log(__filename, '\n ========ROUTER ERROR========', error);
       
       res.status(500).send(error.message);
     } else if (redirectLocation) {
-      console.log(__filename, '\n ========REDIRECT REQUEST========');
+      console.log(__filename, '\n ========REDIRECT REQUEST========', redirectLocation);
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      console.log(__filename, '\n ========success REQUEST========', Object.keys(req));
-      console.log(__filename, '\n ========success REQUEST========', location);
+      console.log(__filename, '\n ========success REQUEST========', req.url);
       
       // Grab the initial state from our Redux store
       // const preloadedState = store.getState();
