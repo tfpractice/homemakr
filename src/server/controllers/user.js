@@ -7,17 +7,18 @@ import { User, } from '../models';
  * @param res
  * @returns void
  */
-export const addUser = (req, res) => {
+export const addUser = (req, res, next) => {
   User.create(req.body)
     .then((user) => {
       console.log(__filename, '===========sucessful registration request =====', req.body);
       console.log(__filename, '===========sucessful registration=====', user);
       
-      // req.flash('success_msg', 'you can now register');
+      req.flash('success_msg', 'you can now register');
       
-      // console.log('===========request object keyse=====', Object.keys(req));
-      // console.log('===========response object keyse=====', Object.keys(res));
-      res.json({ user, });
+      // res.redirect('/login');
+      next();
+      
+      // res.json({ user, });
     })
     .catch((err) => {
       console.error('User model insert error', err);
@@ -101,10 +102,11 @@ export const registerUser = (req, username, password, done) => {
     .then((usr) => {
       if (usr) {
         done(null, false, { message: 'Username already exists.', });
-      } else {
-        User.create(req.body)
-          .then(user => done(null, user));
+        return null;
       }
+      
+      return User.create(req.body);
     })
+    .then(user => done(null, user))
     .catch(done);
 };

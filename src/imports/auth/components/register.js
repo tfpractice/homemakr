@@ -6,7 +6,7 @@ import { RegisterForm, } from './form';
 import * as AuthActions from '../actions';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
-const RegisterComp = ({ actions, }, { router, }) =>
+const RegisterComp = ({ actions, pushLogin, }, { router, }) =>
 
   // console.log('==========ATUH ACTIONS PROP========', actions);
   // console.log('==========ATUH context PROP========', router);
@@ -15,7 +15,8 @@ const RegisterComp = ({ actions, }, { router, }) =>
        <RegisterForm
          form={'registerForm'}
          onSubmit={actions.registerUser}
-         onSubmitSuccess={resetForm('registerForm')}
+         onSubmitSuccess={(act, dis) => { resetForm('registerForm')(act, dis); return pushLogin(); }}
+
        />
      </div>);
 
@@ -24,7 +25,12 @@ RegisterComp.contextTypes = {
   router: React.PropTypes.object,
 };
 
-const mapStateToProps = ({ auth, }) => ({ auth, });
+const mapStateToProps = ({ auth, }, { router, }) => {
+  console.log('=======alt props(=======', router);
+  const pushLogin = () => router.push('/login');
+  return ({ auth, pushLogin, });
+};
+
 const mapDispatchToProps = dispatch =>
   ({ actions: bindActionCreators(AuthActions, dispatch), });
 

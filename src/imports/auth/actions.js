@@ -36,8 +36,6 @@ export const registerUser = userProps => (dispatch) => {
 
 export const loginUser = userProps => (dispatch) => {
   console.log(__filename, 'userProps', userProps);
-  
-// axios.post(`${API_URL}/login`)
   axios.post('/login', userProps)
     .then(({ data: { user, }, }) => {
       console.log(__filename, '\n=============user logged in=============', user);
