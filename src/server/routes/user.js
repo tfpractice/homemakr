@@ -25,21 +25,22 @@ export const applyRoutes = (app, passport) => {
   configSerial(passport);
 
   // app.post('/register', passport.authenticate('local-register'), UserController.addUser);
-  app.post('/register', passport.authenticate('local-register',
-   { faliureRedirect: '/register', }), (req, res) => {
-     console.log(__filename, '\n============ registraiton from passport====', req.user);
-     res.json({ user: req.user.username, });
-   });
-
-  // app.post('/login', passport.authenticate('local-login'));
+  app.post('/register', passport.authenticate('local-register'), (req, res) => {
+    console.log(__filename, '\n============ registraiton from passport====', req.user);
+    res.json({ user: req.user.username, });
+  });
 
   app.post('/login', passport.authenticate('local-login'), (req, res) => {
     console.log(__filename, '=======AUTHENTICATION CALLBACK=======', req.user,);
-
     res.json({ user: req.user, });
-
-    // next();
   });
+
+  app.get('/logout', (req, res) => {
+    console.log('REQUEST LOGOUT');
+    req.logout();
+    res.json({ status: 'ok', });
+  }
+         );
 };
 
 // route middleware to make sure a user is logged in

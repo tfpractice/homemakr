@@ -2,7 +2,7 @@ import { combineReducers, } from 'redux';
 import { REGISTRATION_ACTIONS, LOGIN_ACTIONS, LOGOUT_ACTIONS,
 USER_ACTIONS, } from './constants';
 
-const reqDefault = { status: null, updatedAt: null, };
+const reqDefault = { status: null, updatedAt: null, message: null, };
 
 export const registration = (state = reqDefault, { type, curry, }) =>
   REGISTRATION_ACTIONS.has(type) ? curry(state) : state;

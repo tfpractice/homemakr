@@ -51,15 +51,17 @@ export const loginUser = userProps => (dispatch) => {
 export const logoutPending = () =>
 ({ type: 'LOGOUT_PENDING', curry: pending(), });
 
-export const logoutSuccess = user =>
- ({ type: 'LOGOUT_SUCCESS', curry: success(user), });
+export const logoutSuccess = status =>
+ ({ type: 'LOGOUT_SUCCESS', curry: success('you are now logged in'), });
 
 export const logoutFailure = error =>
   ({ type: 'LOGOUT_FAILURE', curry: failure(error), });
 
-export const logoutUser = userProps => (dispatch) => {
+export const logoutUser = () => (dispatch) => {
+  console.log('LOGOUT REQUEST');
   dispatch(logoutPending());
-  return axios.post('/logout', userProps)
-    .then(({ data: { user, }, }) => dispatch(logoutSuccess(user)))
+  return axios.get('/logout')
+    .then(({ data: { status, }, }) =>
+      dispatch(logoutSuccess(status)) && dispatch(setUser({})))
     .catch(err => dispatch(logoutFailure(err)));
 };
