@@ -28,7 +28,7 @@ export const applyRoutes = (app, passport) => {
   app.post('/register', passport.authenticate('local-register',
    { faliureRedirect: '/register', }), (req, res) => {
      console.log(__filename, '\n============ registraiton from passport====', req.user);
-     res.json({ user: true, });
+     res.json({ user: req.user.username, });
    });
 
   // app.post('/login', passport.authenticate('local-login'));

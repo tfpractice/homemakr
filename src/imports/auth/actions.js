@@ -3,13 +3,14 @@ import * as CONSTANTS from './constants';
 
 const { SET_USER, } = CONSTANTS;
 export const set = user => () => user;
-export const setUser = user => ({ type: SET_USER, curry: set(user), });
+export const setUser = ({ username, }) =>
+  ({ type: SET_USER, curry: set({ username, }), });
 
 const pending = () => () =>
  ({ status: 'pending', updatedAt: Date.now(), message: null, });
 
-const success = user => () =>
- ({ status: 'suceeded', updatedAt: Date.now(), message: 'you are now registered', });
+const success = message => () =>
+ ({ status: 'suceeded', updatedAt: Date.now(), message, });
 
 const failure = message => () =>
  ({ status: 'failed', updatedAt: Date.now(), message, });
@@ -18,7 +19,7 @@ export const registerPending = () =>
   ({ type: 'REGISTRATION_PENDING', curry: pending(), });
 
 export const registerSuccess = user =>
- ({ type: 'REGISTRATION_SUCCESS', curry: success(user), });
+ ({ type: 'REGISTRATION_SUCCESS', curry: success('you are now registered'), });
 
 export const registerFailure = error =>
   ({ type: 'REGISTRATION_FAILURE', curry: failure(error), });
@@ -34,7 +35,7 @@ export const loginPending = () =>
   ({ type: 'LOGIN_PENDING', curry: pending(), });
 
 export const loginSuccess = user =>
- ({ type: 'LOGIN_SUCCESS', curry: success(user), });
+ ({ type: 'LOGIN_SUCCESS', curry: success('you are now logged in'), });
 
 export const loginFailure = error =>
   ({ type: 'LOGIN_FAILURE', curry: failure(error), });
