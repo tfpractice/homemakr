@@ -6,13 +6,13 @@ export const set = user => () => user;
 export const setUser = user => ({ type: SET_USER, curry: set(user), });
 
 const pending = () => () =>
- ({ status: 'pending', updatedAt: Date.now(), });
+ ({ status: 'pending', updatedAt: Date.now(), message: null, });
 
 const success = user => () =>
- ({ status: 'suceeded', updatedAt: Date.now(), });
+ ({ status: 'suceeded', updatedAt: Date.now(), message: 'you are now registered', });
 
-const failure = error => () =>
- ({ status: 'failed', updatedAt: Date.now(), error, });
+const failure = message => () =>
+ ({ status: 'failed', updatedAt: Date.now(), message, });
 
 export const registerPending = () =>
   ({ type: 'REGISTRATION_PENDING', curry: pending(), });
@@ -27,7 +27,7 @@ export const registerUser = userProps => (dispatch) => {
   dispatch(registerPending());
   return axios.post('/register', userProps)
     .then(({ data: { user, }, }) => dispatch(registerSuccess(user)))
-    .catch(err => dispatch(registerFailure(err)));
+    .catch(({ message, }) => dispatch(registerFailure(message)));
 };
 
 export const loginPending = () =>

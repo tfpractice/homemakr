@@ -2,17 +2,13 @@ import { User, } from '../models';
 
 export const registerUser = (req, username, password, done) => {
   User.findByUserName(username)
-    .then(usr =>
-      !usr ? User.create(req.body) : done(null, false, { message: 'Username already exists.', }))
-    .then((user) => {
-      if (user) {
-        console.log('new user created');
-      } else {
-        console.log('username taken');
+    .then((usr) => {
+      if (usr) {
+        return done(null, false, { message: 'Username already exists.', });
       }
-      return done(null, user);
+      return User.create(req.body).then(u => done(null, u));
     })
-    .catch((err) => { console.log('ann error in registration', err); return done(err); });
+    .catch(err => done(err));
 };
 
 export const loginUser = (req, username, password, done) =>

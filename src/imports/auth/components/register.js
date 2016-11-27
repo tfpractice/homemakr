@@ -6,26 +6,26 @@ import { RegisterForm, } from './form';
 import * as AuthActions from '../actions';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
-const RegisterComp = ({ actions, }, { router, }) =>
+const resetAndRedirect = router => name => (act, dis) =>
+resetForm(name)(act, dis) && router.push('/login');
 
-  // console.log('==========ATUH ACTIONS PROP========', actions);
-  // console.log('==========ATUH context PROP========', router);
-   (
-     <div className="registration">
-       <RegisterForm
-         form={'registerForm'}
-         onSubmit={actions.registerUser}
-         onSubmitSuccess={(act, dis) => { resetForm('registerForm')(act, dis); return router.push('/login'); }}
-
-       />
-     </div>);
+const RegisterComp = ({ auth: { registration, }, actions, }, { router, }) => (
+  <div className="registration">
+    <RegisterForm
+      form={'registerForm'}
+      onSubmit={actions.registerUser}
+      onSubmitSuccess={resetAndRedirect(router)('registerForm')}
+    />
+  </div>);
 
 RegisterComp.contextTypes = {
   muiTheme: React.PropTypes.object,
   router: React.PropTypes.object,
 };
 
-const mapStateToProps = ({ auth, }, { router, }) => ({ auth, });
+// const registerFailed= ({registration:{status}})=> status==='failed';
+const mapStateToProps = ({ auth, }, { router, }) =>
+  ({ auth, });
 
 const mapDispatchToProps = dispatch =>
   ({ actions: bindActionCreators(AuthActions, dispatch), });
