@@ -11,7 +11,7 @@ class Main extends Component {
   render() {
     const { actions, } = this.props;
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: 'all', })}>
+      <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: false, })}>
         <div id="main-view" className="container">
           <Nav logout={actions.logoutUser} />
           <hr />

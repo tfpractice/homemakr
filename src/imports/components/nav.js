@@ -11,9 +11,10 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { actions as AuthActions, Register, Login, } from '../auth';
 
+// style={{ display: 'inline-flex !important', }}
+
 const Nav = ({ logout, }) => (
   <AppBar
-    style={{ display: 'inline-flex !important', }}
     title={<FlatButton
       containerElement={<Link to="/" />}
       label="HomeMakr"
