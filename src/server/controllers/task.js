@@ -26,7 +26,8 @@ export const addTask = (req, res) => Task.create(req.body)
       .send(err);
   });
 
-export const updateTask = (req, res) => Task.findByIdAndUpdate(req.params.id,
+export const updateTask = (req, res) =>
+Task.findByIdAndUpdate(req.params.id,
         req.body, { new: true, })
   .exec()
   .then(task => res.json({ task, }))
