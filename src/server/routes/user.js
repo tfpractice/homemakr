@@ -24,7 +24,6 @@ export const applyRoutes = (app, passport) => {
   configStrategies(passport);
   configSerial(passport);
 
-  // app.post('/register', passport.authenticate('local-register'), UserController.addUser);
   app.post('/register', passport.authenticate('local-register'), (req, res) => {
     console.log(__filename, '\n============ registraiton from passport====', req.user);
     res.json({ user: req.user.username, });

@@ -9,8 +9,10 @@ const Home = ({ dispatch, tasks, tasksReducer, children, }) => (
   <div id="todo-list">
     <h1> JUST AN H1 new TAG</h1>
     <FlatButton label="logout" onClick={() => dispatch(AuthActions.logoutUser)} />
-    <TasksView tasks={tasks} actions={(bindActionCreators(TaskActions, dispatch))} />
 
+    <TasksView tasks={tasks} actions={(bindActionCreators(TaskActions, dispatch))} />
+    {/* <Register actions={(bindActionCreators(AuthActions, dispatch))} /> */}
+    {/* <Login actions={(bindActionCreators(AuthActions, dispatch))} /> */}
     {children}
   </div>
     );
