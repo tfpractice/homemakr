@@ -3,14 +3,11 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import { actions as TaskActions, TasksView, } from '../tasks';
-import { actions as AuthActions, Register, Login, } from '../auth';
 
 const Home = ({ dispatch, tasks, tasksReducer, children, }) => (
   <div id="todo-list">
-    <h1> JUST AN H1 new TAG</h1>
-    <FlatButton label="logout" onClick={() => dispatch(AuthActions.logoutUser)} />
+    <h1> TASKS </h1>
     <TasksView tasks={tasks} actions={(bindActionCreators(TaskActions, dispatch))} />
-
     {children}
   </div>
     );

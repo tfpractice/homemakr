@@ -14,7 +14,7 @@ const preloadedState = window.__PRELOADED_STATE__;
 
 const predicate = (getState, { type, }) => AUTH_ACTIONS.has(type);
 const collapsed = (getState, action) => action.type;
-const logger = createLogger({ collapsed, predicate, });
+const logger = createLogger({ collapsed, });
 
 const store = applyMiddleware(thunk, logger)(createStore)(reducer, preloadedState);
 

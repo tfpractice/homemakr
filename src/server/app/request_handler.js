@@ -12,7 +12,7 @@ const reducer = root;
 
 const predicate = (getState, { type, }) => AUTH_ACTIONS.has(type);
 const collapsed = (getState, action) => action.type;
-const logger = createLogger({ collapsed, predicate, });
+const logger = createLogger({ collapsed, });
 
 export const renderFullPage = (markup, preloadedState) => `
     <!doctype html>

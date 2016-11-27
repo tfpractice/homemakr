@@ -14,21 +14,19 @@ const edit = task => tasks =>
 
 const remove = ({ id, }) => tasks => tasks.filter(t => t.id !== id);
 
-export const taskRequestSucess = ({ data: { tasks, }, }) => (dispatch) => {
-  console.loÔg('CALLED TASK REQUEST success');
-  dispatch({ type: TASK_REQUEST_SUCCESS, curry: success, });
-  return dispatch(updateTasks(tasks));
-};
+export const taskRequestSucess = () =>
+  ({ type: TASK_REQUEST_SUCCESS, curry: success, });
 
-export const taskRequestFailure = err => (dispatch) => {
-  console.error('request failed', err);
-  dispatch({ type: TASK_REQUEST_FAILURE, curry: failure, });
-};
+export const taskRequestFailure = err =>
+  ({ type: TASK_REQUEST_FAILURE, curry: failure, });
+
+export const updateTasks = tasks => ({ type: UPDATE_TASKS, curry: update(tasks), });
 
 export const getTasks = () => (dispatch) => {
   dispatch({ type: TASK_REQUEST_PENDING, curry: pending, });
   return axios.get(`${API_URL}/tasks`)
-    .then(res => taskRequestSucess(res)(dispatch))
+    .then(({ data: { tasks, }, }) =>
+      dispatch(taskRequestSucess()) && dispatch(updateTasks(tasks)))
     .catch(taskRequestFailure);
 };
 
@@ -39,7 +37,6 @@ export const createTask = taskProps => dispatch =>
     .then(({ data: { task, }, }) => dispatch(insertTask(task)))
     .catch(err => console.error('there was an error in creation', err));
 
-export const updateTasks = tasks => ({ type: UPDATE_TASKS, curry: update(tasks), });
 export const updateTask = task => ({ type: EDIT_TASK, curry: edit(task), });
 
 export const editTask = ({ id, }) => dispatch => taskProps =>

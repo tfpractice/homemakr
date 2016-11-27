@@ -52,8 +52,7 @@ export const registerUser = userProps => dispatch =>
   axios.post(`${API_URL}/register`, userProps)
     .then(({ data: { user, }, }) => {
       console.log('=============user created=============', user);
-      
-      
+
         // dispatch(insertUser(user));
     })
     .catch(err => console.error('there was an error in creation', err));

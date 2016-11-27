@@ -13,7 +13,6 @@ class Main extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: 'all', })}>
         <div id="main-view" className="container">
-          <h1>Tasks chane</h1>
           <Nav logout={actions.logoutUser} />
           <hr />
           {this.props.children}
