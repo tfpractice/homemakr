@@ -5,7 +5,7 @@ import createLogger from 'redux-logger';
 import { browserHistory, Router, } from 'react-router';
 import { Provider, } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, } from 'redux';
-import { root, routes, } from '../imports';
+import { root, getRoutes, } from '../imports';
 import { AUTH_ACTIONS, } from '../imports/auth/constants';
 
 const history = browserHistory;
@@ -20,5 +20,5 @@ const store = applyMiddleware(thunk, logger)(createStore)(reducer, preloadedStat
 
 render(
   <Provider store={store}>
-    <Router children={routes} history={history} />
+    <Router children={getRoutes(store)} history={history} />
   </Provider>, document.getElementById('root'));

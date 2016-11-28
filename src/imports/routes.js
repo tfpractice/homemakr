@@ -10,7 +10,7 @@ const logEnter = (nextState, replace) => {
   console.log(nextState);
 };
 
-const logChange = (prevState, nextState, replace, ) => {
+const logChange = (prevState, nextState, replace,) => {
   console.log('now changing Route from');
   console.log(nextState);
   console.log('to');
@@ -22,7 +22,7 @@ const logLeave = (prevState, ...args) => {
   console.log(prevState);
 };
 
-const Root = (
+const getRoutes = store => (
   <Route name="app" component={Main} path="/">
     <IndexRoute component={Home} />
     <Route
@@ -32,6 +32,6 @@ const Root = (
     <Route path="login" component={Login} />
   </Route>
 
-);
+  );
 
-export default Root;
+export default getRoutes;
