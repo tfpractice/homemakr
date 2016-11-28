@@ -33,14 +33,13 @@ const TasksView = ({ tasks, actions, }) => (
           ]}
         >
           <Toolbar>
-            <ToolbarGroup lastChild>
+            <ToolbarGroup >
               <ToolbarTitle text={task.text} />
               <Checkbox
                 onCheck={(e, completed) => {
                   console.log('checked');
                   actions.editTask(task)({ completed, });
                 }}
-
               />
               <ToolbarSeparator />
               <FlatButton

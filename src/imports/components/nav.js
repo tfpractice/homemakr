@@ -9,21 +9,20 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import { actions as AuthActions, Register, Login, } from '../auth';
+import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle, } from 'material-ui/Toolbar';
 
-// style={{ display: 'inline-flex !important', }}
+import { actions as AuthActions, Register, Login, } from '../auth';
 
 const Nav = ({ logout, }) => (
   <AppBar
-    title={<FlatButton
-      containerElement={<Link to="/" />}
-      label="HomeMakr"
-    />}
-  >
-    <FlatButton containerElement={<Link to="/register" />} label="Register" />
-    <FlatButton containerElement={<Link to="/login" />} label="Login" />
-    <FlatButton label="logout" onClick={logout} />
-  </AppBar>
+    title={<Link to="/" >HomeMakr</Link>}
+    iconElementRight={
+      <ToolbarGroup >
+        <FlatButton label={<Link to="/register" >Register</Link>} />
+        <FlatButton label={<Link to="/login" >Login</Link>} />
+        <FlatButton label="logout" onClick={logout} />
+      </ToolbarGroup>}
+  />
     );
 
 Nav.contextTypes = { muiTheme: React.PropTypes.object, };
