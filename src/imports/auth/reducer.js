@@ -13,7 +13,7 @@ export const login = (state = reqDefault, { type, curry, }) =>
 export const logout = (state = reqDefault, { type, curry, }) =>
   LOGOUT_ACTIONS.has(type) ? curry(state) : state;
 
-export const user = (state = {}, { type, curry, }) =>
+export const user = (state = null, { type, curry, }) =>
   USER_ACTIONS.has(type) ? curry(state) : state;
 
 export default combineReducers({ registration, login, logout, user, });
