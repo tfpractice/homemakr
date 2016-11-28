@@ -32,10 +32,12 @@ export const getTasks = () => (dispatch) => {
 
 export const insertTask = task => ({ type: INSERT_TASK, curry: insert(task), });
 
-export const createTask = taskProps => dispatch =>
-  axios.post(`${API_URL}/tasks`, taskProps)
+export const createTask = taskProps => (dispatch) => {
+  console.log('========tasksprops======', taskProps);
+  return axios.post(`${API_URL}/tasks`, taskProps)
     .then(({ data: { task, }, }) => dispatch(insertTask(task)))
     .catch(err => console.error('there was an error in creation', err));
+};
 
 export const updateTask = task => ({ type: EDIT_TASK, curry: edit(task), });
 

@@ -3,8 +3,6 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
 import { List, ListItem, } from 'material-ui/List';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle, } from 'material-ui/Toolbar';
-
 import Checkbox from 'material-ui/Checkbox';
 
 import { reset, } from 'redux-form';
@@ -22,35 +20,35 @@ const TasksView = ({ tasks, actions, }) => (
       {tasks.map((task, index) =>
         <ListItem
           key={index}
+          leftCheckbox={<Checkbox
+            onCheck={(e, completed) => {
+              console.log('checked');
+              actions.editTask(task)({ completed, });
+            }}
+          />}
           nestedItems={[
-            <TaskForm
-              key={task.id}
-              form={`edit_form${task.id}`}
-              initialValues={task}
-              onSubmit={actions.editTask(task)}
-              onSubmitSuccess={resetForm(`edit_form${task.id}`)}
-            />,
+            <ListItem>
+              <TaskForm
+                key={task.id}
+                form={`edit_form${task.id}`}
+                initialValues={task}
+                onSubmit={actions.editTask(task)}
+                onSubmitSuccess={resetForm(`edit_form${task.id}`)}
+              />
+            </ListItem>,
           ]}
         >
-          <Toolbar>
-            <ToolbarGroup >
-              <ToolbarTitle text={task.text} />
-              <Checkbox
-                onCheck={(e, completed) => {
-                  console.log('checked');
-                  actions.editTask(task)({ completed, });
-                }}
-              />
-              <ToolbarSeparator />
-              <FlatButton
-                label="Delete" data-id={index}
-                onClick={() => actions.deleteTask(task)}
-              />
-            </ToolbarGroup>
-          </Toolbar>
+          <div>{task.text}
+            {task.author ? <p>task.author.username</p> : null}
+            <FlatButton
+              label="Delete" data-id={index}
+              onClick={() => actions.deleteTask(task)}
+            />
+          </div>
         </ListItem>)}
     </List>
   </div>);
+
 TasksView.contextTypes = { muiTheme: React.PropTypes.object, };
 
 export default TasksView;

@@ -3,8 +3,8 @@ import * as CONSTANTS from './constants';
 
 const { SET_USER, } = CONSTANTS;
 export const set = user => () => user;
-export const setUser = ({ username, }) =>
-  ({ type: SET_USER, curry: set({ username, }), });
+export const setUser = ({ username, id, }) =>
+  ({ type: SET_USER, curry: set({ username, id, }), });
 
 const pending = () => () =>
  ({ status: 'pending', updatedAt: Date.now(), message: null, });

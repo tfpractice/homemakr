@@ -30,7 +30,7 @@ export const applyRoutes = (app, passport) => {
   });
 
   app.post('/login', passport.authenticate('local-login'), (req, res) => {
-    console.log(__filename, '=======AUTHENTICATION CALLBACK=======', req.user,);
+    console.log(__filename, '=======AUTHENTICATION CALLBACK=======', req.user, );
     res.json({ user: req.user, });
   });
 
@@ -38,8 +38,17 @@ export const applyRoutes = (app, passport) => {
     console.log('REQUEST LOGOUT');
     req.logout();
     res.json({ status: 'ok', });
-  }
-         );
+  });
+
+  app.get('/me', (req, res) => {
+    console.log(`I am ${req.user}`);
+    if (!req.user) {
+      res.json({ user: null, });
+    } else {
+      const { id, username, } = req.user;
+      res.json({ user: { id, username, }, });
+    }
+  });
 };
 
 // route middleware to make sure a user is logged in
