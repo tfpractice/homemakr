@@ -1592,6 +1592,10 @@ expand-tilde@^1.2.2:
   dependencies:
     os-homedir "^1.0.1"
 
+expose-loader:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/expose-loader/-/expose-loader-0.7.1.tgz#411ee89443aa682f8ea9d9111accf41bfd7e94d9"
+
 express-flash@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/express-flash/-/express-flash-0.0.2.tgz#23d1a8bcf3f90d707928e489f96869ecad0acda2"
@@ -2363,6 +2367,10 @@ joi@9.0.0-0:
     items "2.x.x"
     moment "2.x.x"
     topo "2.x.x"
+
+jquery:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
 
 jquery@^2.1.4:
   version "2.2.4"

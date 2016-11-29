@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import { resolve } from 'path';
+import { resolve, } from 'path';
 
 // const webpack = require('webpack'); config paths
 export const ROOT_PATH = resolve('./');
@@ -14,13 +14,13 @@ export const PATHS = {
 // respond to npm_lifecycle_event (e.g. "npm run build")
 export const DEV = 'dev';
 export const BUILD = 'build';
-export const CONFIG_EVENTS = new Set([ BUILD, DEV ]);
+export const CONFIG_EVENTS = new Set([ BUILD, DEV, ]);
 
 export const BUILD_CONFIG = {
   entry: {
         // app: ['webpack-hot-middleware/client', './client',]
 
-    vendor: [ 'react' ],
+    vendor: [ 'react', ],
   },
 };
 export const DEV_CONFIG = {
@@ -29,14 +29,14 @@ export const DEV_CONFIG = {
     app: [
       PATHS.app, 'webpack-hot-middleware/client',
     ],
-    vendor: [ 'react', 'webpack-hot-middleware/client' ],
+    vendor: [ 'react', 'webpack-hot-middleware/client', ],
   },
   module: {
     loaders: [
       {
         test:    /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: [ 'babel' ],
+        loaders: [ 'babel', ],
         query:   BABEL_QUERY,
       },
     ],
@@ -45,10 +45,11 @@ export const DEV_CONFIG = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV), }, }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
     }),
   ],
 };
@@ -58,16 +59,16 @@ export const BABEL_QUERY = {
     'react', 'es2015',
   ],
   plugins: [
-        [ 'transform-object-rest-spread' ],
-        [ 'transform-class-properties' ],
-        [ 'transform-decorators-legacy' ],
+        [ 'transform-object-rest-spread', ],
+        [ 'transform-class-properties', ],
+        [ 'transform-decorators-legacy', ],
     [
       'react-transform', {
         transforms: [
           {
             transform: 'react-transform-hmr',
-            imports:   [ 'react' ],
-            locals:    [ 'module' ],
+            imports:   [ 'react', ],
+            locals:    [ 'module', ],
           },
         ],
       },

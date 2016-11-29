@@ -6,8 +6,12 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import { actions as AuthActions, } from '../auth';
 import Nav from './nav';
+import $ from 'jquery';
 
 class Main extends Component {
+  componentDidMount() {
+    // $('ul.tabs').tabs();
+  }
   render() {
     const { actions, } = this.props;
     return (

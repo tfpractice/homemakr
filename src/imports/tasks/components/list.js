@@ -44,23 +44,18 @@ const Task = ({ actions, task, user, }) => {
   }
 
   return (
-    <ListItem
-      primaryText={task.text}
-      secondaryText={<p> author: {task.author} </p>}
-    />);
+    <li className="collection-item">
+      {task.text} <p> author: {task.author} </p>
+    </li>);
 };
 
-const TaskList = ({ actions, tasks, }) => (<List>
-  {tasks.map((task, index) =>
-    <Task key={index} task={task} actions={actions} />
-  )}
+const TaskList = ({ actions, tasks, }) => (
+  <ul className="collection">
+    {tasks.map((task, index) =>
+      <Task key={index} task={task} actions={actions} />
+      )}
+  </ul>
 
-</List>);
+    );
 
- /* <ul className="collection">
-  <li className="collection-item">Alvin</li>
-  <li className="collection-item">Alvin</li>
-  <li className="collection-item">Alvin</li>
-  <li className="collection-item">Alvin</li>
-</ul> */
 export default TaskList;
