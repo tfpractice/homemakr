@@ -12,16 +12,17 @@ const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
 const Task = ({ actions, task, user, }) => {
   if (task.author) {
-    return (<ListItem
-      key={index}
-      leftCheckbox={<Checkbox
-        onCheck={(e, completed) => {
-          console.log('checked');
-          actions.editTask(task)({ completed, });
-        }}
-      />}
-      nestedItems={[
-        <ListItem>
+    return (
+      <ul className="collection">
+        <div>
+          <h2>{task.text}</h2>
+          <h2>{task.author ? <p>task.author.username</p> : null}</h2>
+          <a
+            className="waves-effect waves-light btn"
+            onClick={() => actions.deleteTask(task)}
+          >
+          Delete</a>
+
           <TaskForm
             key={task.id}
             form={`edit_form${task.id}`}
@@ -29,17 +30,8 @@ const Task = ({ actions, task, user, }) => {
             onSubmit={actions.editTask(task)}
             onSubmitSuccess={resetForm(`edit_form${task.id}`)}
           />
-        </ListItem>,
-      ]}
-    >
-      <div>{task.text}
-        {task.author ? <p>task.author.username</p> : null}
-        <FlatButton
-          label="Delete"
-          onClick={() => actions.deleteTask(task)}
-        />
-      </div>
-    </ListItem>
+        </div>
+      </ul>
     );
   }
 

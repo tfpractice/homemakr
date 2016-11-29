@@ -33,9 +33,6 @@ const TasksView = ({ tasks, actions, }) => (
           <li className="tab col s3 disabled">
             <a href="#editTasks">Edit Tasks</a>
           </li>
-          <li className="tab col s3">
-            <a href="#textTab">textTab </a>
-          </li>
         </ul>
       </div>
       <div id="publicTasks" className="col s12">
@@ -45,44 +42,10 @@ const TasksView = ({ tasks, actions, }) => (
         <TaskList tasks={tasks.filter(t => t.completed)} />
       </div>
       <div id="editTasks" className="col s12">
-        <List>
-          {tasks.map((task, index) =>
-            <ListItem
-              nestedItems={[
-                <ListItem>
-                  <TaskForm
-                    key={task.id}
-                    form={`edit_form${task.id}`}
-                    initialValues={task}
-                    onSubmit={actions.editTask(task)}
-                    onSubmitSuccess={resetForm(`edit_form${task.id}`)}
-                  />
-                </ListItem>,
-              ]}
-            >
-              <div>{task.text}
-                {task.author ? <p>task.author.username</p> : null}
-                <FlatButton
-                  label="Delete" data-id={index}
-                  onClick={() => actions.deleteTask(task)}
-                />
-              </div>
-            </ListItem>)}
-        </List>
+        <TaskList tasks={tasks.filter(t => t.author)} />
       </div>
-      <div id="textTab" className="col s12">
-        <div>
-          <h2>Controllable Tab B</h2>
-          <p>
-            This is another example of a controllable tab. Remember, if you
-            use controllable Tabs, you need to give all of your tabs values or else
-            you wont be able to select them.
-          </p>
-        </div>
-      </div>
-    </div>
 
+    </div>
   </div>);
 
-TasksView.contextTypes = { muiTheme: React.PropTypes.object, };
 export default TasksView;
