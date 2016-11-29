@@ -18,47 +18,53 @@ const TasksView = ({ tasks, actions, }) => (
       onSubmit={actions.createTask}
       onSubmitSuccess={resetForm('newTaskForm')}
     />
-    <Tabs >
-      <Tab label="Public Tasks" >
+    <div className="row">
+      <div className="col s12">
+        <ul className="tabs">
+          <li className="tab col s3"><a href="#publicTasks">Public Tasks</a></li>
+          <li className="tab col s3"><a className="active" href="#completedTasks">Public Tasks</a></li>
+          <li className="tab col s3 disabled"><a href="#editTasks">Edit Tasks</a></li>
+          <li className="tab col s3"><a href="#textTab">textTab </a></li>
+        </ul>
+      </div>
+      <div id="publicTasks" className="col s12">
         <TaskList tasks={tasks.filter(t => !t.private)} />
-      </Tab>
-      <Tab label="Completed Tasks" >
+      </div>
+      <div id="completedTasks" className="col s12">
         <TaskList tasks={tasks.filter(t => t.completed)} />
-      </Tab>
-      <Tab label="Tasks" value="b" >
-        <List>
-          {tasks.map((task, index) =>
-            <ListItem
-              key={index}
-              leftCheckbox={<Checkbox
-                onCheck={(e, completed) => {
-                  console.log('checked');
-                  actions.editTask(task)({ completed, });
-                }}
-              />}
-              nestedItems={[
-                <ListItem>
-                  <TaskForm
-                    key={task.id}
-                    form={`edit_form${task.id}`}
-                    initialValues={task}
-                    onSubmit={actions.editTask(task)}
-                    onSubmitSuccess={resetForm(`edit_form${task.id}`)}
-                  />
-                </ListItem>,
-              ]}
-            >
-              <div>{task.text}
-                {task.author ? <p>task.author.username</p> : null}
-                <FlatButton
-                  label="Delete" data-id={index}
-                  onClick={() => actions.deleteTask(task)}
+      </div>
+      <div id="editTasks" className="col s12"><List>
+        {tasks.map((task, index) =>
+          <ListItem
+            key={index}
+            leftCheckbox={<Checkbox
+              onCheck={(e, completed) => {
+                console.log('checked');
+                actions.editTask(task)({ completed, });
+              }}
+            />}
+            nestedItems={[
+              <ListItem>
+                <TaskForm
+                  key={task.id}
+                  form={`edit_form${task.id}`}
+                  initialValues={task}
+                  onSubmit={actions.editTask(task)}
+                  onSubmitSuccess={resetForm(`edit_form${task.id}`)}
                 />
-              </div>
-            </ListItem>)}
-        </List>
-      </Tab>
-      <Tab label="Tab B" value="c">
+              </ListItem>,
+            ]}
+          >
+            <div>{task.text}
+              {task.author ? <p>task.author.username</p> : null}
+              <FlatButton
+                label="Delete" data-id={index}
+                onClick={() => actions.deleteTask(task)}
+              />
+            </div>
+          </ListItem>)}
+      </List></div>
+      <div id="textTab" className="col s12">
         <div>
           <h2>Controllable Tab B</h2>
           <p>
@@ -67,8 +73,8 @@ const TasksView = ({ tasks, actions, }) => (
             you wont be able to select them.
           </p>
         </div>
-      </Tab>
-    </Tabs>
+      </div>
+    </div>
 
   </div>);
 

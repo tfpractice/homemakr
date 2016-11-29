@@ -57,4 +57,10 @@ const TaskList = ({ actions, tasks, }) => (<List>
 
 </List>);
 
+ /* <ul className="collection">
+  <li className="collection-item">Alvin</li>
+  <li className="collection-item">Alvin</li>
+  <li className="collection-item">Alvin</li>
+  <li className="collection-item">Alvin</li>
+</ul> */
 export default TaskList;
