@@ -15,11 +15,16 @@ import { Navbar, NavItem, Button, } from 'react-materialize';
 import { actions as AuthActions, Register, Login, } from '../auth';
 
 const Nav = ({ logout, }) => (
-  <Navbar brand={<Link to="/" >HomeMakr</Link>} right>
-    <NavItem><Link to="/register" >Register</Link> </NavItem>
-    <NavItem><Link to="/login" >Login</Link> </NavItem>
-    <NavItem ><Button label="logout" onClick={logout} /></NavItem>
-  </Navbar>);
+  <nav>
+    <div className="nav-wrapper">
+      <Link to="/"> HomeMakr</Link>
+      <ul id="nav-mobile" className="right hide-on-small-only">
+        <li><Link to="/register" >Register</Link></li>
+        <li><Link to="/login" >Login</Link></li>
+        <li><a onClick={logout}>Logout</a></li>
+      </ul>
+    </div>
+  </nav>);
 
 Nav.contextTypes = { muiTheme: React.PropTypes.object, };
 
