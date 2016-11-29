@@ -11,12 +11,14 @@ class Main extends Component {
   render() {
     const { actions, } = this.props;
     return (
+
       <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: false, })}>
         <div id="main-view" className="container">
           <Nav logout={actions.logoutUser} />
           <hr />
           {this.props.children}
         </div>
+
       </MuiThemeProvider>
     );
   }

@@ -23,15 +23,19 @@ export const renderFullPage = (markup, preloadedState) => `
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-      </head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  </head>
       <body>
         <div id="root">${markup}</div>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
         </script>
+
         <script type="application/javascript" src="vendor.bundle.js"></script>
-        <script type="application/javascript" src="app.bundle.js"></script>      </body>
+        <script type="application/javascript" src="app.bundle.js"></script>
+           </body>
     </html>
     `;
 

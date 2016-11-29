@@ -35,6 +35,7 @@ const TasksView = ({ tasks, actions, }) => (
                   console.log('checked');
                   actions.editTask(task)({ completed, });
                 }}
+
               />}
               nestedItems={[
                 <ListItem>
@@ -73,4 +74,6 @@ const TasksView = ({ tasks, actions, }) => (
   </div>);
 
 TasksView.contextTypes = { muiTheme: React.PropTypes.object, };
+
+// const mapStateToProps
 export default TasksView;
