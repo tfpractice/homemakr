@@ -6,11 +6,14 @@ import { Task, } from '../models';
  * @param res
  * @returns void
  */
-export const getTasks = (req, res) => Task.find()
-  .sort('-dateAdded')
-  .exec()
-  .then(tasks => res.json({ tasks, }))
-  .catch(err => res.status(500).send(err));
+export const getTasks = (req, res) => {
+  console.log('==========REQUEST KEYS=======', Object.keys(req), '\n');
+  return Task.find()
+    .sort('-dateAdded')
+    .exec()
+    .then(tasks => res.json({ tasks, }))
+    .catch(err => res.status(500).send(err));
+};
 
 /**
  * Save a task

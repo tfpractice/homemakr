@@ -26,11 +26,15 @@ export const applyRoutes = (app, passport) => {
 
   app.post('/register', passport.authenticate('local-register'), (req, res) => {
     console.log(__filename, '\n============ registraiton from passport====', req.user);
+    console.log('==========REQUEST KEYS=======', Object.keys(req), '\n');
+
     res.json({ user: req.user.username, });
   });
 
   app.post('/login', passport.authenticate('local-login'), (req, res) => {
     console.log(__filename, '=======AUTHENTICATION CALLBACK=======', req.user, );
+    console.log('==========REQUEST KEYS=======', Object.keys(req.headers), '\n');
+
     res.json({ user: req.user, });
   });
 
