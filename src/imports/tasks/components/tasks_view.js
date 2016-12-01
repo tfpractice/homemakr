@@ -32,7 +32,7 @@ const resetForm = name => (action, dispatch) => dispatch(reset(name));
 class TasksView extends Component {
   componentDidMount() {
     console.log('mounting');
-    $('ul.tabs').on('show', (...args) => {
+    $('ul.tabs').show('show', (...args) => {
       console.log('show args', args);
     });
   }

@@ -2,10 +2,17 @@ import axios from 'axios';
 import * as constants from './constants';
 const { API_URL, UPDATE_TASKS, EDIT_TASK, INSERT_TASK, DELETE_TASK, } = constants;
 const { TASK_REQUEST_PENDING, TASK_REQUEST_SUCCESS, TASK_REQUEST_FAILURE, } = constants;
+const { TASK_FILTERS, SET_TASK_FILTER, } = constants;
 
 const pending = () => TASK_REQUEST_PENDING;
 const success = () => TASK_REQUEST_SUCCESS;
 const failure = () => TASK_REQUEST_FAILURE;
+
+const setFilter = filter => state =>
+ TASK_FILTERS.has(filter) ? filter : state;
+ 
+const setTaskFilter = filter =>
+ ({ type: SET_TASK_FILTER, curry: setFilter(filter), });
 
 const update = newTasks => tasks => newTasks;
 const insert = task => tasks => tasks.concat(task);
@@ -21,7 +28,6 @@ export const taskRequestFailure = err =>
   ({ type: TASK_REQUEST_FAILURE, curry: failure, });
 
 export const updateTasks = tasks => ({ type: UPDATE_TASKS, curry: update(tasks), });
-
 export const getTasks = () => (dispatch) => {
   dispatch({ type: TASK_REQUEST_PENDING, curry: pending, });
   return axios.get(`${API_URL}/tasks`)
