@@ -13,31 +13,30 @@ const resetForm = name => (action, dispatch) => dispatch(reset(name));
 const Task = ({ actions, task, user, }) => {
   if (task.author) {
     return (
-      <ul className="collection">
-        <div>
-          <h2>{task.text}</h2>
-          <h2>{task.author ? <p>task.author.username</p> : null}</h2>
-          <a
-            className="waves-effect waves-light btn"
-            onClick={() => actions.deleteTask(task)}
-          >
-          Delete</a>
+      <li className="collection-item">
+        <p>{task.text}</p>
+        <p>{task.author.username}</p>
+        <a
+          className="waves-effect waves-light btn"
+          onClick={() => actions.deleteTask(task)}
+        >
+        Delete</a>
 
-          <TaskForm
-            key={task.id}
-            form={`edit_form${task.id}`}
-            initialValues={task}
-            onSubmit={actions.editTask(task)}
-            onSubmitSuccess={resetForm(`edit_form${task.id}`)}
-          />
-        </div>
-      </ul>
+        <TaskForm
+          key={task.id}
+          form={`edit_form${task.id}`}
+          initialValues={task}
+          onSubmit={actions.editTask(task)}
+          onSubmitSuccess={resetForm(`edit_form${task.id}`)}
+        />
+      </li>
     );
   }
 
   return (
     <li className="collection-item">
-      {task.text} <p> author: {task.author} </p>
+      <p> task: {task.text} </p>
+      {task.author ? <p> author: {task.author.username} </p> : null}
     </li>);
 };
 

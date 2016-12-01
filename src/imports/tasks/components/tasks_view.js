@@ -36,13 +36,13 @@ const TasksView = ({ tasks, actions, }) => (
         </ul>
       </div>
       <div id="publicTasks" className="col s12">
-        <TaskList tasks={tasks.filter(t => !t.private)} />
+        <TaskList actions={actions} tasks={tasks.filter(t => !t.private)} />
       </div>
       <div id="completedTasks" className="col s12">
-        <TaskList tasks={tasks.filter(t => t.completed)} />
+        <TaskList actions={actions} tasks={tasks.filter(t => t.completed)} />
       </div>
       <div id="editTasks" className="col s12">
-        <TaskList tasks={tasks.filter(t => t.author)} />
+        <TaskList actions={actions} tasks={tasks.filter(t => t.author)} />
       </div>
 
     </div>

@@ -21,14 +21,16 @@ export const getTasks = (req, res) => {
  * @param res
  * @returns void
  */
-export const addTask = (req, res) => Task.create(req.body)
-  .then(task => res.json({ task, }))
-  .catch((err) => {
-    console.error('Task model insert error', err);
-    return res.status(500)
-      .send(err);
-  });
-
+export const addTask = (req, res) => {
+  console.log('=========== add task req.user======', req.user);
+  return Task.create({ ...req.body, author: req.user, })
+    .then(task => res.json({ task, }))
+    .catch((err) => {
+      console.error('Task model insert error', err);
+      return res.status(500)
+        .send(err);
+    });
+};
 export const updateTask = (req, res) =>
 Task.findByIdAndUpdate(req.params.id,
         req.body, { new: true, })
