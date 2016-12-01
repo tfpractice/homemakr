@@ -31,6 +31,7 @@ const TaskC = ({ actions, task, user, editable, }) => {
       <div className="collapsible-header">
         <p> task: {task.text} </p>
         {task.author.username ? <p> author: {task.author.username} </p> : null}
+        
       </div>
       <div className="collapsible-body">
         {!editable ? '' :
