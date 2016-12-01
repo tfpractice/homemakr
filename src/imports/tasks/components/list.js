@@ -11,7 +11,7 @@ import TaskForm, { EditForm, } from './form';
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
 const Task = ({ actions, task, user, }) => {
-  console.log('task render', task);
+  console.log('task render', actions);
   if (task.author) {
     return (
       <li className="collection-item">

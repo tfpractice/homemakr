@@ -1,19 +1,23 @@
-import { TASK_ACTIONS, TASK_REQUEST_ACTIONS, TASK_FILTER_ACTIONS, } from './constants';
+import * as constants from './constants';
 import { combineReducers, } from 'redux';
+
+const { TASK_ACTIONS, TASK_REQUEST_ACTIONS, } = constants;
+const { FILTER_FUNCS, TASK_FILTER_ACTIONS, SHOW_ALL_TASKS, } = constants;
 
 const defaultState = [];
 const initStatus = 'TASK_REQUEST_SUCCESS';
-
-export const requestStatus = (rState = initStatus, { type, curry, }) =>
+const initFilter = { name: SHOW_ALL_TASKS, func: FILTER_FUNCS.get(SHOW_ALL_TASKS), };
+export const status = (rState = initStatus, { type, curry, }) =>
  TASK_REQUEST_ACTIONS.has(type) ? curry(rState) : rState;
 
-export const tasksRequestData = (state = defaultState, { type, curry, }) =>
+export const data = (state = defaultState, { type, curry, }) =>
   TASK_ACTIONS.has(type) ? curry(state) : state;
-export const tasks = tasksRequestData;
 
-export const taskFilter = (rState = 'SHOW_ALL_TASKS', { type, curry, }) =>
- TASK_FILTER_ACTIONS.has(type) ? curry(rState) : rState;
+export const tasks = data;
+
+export const filter = (fState = initFilter, { type, curry, }) =>
+ TASK_FILTER_ACTIONS.has(type) ? curry(fState) : fState;
 
 export const tasksReducer =
-combineReducers({ tasksRequestData, requestStatus, taskFilter, });
+combineReducers({ data, status, filter, });
 export default tasks;

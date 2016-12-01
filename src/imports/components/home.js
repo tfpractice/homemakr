@@ -8,7 +8,7 @@ import { Button, Card, Row, Col, Icon, } from 'react-materialize';
 const Home = ({ dispatch, tasks, tasksReducer, children, }) => (
   <div id="home">
     <h1> TASKS </h1>
-    <TasksView tasks={tasks} actions={(bindActionCreators(TaskActions, dispatch))} />
+    <TasksView actions={(bindActionCreators(TaskActions, dispatch))} />
     {children}
   </div>
     );

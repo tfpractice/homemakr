@@ -3,6 +3,7 @@ export const API_URL = (typeof window === 'undefined' || process.env.NODE_ENV ==
     : '/api';
 
 export const SET_TASK_FILTER = 'SET_TASK_FILTER';
+
 export const SHOW_ALL_TASKS = 'SHOW_ALL_TASKS';
 export const SHOW_COMPLETED_TASKS = 'SHOW_COMPLETED_TASKS';
 export const SHOW_PUBLIC_TASKS = 'SHOW_PUBLIC_TASKS';
@@ -30,10 +31,16 @@ export const TASK_ACTIONS = new Set([
 
 export const TASK_REQUEST_ACTIONS =
   new Set([ TASK_REQUEST_PENDING, TASK_REQUEST_SUCCESS, TASK_REQUEST_FAILURE, ]);
-  
+
 export const TASK_FILTER_ACTIONS =
   new Set([ SET_TASK_FILTER, ]);
 
 export const TASK_FILTERS =
   new Set([ SHOW_ALL_TASKS, SHOW_COMPLETED_TASKS,
     SHOW_PUBLIC_TASKS, SHOW_USER_TASKS, ]);
+    
+export const FILTER_FUNCS = new Map()
+    .set(SHOW_ALL_TASKS, task => task)
+    .set(SHOW_COMPLETED_TASKS, task => task.completed)
+    .set(SHOW_PUBLIC_TASKS, task => !task.private)
+    .set(SHOW_USER_TASKS, task => task);

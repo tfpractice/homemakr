@@ -2,16 +2,16 @@ import axios from 'axios';
 import * as constants from './constants';
 const { API_URL, UPDATE_TASKS, EDIT_TASK, INSERT_TASK, DELETE_TASK, } = constants;
 const { TASK_REQUEST_PENDING, TASK_REQUEST_SUCCESS, TASK_REQUEST_FAILURE, } = constants;
-const { TASK_FILTERS, SET_TASK_FILTER, } = constants;
+const { SET_TASK_FILTER, FILTER_FUNCS, } = constants;
 
 const pending = () => TASK_REQUEST_PENDING;
 const success = () => TASK_REQUEST_SUCCESS;
 const failure = () => TASK_REQUEST_FAILURE;
 
-const setFilter = filter => state =>
- TASK_FILTERS.has(filter) ? filter : state;
- 
-const setTaskFilter = filter =>
+const setFilter = name => state =>
+ FILTER_FUNCS.has(name) ? { name, func: FILTER_FUNCS.get(name), } : state;
+
+export const setTaskFilter = filter =>
  ({ type: SET_TASK_FILTER, curry: setFilter(filter), });
 
 const update = newTasks => tasks => newTasks;

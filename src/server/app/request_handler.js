@@ -9,6 +9,7 @@ import { fetchComponentData, root, getRoutes, } from '../../imports';
 import { AUTH_ACTIONS, } from '../../imports/auth/constants';
 
 const reducer = root;
+console.log(root);
 
 const predicate = (getState, { type, }) => AUTH_ACTIONS.has(type);
 const collapsed = (getState, action) => action.type;
