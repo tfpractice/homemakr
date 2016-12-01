@@ -19,15 +19,21 @@ const resetForm = name => (action, dispatch) => dispatch(reset(name));
   onSubmit={actions.editTask(task)}
   onSubmitSuccess={resetForm(`edit_form${task.id}`)}
 /> */ }
+
 const mapStateToProps = ({ auth: { user, }, }, { task, }) =>
 ({ editable: user && task.author === user.id, });
 
 const TaskC = ({ actions, task, user, editable, }) => {
   console.log('task editable', editable);
-  if (editable) {
-    return (
-      <li className="collection-item">
-        
+
+  return (
+    <li >
+      <div className="collapsible-header">
+        <p> task: {task.text} </p>
+        {task.author.username ? <p> author: {task.author.username} </p> : null}
+      </div>
+      <div className="collapsible-body">
+        {!editable ? '' :
         <EditForm
           key={task.id}
           form={`edit_form${task.id}`}
@@ -36,25 +42,19 @@ const TaskC = ({ actions, task, user, editable, }) => {
           onSubmit={actions.editTask(task)}
           onSubmitSuccess={resetForm(`edit_form${task.id}`)}
         />
-      </li>
-    );
-  }
-
-  return (
-    <li className="collection-item">
-      <p> task: {task.text} </p>
-      {task.author.username ? <p> author: {task.author.username} </p> : null}
+        }
+      </div>
     </li>);
 };
 
 const Task = connect(mapStateToProps)(TaskC);
+
 const TaskList = ({ actions, tasks, }) => (
-  <ul className="collection">
+  <ul className="collapsible" data-collapsible="accordion">
     {tasks.map((task, index) =>
       <Task key={index} task={task} actions={actions} />
-      )}
+    )}
   </ul>
-
     );
 
 export default TaskList;
