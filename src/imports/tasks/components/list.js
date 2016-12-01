@@ -6,11 +6,12 @@ import { List, ListItem, } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import { Tabs, Tab, } from 'material-ui/Tabs';
 import { reset, } from 'redux-form';
-import TaskForm from './form';
+import TaskForm, { EditForm, } from './form';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
 const Task = ({ actions, task, user, }) => {
+  console.log('task render', task);
   if (task.author) {
     return (
       <li className="collection-item">
@@ -22,9 +23,10 @@ const Task = ({ actions, task, user, }) => {
         >
         Delete</a>
 
-        <TaskForm
+        <EditForm
           key={task.id}
           form={`edit_form${task.id}`}
+          task={task}
           initialValues={task}
           onSubmit={actions.editTask(task)}
           onSubmitSuccess={resetForm(`edit_form${task.id}`)}
