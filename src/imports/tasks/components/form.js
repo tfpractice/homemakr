@@ -39,7 +39,7 @@ const TaskForm = ({ handleSubmit, }) => (
 const EditFormC = ({ task: { id, }, handleSubmit, }) => {
   console.log('task', id);
   return (
-    <form className="col m6" onSubmit={handleSubmit}>
+    <form className="col l12" onSubmit={handleSubmit}>
       <div className="row">
         <div className="input-field col m6">
           <Field

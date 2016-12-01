@@ -1,4 +1,5 @@
 import React, { PropTypes, Component, } from 'react';
+import { connect, } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
@@ -13,7 +14,6 @@ import { reset, } from 'redux-form';
 import TaskForm from './form';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
-import { connect, } from 'react-redux';
 
 const mapStateToProps = ({ tasks, tasksReducer: { filter, }, }) => {
   console.log('isdie the component', filter);
@@ -22,10 +22,7 @@ const mapStateToProps = ({ tasks, tasksReducer: { filter, }, }) => {
 
 const TasksView = ({ tasks, actions, }) => (
   <div className="tasks-list">
-    <button
-      className="waves-effect waves-light btn"
-      onClick={() => actions.setTaskFilter('SHOW_COMPLETED_TASKS')}
-    >SHOW_COMPLETED_TASKS</button>
+    <h1> TASKS </h1>
     <TaskForm
       form={'newTaskForm'}
       onSubmit={actions.createTask}
