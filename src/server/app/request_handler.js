@@ -22,10 +22,9 @@ export const renderFullPage = (markup, preloadedState) => `
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+         <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
       <body>
         <div id="root">${markup}</div>
@@ -62,6 +61,10 @@ export const requestHandler = (req, res) => {
         <Provider store={store}>
           <RouterContext {...renderProps} />
         </Provider>);
+
+        // <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+//   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+//         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 
       // Send the rendered page back to the client
       fetchComponentData(store.dispatch, renderProps.components, renderProps.params)

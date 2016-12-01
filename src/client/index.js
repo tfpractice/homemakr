@@ -7,7 +7,25 @@ import { Provider, } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, } from 'redux';
 import { root, getRoutes, } from '../imports';
 import { AUTH_ACTIONS, } from '../imports/auth/constants';
+window.jQuery = require('jquery');
+window.$ = require('jquery');
 
+// require('materialize-css');
+
+// require("./materialize.min.js");
+// window.jQuery = window.$ = $ = require('jquery');
+// import Materialize from 'materialize-css';
+
+// require('materialize-loader');
+
+// console.log(Object.keys($));
+
+// $(document).ready(() => {
+//   // $('ul.tabs').tabs();
+// });
+
+// window.jQuery = require('jquery');
+// $('ul.tabs').tabs();
 const history = browserHistory;
 const reducer = root;
 const preloadedState = window.__PRELOADED_STATE__;

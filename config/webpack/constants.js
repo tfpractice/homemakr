@@ -18,9 +18,9 @@ export const CONFIG_EVENTS = new Set([ BUILD, DEV, ]);
 
 export const BUILD_CONFIG = {
   entry: {
-        // app: ['webpack-hot-middleware/client', './client',]
+    // app: [ 'webpack-hot-middleware/client', './client', ],
 
-    vendor: [ 'react', ],
+    vendor: [ 'react', 'jquery', 'materialize-css', ],
   },
 };
 export const DEV_CONFIG = {
@@ -29,7 +29,7 @@ export const DEV_CONFIG = {
     app: [
       PATHS.app, 'webpack-hot-middleware/client',
     ],
-    vendor: [ 'react', 'webpack-hot-middleware/client', ],
+    vendor: [ 'react', 'jquery', 'materialize-css', 'webpack-hot-middleware/client', ],
   },
   module: {
     loaders: [

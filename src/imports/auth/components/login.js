@@ -3,7 +3,6 @@ import { reset, } from 'redux-form';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 
-// import Materialize from 'materialize-css';
 import { LoginForm, } from './form';
 import * as AuthActions from '../actions';
 
@@ -17,9 +16,10 @@ const LoginC = ({ actions, }, { router, }) => (
       onSubmitSuccess={(act, dis) => {
         resetForm('loginForm')(act, dis);
 
-        // Materialize.toast('Sucessful login!', 4000)
+        // Materialize.toast('Sucessful login!', 4000);
         return router.push('/');
       }}
+
     />
   </div>);
 
