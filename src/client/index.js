@@ -16,7 +16,7 @@ const predicate = (getState, { type, }) => AUTH_ACTIONS.has(type);
 const collapsed = (getState, action) => action.type;
 const logger = createLogger({ collapsed, });
 
-const store = applyMiddleware(thunk, logger)(createStore)(reducer, preloadedState);
+const store = applyMiddleware(thunk,)(createStore)(reducer, preloadedState);
 
 render(
   <Provider store={store}>

@@ -22,6 +22,8 @@ export const getTasks = (req, res) => {
  * @returns void
  */
 export const addTask = (req, res) => {
+  // req.isAuthenticated();
+  console.log('=========== add task req.authenticated======', req.isAuthenticated());
   console.log('=========== add task req.user======', req.user);
   return Task.create({ ...req.body, author: req.user, })
     .then(task => res.json({ task, }))

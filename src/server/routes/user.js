@@ -3,6 +3,7 @@ import passport from 'passport';
 import { Strategy as LocalStrategy, } from 'passport-local';
 import { UserController, } from '../controllers';
 import { User, } from '../models';
+import { isLoggedIn, } from './auth';
 
 const router = new Router();
 
@@ -32,7 +33,7 @@ export const applyRoutes = (app, passport) => {
   });
 
   app.post('/login', passport.authenticate('local-login'), (req, res) => {
-    console.log(__filename, '=======AUTHENTICATION CALLBACK=======', req.user, );
+    console.log(__filename, '=======AUTHENTICATION CALLBACK=======', req.user,);
     console.log('==========REQUEST KEYS=======', Object.keys(req.headers), '\n');
 
     res.json({ user: req.user, });
@@ -54,15 +55,5 @@ export const applyRoutes = (app, passport) => {
     }
   });
 };
-
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on
-  if (req.isAuthenticated())
-    return next();
-
-    // if they aren't redirect them to the home page
-  res.redirect('/');
-}
 
 export default router;

@@ -43,7 +43,7 @@ export const requestHandler = (req, res) => {
   const location = createMemoryHistory(req.url);
 
   // Create a new Redux store instance
-  const store = applyMiddleware(thunk, logger)(createStore)(reducer);
+  const store = applyMiddleware(thunk)(createStore)(reducer);
   const routes = getRoutes(store);
 
   match({ routes, location, }, (error, redirectLocation, renderProps) => {
