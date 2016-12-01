@@ -6,6 +6,10 @@ import { RegisterForm, } from './form';
 import * as AuthActions from '../actions';
 import FlatButton from 'material-ui/FlatButton';
 
+// import Materialize from 'materialize-css';
+
+// Materialize.toast('Sucessful login!', 4000)
+
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 const resetAndRedirect = router => name => (act, dis) =>
 resetForm(name)(act, dis) && router.push('/login');
