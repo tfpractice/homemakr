@@ -4,6 +4,7 @@ export const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated())
     return next();
 
-  console.log('you are nor authorized for this action');  // if they aren't redirect them to the home page
+ // if they aren't redirect them to the home page
+  console.log('you are not authorized for this action');
   res.redirect('/');
 };
