@@ -9,6 +9,4 @@ import TasksView from './tasks_view';
 import { reset, } from 'redux-form';
 import TaskForm from './form';
 
-// console.log(__filename, '\n ========TASK DEPEND=====\n', module.parent);
-
 export default TasksView;

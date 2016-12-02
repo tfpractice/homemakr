@@ -7,8 +7,8 @@ import { Provider, } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, } from 'redux';
 import { root, getRoutes, } from '../imports';
 import { AUTH_ACTIONS, } from '../imports/modules/auth/constants';
-import { FILTER_FUNCS, } from '../imports/tasks/constants';
-import { setTaskFilter, } from '../imports/tasks/actions';
+import { FILTER_FUNCS, } from '../imports/modules/tasks/constants';
+import { setTaskFilter, } from '../imports/modules/tasks/actions';
 const history = browserHistory;
 const reducer = root;
 const deserializeFilter = ({ tasksReducer: { filter, }, }) => {
