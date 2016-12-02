@@ -1,5 +1,5 @@
 import * as actions from './actions';
 import TasksView from './components';
-import reducer, { tasksReducer, } from './reducer';
+import reducer, { data as taskData, } from './reducer';
 
-export { actions, reducer, tasksReducer, TasksView, };
+export { actions, reducer, TasksView, taskData, };

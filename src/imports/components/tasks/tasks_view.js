@@ -7,19 +7,14 @@ import { List, ListItem, } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import { Tabs, Tab, } from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
-import TaskList from './list';
-import FilterLink from './filter_link';
-import { FILTER_FUNCS, } from '../constants';
-
 import { reset, } from 'redux-form';
+import TaskList from './list';
 import TaskForm from './form';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
-const mapStateToProps = ({ auth: { user, }, tasks, tasksReducer: { filter, }, }) => {
-  console.log('isdie the component', filter);
-  return ({ tasks: tasks.filter(filter.func), canCreate: true && user, });
-};
+const mapStateToProps = ({ auth: { user, }, tasks, tasksReducer: { filter, }, }) =>
+ ({ tasks: tasks.filter(filter.func), canCreate: true && user, });
 
 const TasksView = ({ tasks, actions, canCreate, }) => (
   <div className="tasks-list">
@@ -49,5 +44,3 @@ const TasksView = ({ tasks, actions, canCreate, }) => (
 );
 
 export default connect(mapStateToProps)(TasksView);
-
-//

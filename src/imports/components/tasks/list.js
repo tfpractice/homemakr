@@ -7,9 +7,9 @@ import { List, ListItem, } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import { Tabs, Tab, } from 'material-ui/Tabs';
 import { reset, } from 'redux-form';
-import TaskForm, { EditForm, } from './form';
-
 import { Card, CardActions, CardHeader, CardText, } from 'material-ui/Card';
+
+import TaskForm, { EditForm, } from './form';
 
 const CardExampleExpandable = ({ task, editable, actions, }) => (
   <Card>
