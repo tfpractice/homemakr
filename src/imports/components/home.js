@@ -2,8 +2,8 @@ import React, { PropTypes, } from 'react';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
-import { actions as TaskActions, TasksView, } from '../modules/tasks';
 import { Button, Card, Row, Col, Icon, } from 'react-materialize';
+import { actions as TaskActions, TasksView, } from '../modules/tasks';
 
 const Home = ({ dispatch, tasks, tasksReducer, children, }) => (
   <div id="home">
