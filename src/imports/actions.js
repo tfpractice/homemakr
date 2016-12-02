@@ -1,4 +1,5 @@
-import { actions as TaskActions, } from './modules/tasks';
-import { actions as AuthActions, } from './modules/auth';
+import { Tasks, Auth, } from './modules';
+const { actions: TaskActions, } = Tasks;
+const { actions: AuthActions, } = Auth;
 
 export { TaskActions, AuthActions, };
