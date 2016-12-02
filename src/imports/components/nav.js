@@ -12,7 +12,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle, } from 'material-ui/Toolbar';
 import { Navbar, NavItem, Button, } from 'react-materialize';
 
-import { actions as AuthActions, Register, Login, } from '../auth';
+import { actions as AuthActions, Register, Login, } from '../modules/auth';
 
 const Nav = ({ logout, }) => (
   <nav>

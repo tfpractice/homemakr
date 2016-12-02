@@ -1,4 +1,5 @@
-import { Login, } from './login';
-import { Register, } from './register';
-
-export { Login, Register, };
+// import { Login, } from './login';
+// import { Register, } from './register';
+// console.log(__filename, '\n ========AUTH components=====\n', module.parent);
+//
+// export { Login, Register, };
