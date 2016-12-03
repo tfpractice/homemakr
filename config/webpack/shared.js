@@ -1,5 +1,7 @@
 import webpack from 'webpack';
 import validate from 'webpack-validator';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+
 const Joi = require('webpack-validator').Joi;
 
 const schemaExtension = Joi.object({ sassLoader: Joi.any(), });
@@ -29,9 +31,10 @@ const common = validate({
         exclude: /node_modules/,
         loaders: [ 'babel', ],
       },
-      { test: require.resolve('jquery'), loader: 'expose?jQuery!expose?jquery!expose?$', },
+
+      // { test: require.resolve('jquery'), loader: 'expose?jQuery!expose?jquery!expose?$', },
       { test: /\.json$/, loader: 'json-loader', },
-      { test: /\.(css|scss)$/, loaders: [ 'style', 'css', 'sass', ], },
+      { test: /\.scss$/, loaders: [ 'style', 'css', 'sass', ], },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&mimetype=application/font-woff', },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file', },
 
@@ -58,7 +61,7 @@ const common = validate({
     // this is required only for NPM < 3.
     // Dependencies are flat in NPM 3+ so pointing to
     // the internal grommet/node_modules folder is not needed
-      './node_modules/grommet/node_modules',
+      // './node_modules/grommet/node_modules',
     ],
   },
 }, { schemaExtension, });
