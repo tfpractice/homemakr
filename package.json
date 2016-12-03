@@ -28,6 +28,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.14.2",
     "express-validator": "^2.21.0",
+    "grommet": "^1.0.1",
     "jquery": "^3.1.1",
     "json-loader": "^0.5.4",
     "material-ui": "^0.16.4",

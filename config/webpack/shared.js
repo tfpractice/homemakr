@@ -12,8 +12,6 @@ const common = validate({
     extensions: [
       '', '.js', '.jsx', '.json',
     ],
-    alias: { $: 'jquery/src/jquery', jquery: 'jquery/src/jquery', jQuery: 'jquery/src/jquery', },
-
   },
   output: {
     path:       PATHS.dist,
@@ -29,7 +27,7 @@ const common = validate({
       },
       { test: require.resolve('jquery'), loader: 'expose?jQuery!expose?jquery!expose?$', },
       { test: /\.json$/, loader: 'json-loader', },
-      { test: /\.(css|scss)$/, loaders: [ 'style-loader', 'css-loader', 'sass-loader', ], },
+      { test: /\.(css|scss)$/, loaders: [ 'style', 'css', 'sass', ], },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&mimetype=application/font-woff', },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file', },
 
@@ -37,11 +35,6 @@ const common = validate({
   },
   plugins: [
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"production"', }, }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false, },
       mangle: { except: [ 'webpackJsonp', ], },
@@ -54,7 +47,6 @@ const common = validate({
     dns: 'mock',
     net: 'mock',
   },
-  // externals: { $: 'jquery', },
 });
 
 export default common;
