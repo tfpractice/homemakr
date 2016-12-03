@@ -2,7 +2,8 @@ import React, { PropTypes, } from 'react';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
-import { actions as TaskActions, TasksView, } from '../modules/tasks';
+import { TasksView, } from '../modules/tasks';
+import { TaskActions, } from '../actions';
 
 const Profile = ({ user, }) => (
   <div className="profile">
