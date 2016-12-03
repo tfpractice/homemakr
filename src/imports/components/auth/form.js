@@ -3,8 +3,6 @@ import { reduxForm, reset, Field, } from 'redux-form';
 import FlatButton from 'material-ui/FlatButton';
 import { Checkbox, TextField, Toggle, } from 'redux-form-material-ui';
 
-// comment
-
 const RegisterFormComp = ({ handleSubmit, }) => (
   <form onSubmit={handleSubmit}>
     <Field name="username" component={TextField} hintText="username" />
@@ -24,5 +22,3 @@ const LoginFormComp = ({ handleSubmit, }) => (
 
 export const RegisterForm = reduxForm()(RegisterFormComp);
 export const LoginForm = reduxForm()(LoginFormComp);
-
-// export default RegisterForm;

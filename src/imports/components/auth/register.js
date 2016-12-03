@@ -3,6 +3,7 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import { reset, } from 'redux-form';
 import FlatButton from 'material-ui/FlatButton';
+
 import { RegisterForm, } from './form';
 import { AuthActions, } from '../../actions';
 

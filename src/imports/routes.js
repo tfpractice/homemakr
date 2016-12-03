@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute, } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Main, Home, Profile, } from './components';
-import { Login, Register, } from './modules/auth';
+import { Login, Register, } from './components/auth';
 
 injectTapEventPlugin();
 

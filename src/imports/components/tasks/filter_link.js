@@ -11,11 +11,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 const Link = ({ active, children, actions, filter, href, }) =>
-
-  // if (active) {
-  //   return <span>{children}</span>;
-  // }
-
    (
      <a
        href={href}
