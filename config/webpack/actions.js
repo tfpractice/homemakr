@@ -1,5 +1,8 @@
 import webpack from 'webpack';
 import validate from 'webpack-validator';
+const Joi = require('webpack-validator').Joi;
+
+const schemaExtension = Joi.object({ sassLoader: Joi.any(), });
 
 import merge from 'webpack-merge';
 import wpClean from 'clean-webpack-plugin';
@@ -8,7 +11,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { BUILD_CONFIG, DEV_CONFIG, PATHS, } from './constants';
 
-const clean = path => ({ plugins: [new wpClean([path, ], { root: process.cwd(), }), ], });
+const clean = path => ({ plugins: [ new wpClean([ path, ], { root: process.cwd(), }), ], });
 
 export const compile = config => webpack(config);
 export const build = (common) => {
@@ -17,7 +20,7 @@ export const build = (common) => {
 };
 
 export const dev = (common) => {
-  const dConf = validate(merge(common, DEV_CONFIG));
+  const dConf = validate(merge(common, DEV_CONFIG), { schemaExtension, });
   return dConf;
 };
 
@@ -27,7 +30,7 @@ export const applyHotMiddleware = compiler => (app) => {
     app.use(webpackDevMiddleware(compiler, { noInfo: true, }));
     app.use(webpackHotMiddleware(compiler));
   }
-  
+
   return app;
 };
 

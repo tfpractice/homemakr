@@ -1,5 +1,9 @@
 import webpack from 'webpack';
 import validate from 'webpack-validator';
+const Joi = require('webpack-validator').Joi;
+
+const schemaExtension = Joi.object({ sassLoader: Joi.any(), });
+
 import { PATHS, ROOT_PATH, } from './constants';
 
 const common = validate({
@@ -47,6 +51,16 @@ const common = validate({
     dns: 'mock',
     net: 'mock',
   },
-});
+  sassLoader: {
+    includePaths: [
+      './node_modules',
+
+    // this is required only for NPM < 3.
+    // Dependencies are flat in NPM 3+ so pointing to
+    // the internal grommet/node_modules folder is not needed
+      './node_modules/grommet/node_modules',
+    ],
+  },
+}, { schemaExtension, });
 
 export default common;
