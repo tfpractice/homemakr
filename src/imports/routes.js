@@ -20,14 +20,11 @@ const requireLogin = store => (nextState, replace, cb) => {
   }
   cb();
 };
-{ /* <Router createElement={createElement}/> */ }
 
-// default behavior
 const createElement = (Component, props) => {
   console.log('Component to render', Component);
   console.log('props to render', props);
 
-  // make sure you pass all the props in!
   return <Component {...props} />;
 };
 
