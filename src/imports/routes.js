@@ -20,9 +20,19 @@ const requireLogin = store => (nextState, replace, cb) => {
   }
   cb();
 };
+{ /* <Router createElement={createElement}/> */ }
+
+// default behavior
+const createElement = (Component, props) => {
+  console.log('Component to render', Component);
+  console.log('props to render', props);
+
+  // make sure you pass all the props in!
+  return <Component {...props} />;
+};
 
 const getRoutes = store => (
-  <Route name="app" component={Main} path="/">
+  <Route name="app" onChange={logChange} component={Main} path="/">
     <IndexRoute component={Home} />
 
     <Route path="register" component={Register} />

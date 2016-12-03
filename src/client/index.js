@@ -22,7 +22,20 @@ const logger = createLogger({ collapsed, });
 
 const store = applyMiddleware(thunk)(createStore)(reducer, preloadedState);
 store.dispatch(setTaskFilter(preloadedState.tasksReducer.filter.name));
+
+{ /* <Router createElement={createElement}/> */ }
+
+// default behavior
+const createElement = (Component, props, ...args) => {
+  console.log('Component to render', Component);
+  console.log('props to render', props);
+  console.log('args to render', args);
+
+  // make sure you pass all the props in!
+  return <Component {...props} />;
+};
+
 render(
   <Provider store={store}>
-    <Router children={getRoutes(store)} history={history} />
+    <Router children={getRoutes(store)} history={history} createElement={createElement} />
   </Provider>, document.getElementById('root'));

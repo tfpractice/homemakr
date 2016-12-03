@@ -3,8 +3,8 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import { Button, Card, Row, Col, Icon, } from 'react-materialize';
-import { actions as TaskActions, TasksView, } from '../modules/tasks';
-
+import { TasksView, } from '../modules/tasks';
+import { TaskActions, } from '../actions';
 const Home = ({ dispatch, tasks, tasksReducer, children, }) => (
   <div id="home">
     <TasksView actions={(bindActionCreators(TaskActions, dispatch))} />

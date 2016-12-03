@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
-import { actions as AuthActions, } from '../modules/auth';
+import { AuthActions, } from '../actions';
 import Nav from './nav';
 import $ from 'jquery';
 
