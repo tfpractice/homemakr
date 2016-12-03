@@ -8,6 +8,10 @@ import { AuthActions, } from '../actions';
 import Nav from './nav';
 import $ from 'jquery';
 
+const mapStateToProps = state => state;
+const mapDispatchToProps = dispatch =>
+  ({ actions: bindActionCreators(AuthActions, dispatch), });
+  
 class Main extends Component {
   componentDidMount() {
     // $('ul.tabs').tabs();
@@ -29,7 +33,5 @@ class Main extends Component {
 }
 
 Main.contextTypes = { muiTheme: React.PropTypes.object, };
-const mapStateToProps = state => state;
-const mapDispatchToProps = dispatch =>
-  ({ actions: bindActionCreators(AuthActions, dispatch), });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

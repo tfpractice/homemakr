@@ -4,7 +4,7 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 
 import { LoginForm, } from './form';
-import * as AuthActions from '../actions';
+import { AuthActions, } from '../../actions';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 

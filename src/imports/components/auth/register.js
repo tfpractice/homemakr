@@ -2,9 +2,9 @@ import React, { PropTypes, } from 'react';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import { reset, } from 'redux-form';
-import { RegisterForm, } from './form';
-import * as AuthActions from '../actions';
 import FlatButton from 'material-ui/FlatButton';
+import { RegisterForm, } from './form';
+import { AuthActions, } from '../../actions';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 const resetAndRedirect = router => name => (act, dis) =>
