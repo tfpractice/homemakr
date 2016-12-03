@@ -9,4 +9,4 @@ import TasksView from './tasks_view';
 import { reset, } from 'redux-form';
 import TaskForm from './form';
 
-export default TasksView;
+export { TasksView, };

@@ -3,7 +3,7 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import { Button, Card, Row, Col, Icon, } from 'react-materialize';
-import { TasksView, } from '../modules/tasks';
+import { TasksView, } from './tasks';
 import { TaskActions, } from '../actions';
 
 const mapStateToProps = ({ tasks, numbers, tasksReducer, auth, }) =>
