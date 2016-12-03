@@ -6,6 +6,10 @@ import { connect, } from 'react-redux';
 import { LoginForm, } from './form';
 import { AuthActions, } from '../../actions';
 
+const mapStateToProps = ({ auth, }) => ({ auth, });
+const mapDispatchToProps = dispatch =>
+  ({ actions: bindActionCreators(AuthActions, dispatch), });
+
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
 const LoginC = ({ actions, }, { router, }) => (
@@ -26,10 +30,6 @@ LoginC.contextTypes = {
   muiTheme: React.PropTypes.object,
   router: React.PropTypes.object,
 };
-
-const mapStateToProps = ({ auth, }) => ({ auth, });
-const mapDispatchToProps = dispatch =>
-  ({ actions: bindActionCreators(AuthActions, dispatch), });
 
 const Login = connect(mapStateToProps, mapDispatchToProps)(LoginC);
 

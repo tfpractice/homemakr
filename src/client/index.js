@@ -37,5 +37,5 @@ const createElement = (Component, props, ...args) => {
 
 render(
   <Provider store={store}>
-    <Router children={getRoutes(store)} history={history} createElement={createElement} />
+    <Router children={getRoutes(store)} history={history} />
   </Provider>, document.getElementById('root'));

@@ -8,8 +8,15 @@ import { RegisterForm, } from './form';
 import { AuthActions, } from '../../actions';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
+
 const resetAndRedirect = router => name => (act, dis) =>
 resetForm(name)(act, dis) && router.push('/login');
+
+const mapStateToProps = ({ auth, }) =>
+  ({ auth, });
+
+const mapDispatchToProps = dispatch =>
+  ({ actions: bindActionCreators(AuthActions, dispatch), });
 
 const RegisterComp = ({ auth: { registration, }, actions, }, { router, }) => (
   <div className="registration">
@@ -28,11 +35,6 @@ RegisterComp.contextTypes = {
 };
 
 // const registerFailed= ({registration:{status}})=> status==='failed';
-const mapStateToProps = ({ auth, }, { router, }) =>
-  ({ auth, });
-
-const mapDispatchToProps = dispatch =>
-  ({ actions: bindActionCreators(AuthActions, dispatch), });
 
 const Register = connect(mapStateToProps, mapDispatchToProps)(RegisterComp);
 

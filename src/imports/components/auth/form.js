@@ -12,6 +12,7 @@ const RegisterFormComp = ({ handleSubmit, }) => (
     <FlatButton label="submit" type="submit" />
   </form>
 );
+
 const LoginFormComp = ({ handleSubmit, }) => (
   <form onSubmit={handleSubmit}>
     <Field name="username" component={TextField} hintText="username" />

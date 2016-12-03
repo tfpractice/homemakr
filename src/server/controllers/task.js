@@ -6,14 +6,11 @@ import { Task, } from '../models';
  * @param res
  * @returns void
  */
-export const getTasks = (req, res) => {
-  console.log('==========REQUEST KEYS=======', Object.keys(req), '\n');
-  return Task.find()
-    .sort('-dateAdded')
-    .exec()
-    .then(tasks => res.json({ tasks, }))
-    .catch(err => res.status(500).send(err));
-};
+export const getTasks = (req, res) => Task.find()
+  .sort('-dateAdded')
+  .exec()
+  .then(tasks => res.json({ tasks, }))
+  .catch(err => res.status(500).send(err));
 
 /**
  * Save a task
@@ -21,18 +18,13 @@ export const getTasks = (req, res) => {
  * @param res
  * @returns void
  */
-export const addTask = (req, res) => {
-  // req.isAuthenticated();
-  console.log('=========== add task req.authenticated======', req.isAuthenticated());
-  console.log('=========== add task req.user======', req.user);
-  return Task.create({ ...req.body, author: req.user, })
-    .then(task => res.json({ task, }))
-    .catch((err) => {
-      console.error('Task model insert error', err);
-      return res.status(500)
-        .send(err);
-    });
-};
+export const addTask = (req, res) => Task.create({ ...req.body, author: req.user, })
+  .then(task => res.json({ task, }))
+  .catch((err) => {
+    console.error('Task model insert error', err);
+    return res.status(500)
+      .send(err);
+  });
 export const updateTask = (req, res) =>
 Task.findByIdAndUpdate(req.params.id,
         req.body, { new: true, })

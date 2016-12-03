@@ -29,7 +29,7 @@ const createElement = (Component, props) => {
 };
 
 const getRoutes = store => (
-  <Route name="app" onChange={logChange} component={Main} path="/">
+  <Route name="app" component={Main} path="/">
     <IndexRoute component={Home} />
 
     <Route path="register" component={Register} />

@@ -46,7 +46,6 @@ const mapStateToProps = ({ auth: { user, }, }, { task, }) =>
 ({ editable: user && task.author === user.id, });
 
 const TaskC = ({ actions, task, user, editable, }) => {
-  console.log('task editable', editable);
   return CardExampleExpandable({ task, editable, actions, });
   return (
     <li >
