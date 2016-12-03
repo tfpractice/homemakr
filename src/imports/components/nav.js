@@ -12,8 +12,8 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle, } from 'material-ui/Toolbar';
 import { Navbar, NavItem, Button, } from 'react-materialize';
 
-import { actions as AuthActions, Register, Login, } from '../modules/auth';
-
+import { Register, Login, } from '../modules/auth';
+import { AuthActions, } from '../actions';
 const Nav = ({ logout, }) => (
   <nav>
     <div className="nav-wrapper">
