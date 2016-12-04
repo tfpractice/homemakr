@@ -25,11 +25,11 @@ const TasksView = ({ tasks, actions, canCreate, }) => (
     <h1>
       TASKS
     </h1>
-    {canCreate ? <TaskForm
+    <TaskForm
       form={'newTaskForm'}
       onSubmit={actions.createTask}
       onSubmitSuccess={resetForm('newTaskForm')}
-    /> : ''}
+    />
 
     <Tabs >
 

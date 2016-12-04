@@ -17,7 +17,7 @@ export const BUILD = 'build';
 export const CONFIG_EVENTS = new Set([ BUILD, DEV, ]);
 
 export const BUILD_CONFIG =
-{ entry: { vendor: [ 'react', 'jquery', 'materialize-css', ], }, };
+{ entry: { vendor: [ 'react', 'jquery', 'materialize-css', 'grommet', ], }, };
 
 export const DEV_CONFIG = {
   devtool: 'eval-source-map',
@@ -25,7 +25,7 @@ export const DEV_CONFIG = {
     app: [
       PATHS.app, 'webpack-hot-middleware/client',
     ],
-    vendor: [ 'react', 'jquery', 'materialize-css', 'webpack-hot-middleware/client', ],
+    vendor: [ 'react', 'jquery', 'materialize-css', 'grommet', 'webpack-hot-middleware/client', ],
   },
   module: {
     loaders: [
