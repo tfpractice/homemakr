@@ -11,72 +11,35 @@ import { Card, CardActions, CardHeader, CardText, } from 'material-ui/Card';
 
 import TaskForm, { EditForm, } from './form';
 
-const CardExampleExpandable = ({ task, editable, actions, }) => (
-  <Card>
-    <CardHeader
-      title={task.text}
-      subtitle={task.dateAdded}
-      actAsExpander
-      showExpandableButton
-    />
-    {editable ? <CardText expandable>
-      <EditForm
-        key={task.id}
-        form={`edit_form${task.id}`}
-        task={task}
-        initialValues={task}
-        onSubmit={actions.editTask(task)}
-        onSubmitSuccess={resetForm(`edit_form${task.id}`)}
-      /></CardText> : ''}
-  </Card>
-);
+import Accordion from 'grommet/components/Accordion';
+import AccordionPanel from 'grommet/components/AccordionPanel';
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
-{ /* <EditForm
-  key={task.id}
-  form={`edit_form${task.id}`}
-  task={task}
-  initialValues={task}
-  onSubmit={actions.editTask(task)}
-  onSubmitSuccess={resetForm(`edit_form${task.id}`)}
-/> */ }
-
 const mapStateToProps = ({ auth: { user, }, }, { task, }) =>
-({ editable: user && task.author === user.id, });
+    ({ editable: user && task.author === user.id, });
 
-const TaskC = ({ actions, task, user, editable, }) => {
-  return CardExampleExpandable({ task, editable, actions, });
-  return (
-    <li >
-      <div className="collapsible-header">
-        <p> task: {task.text} </p>
-        {task.author.username ? <p> author: {task.author.username} </p> : null}
+const TaskC = ({ actions, task, user, editable, }) => (
 
-      </div>
-      <div className="collapsible-body">
-        {!editable ? '' :
-        <EditForm
-          key={task.id}
-          form={`edit_form${task.id}`}
-          task={task}
-          initialValues={task}
-          onSubmit={actions.editTask(task)}
-          onSubmitSuccess={resetForm(`edit_form${task.id}`)}
-        />
-        }
-      </div>
-    </li>);
-};
+  <EditForm
+    key={task.id}
+    form={`edit_form${task.id}`}
+    task={task}
+    initialValues={task}
+    onSubmit={actions.editTask(task)}
+    onSubmitSuccess={resetForm(`edit_form${task.id}`)}
+  />
+  );
 
 const Task = connect(mapStateToProps)(TaskC);
 
 const TaskList = ({ actions, tasks, }) => (
-  <List>
+  <Accordion openMulti>
     {tasks.map((task, index) =>
-      <Task key={index} task={task} actions={actions} />
+      <AccordionPanel key={task.id} heading={`title: ${task.text}`}>
+        <Task key={task.id} task={task} actions={actions} />
+      </AccordionPanel>
     )}
-  </List>
-    );
+  </Accordion>);
 
 export default TaskList;

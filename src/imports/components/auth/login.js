@@ -19,7 +19,8 @@ const LoginC = ({ actions, }, { router, }) => (
       onSubmit={actions.loginUser}
       onSubmitSuccess={(act, dis) => {
         resetForm('loginForm')(act, dis);
-        Materialize.toast('Sucessful login!', 4000);
+
+        // Materialize.toast('Sucessful login!', 4000);
         return router.push('/');
       }}
 

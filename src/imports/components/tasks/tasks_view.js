@@ -18,7 +18,7 @@ import TaskForm from './form';
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
 const mapStateToProps = ({ auth: { user, }, tasks, tasksReducer: { filter, }, }) =>
- ({ tasks: tasks.filter(filter.func), canCreate: true && user, });
+ ({ tasks, canCreate: true && user, });
 
 const TasksView = ({ tasks, actions, canCreate, }) => (
   <div className="tasks-list">
@@ -64,7 +64,6 @@ const TasksView = ({ tasks, actions, canCreate, }) => (
 
     </Tabs>
 
-    {/* </div> */}
   </div>
 );
 
