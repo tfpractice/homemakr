@@ -10,6 +10,9 @@ import { AUTH_ACTIONS, } from '../imports/modules/auth/constants';
 import { FILTER_FUNCS, } from '../imports/modules/tasks/constants';
 import { setTaskFilter, } from '../imports/modules/tasks/actions';
 
+// import 'materialize-css';
+// import 'jquery';
+
 import 'grommet/scss/vanilla/index.scss';
 
 const history = browserHistory;
@@ -25,18 +28,6 @@ const logger = createLogger({ collapsed, });
 
 const store = applyMiddleware(thunk)(createStore)(reducer, preloadedState);
 store.dispatch(setTaskFilter(preloadedState.tasksReducer.filter.name));
-
-{ /* <Router createElement={createElement}/> */ }
-
-// default behavior
-const createElement = (Component, props, ...args) => {
-  console.log('Component to render', Component);
-  console.log('props to render', props);
-  console.log('args to render', args);
-
-  // make sure you pass all the props in!
-  return <Component {...props} />;
-};
 
 render(
   <Provider store={store}>

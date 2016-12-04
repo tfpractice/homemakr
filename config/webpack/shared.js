@@ -1,23 +1,18 @@
 import webpack from 'webpack';
 import validate from 'webpack-validator';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-
-const Joi = require('webpack-validator').Joi;
-
-const schemaExtension = Joi.object({ sassLoader: Joi.any(), });
-
 import { PATHS, ROOT_PATH, } from './constants';
+
+console.log(process.cwd());
+const Joi = require('webpack-validator').Joi;
+const schemaExtension = Joi.object({ sassLoader: Joi.any(), });
 
 const common = validate({
   context: ROOT_PATH,
   entry:   { app: PATHS.app, },
   resolve: {
-    modulesDirectories: [
-      'node_modules',
-    ],
-    extensions: [
-      '', '.js', '.jsx', '.json',
-    ],
+    modulesDirectories: [ 'node_modules', ],
+    extensions: [ '', '.js', '.jsx', '.json', ],
   },
   output: {
     path:       PATHS.dist,
@@ -34,7 +29,9 @@ const common = validate({
 
       // { test: require.resolve('jquery'), loader: 'expose?jQuery!expose?jquery!expose?$', },
       { test: /\.json$/, loader: 'json-loader', },
-      { test: /\.scss$/, loaders: [ 'style', 'css', 'sass', ], },
+
+      // { test: /\.scss$/, loaders: [ 'style', 'css', 'sass', ], },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass'), },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&mimetype=application/font-woff', },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file', },
 
@@ -46,6 +43,7 @@ const common = validate({
       compress: { warnings: false, },
       mangle: { except: [ 'webpackJsonp', ], },
     }),
+    new ExtractTextPlugin('[name].styles.css'),
   ],
   node: {
     fs:  'empty',
@@ -57,11 +55,6 @@ const common = validate({
   sassLoader: {
     includePaths: [
       './node_modules',
-
-    // this is required only for NPM < 3.
-    // Dependencies are flat in NPM 3+ so pointing to
-    // the internal grommet/node_modules folder is not needed
-      // './node_modules/grommet/node_modules',
     ],
   },
 }, { schemaExtension, });

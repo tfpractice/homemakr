@@ -16,13 +16,9 @@ export const DEV = 'dev';
 export const BUILD = 'build';
 export const CONFIG_EVENTS = new Set([ BUILD, DEV, ]);
 
-export const BUILD_CONFIG = {
-  entry: {
-    // app: [ 'webpack-hot-middleware/client', './client', ],
+export const BUILD_CONFIG =
+{ entry: { vendor: [ 'react', 'jquery', 'materialize-css', ], }, };
 
-    vendor: [ 'react', 'jquery', 'materialize-css', ],
-  },
-};
 export const DEV_CONFIG = {
   devtool: 'eval-source-map',
   entry:   {
@@ -51,7 +47,7 @@ export const DEV_CONFIG = {
 
 export const BABEL_QUERY = {
   presets: [
-    'react', 'es2015',
+    'react', 'latest',
   ],
   plugins: [
         [ 'transform-object-rest-spread', ],

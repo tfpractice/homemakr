@@ -26,8 +26,9 @@ export const renderFullPage = (markup, preloadedState) => `
          <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-
          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+         <link rel="stylesheet" href="app.styles.css">
+
   </head>
       <body>
         <div id="root">${markup}</div>
