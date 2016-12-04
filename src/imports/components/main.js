@@ -28,38 +28,6 @@ class Main extends Component {
         <div id="main-view" className="container">
           <Nav logout={actions.logoutUser} />
           <hr />
-          <Card
-            label="Sample Label"
-            heading="Sample Heading"
-            description="Sample description providing more details."
-          />
-          <Accordion openMulti>
-            <AccordionPanel heading="First Title">
-
-              <Tabs>
-                <Tab title="First Title">
-                  <Paragraph>
-                    First contents
-                  </Paragraph>
-                </Tab>
-                <Tab title="Second Title">
-                  <Paragraph>
-                    Second contents
-                  </Paragraph>
-                </Tab>
-              </Tabs>
-            </AccordionPanel>
-            <AccordionPanel heading="Second Title">
-              <Paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </Paragraph>
-            </AccordionPanel>
-            <AccordionPanel heading="Third Title">
-              <Paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </Paragraph>
-            </AccordionPanel>
-          </Accordion>
           {children}
         </div>
       </MuiThemeProvider>
