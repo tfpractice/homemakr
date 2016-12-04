@@ -3,18 +3,37 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import { Link, } from 'react-router';
 
+import Header from 'grommet/components/Header';
+import Title from 'grommet/components/Title';
+import Menu from 'grommet/components/Menu';
+import Anchor from 'grommet/components/Menu';
+import Box from 'grommet/components/Box';
+
 const Nav = ({ logout, }) => (
-  <nav>
-    <div className="nav-wrapper">
+  <Header fixed >
+    <Title>
       <Link to="/"> HomeMakr</Link>
-      <ul id="nav-mobile" className="right hide-on-small-only">
-        <li><Link to="/register" >Register</Link></li>
-        <li><Link to="/login" >Login</Link></li>
-        <li><a onClick={logout}>Logout</a></li>
-      </ul>
-    </div>
-  </nav>);
+    </Title>
+    <Box
+      direction="row"
+      justify="end"
+      align="end"
+    >
+      <Link to="/register" >Register</Link>
+      <Link to="/login" >Login</Link>
+    </Box>
+  </Header>
+
+  );
 
 Nav.contextTypes = { muiTheme: React.PropTypes.object, };
 
 export default Nav;
+
+// <div className="nav-wrapper"
+  // <ul id="nav-mobile" className="right hide-on-small-only">
+  //   <li><Link to="/register" >Register</Link></li>
+  //   <li><Link to="/login" >Login</Link></li>
+  //   <li><a onClick={logout}>Logout</a></li>
+  // </ul>
+  // </div>
