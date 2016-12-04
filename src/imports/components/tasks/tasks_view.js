@@ -5,9 +5,13 @@ import FontIcon from 'material-ui/FontIcon';
 import Divider from 'material-ui/Divider';
 import { List, ListItem, } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
-import { Tabs, Tab, } from 'material-ui/Tabs';
+
+// import { Tabs, Tab, } from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
 import { reset, } from 'redux-form';
+import Tabs from 'grommet/components/Tabs';
+import Tab from 'grommet/components/Tab';
+import Animate from 'grommet/components/Animate';
 import TaskList from './list';
 import TaskForm from './form';
 
@@ -27,19 +31,40 @@ const TasksView = ({ tasks, actions, canCreate, }) => (
       onSubmitSuccess={resetForm('newTaskForm')}
     /> : ''}
 
-    <div className="row">
-      <Tabs className="col m6">
-        <Tab className="col m6" label="allTask">
+    <Tabs >
+
+      <Tab title="allTask">
+        <Animate
+          enter={{ animation: 'slide-left', duration: 300, }}
+          leave={{ animation: 'slide-down', duration: 300, }}
+          visible
+        >
           <TaskList actions={actions} tasks={tasks} />
-        </Tab>
-        <Tab className="col m6" label="completedTasks">
+        </Animate>
+      </Tab>
+
+      <Tab title="completedTasks">
+        <Animate
+          enter={{ animation: 'slide-left', duration: 300, }}
+          leave={{ animation: 'slide-down', duration: 300, }}
+        >
           <TaskList actions={actions} tasks={tasks.filter(t => t.completed)} />
-        </Tab>
-        <Tab className="col m6" label="privateTasks">
+        </Animate>
+      </Tab>
+
+      <Tab title="privateTasks">
+        <Animate
+          enter={{ animation: 'slide-left', duration: 300, }}
+          leave={{ animation: 'slide-down', duration: 300, }}
+
+        >
           <TaskList actions={actions} tasks={tasks.filter(t => t.private)} />
-        </Tab>
-      </Tabs>
-    </div>
+        </Animate>
+      </Tab>
+
+    </Tabs>
+
+    {/* </div> */}
   </div>
 );
 
