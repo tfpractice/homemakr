@@ -5,8 +5,6 @@ import { Link, } from 'react-router';
 
 import Header from 'grommet/components/Header';
 import Title from 'grommet/components/Title';
-import Menu from 'grommet/components/Menu';
-import Anchor from 'grommet/components/Menu';
 import Box from 'grommet/components/Box';
 
 const Nav = ({ logout, }) => (

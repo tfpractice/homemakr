@@ -17,7 +17,7 @@ const renderField2 = field => (
 const TaskForm = ({ handleSubmit, }) => (
   <form onSubmit={handleSubmit}>
     <label htmlFor="text">text
-      <Field name="text" component={renderField2} id="text" type="text" placeholder="text" />
+      <Field name="text" component={renderField} id="text" type="text" placeholder="text" />
     </label>
     <Field
       name="completed" component={CheckBox} label="completed" type="checkbox" id="completed"

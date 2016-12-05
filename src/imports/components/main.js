@@ -5,12 +5,6 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import { AuthActions, } from '../actions';
 import Nav from './nav';
-import Card from 'grommet/components/Card';
-import Accordion from 'grommet/components/Accordion';
-import AccordionPanel from 'grommet/components/AccordionPanel';
-import Paragraph from 'grommet/components/Paragraph';
-import Tabs from 'grommet/components/Tabs';
-import Tab from 'grommet/components/Tab';
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch =>

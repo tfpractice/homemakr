@@ -1,4 +1,4 @@
-import React, { Component, PropTypes, } from 'react';
+import React, { PropTypes, } from 'react';
 import { reset, } from 'redux-form';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
@@ -19,11 +19,9 @@ const LoginC = ({ actions, }, { router, }) => (
       onSubmit={actions.loginUser}
       onSubmitSuccess={(act, dis) => {
         resetForm('loginForm')(act, dis);
-
-        // Materialize.toast('Sucessful login!', 4000);
         return router.push('/');
       }}
-
+      
     />
   </div>);
 

@@ -1,13 +1,5 @@
-import React, { PropTypes, Component, } from 'react';
+import React, { PropTypes, } from 'react';
 import { connect, } from 'react-redux';
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
-import Divider from 'material-ui/Divider';
-import { List, ListItem, } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
-
-// import { Tabs, Tab, } from 'material-ui/Tabs';
-import Slider from 'material-ui/Slider';
 import { reset, } from 'redux-form';
 import Tabs from 'grommet/components/Tabs';
 import Tab from 'grommet/components/Tab';

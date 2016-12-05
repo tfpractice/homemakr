@@ -3,7 +3,6 @@ import validate from 'webpack-validator';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { PATHS, ROOT_PATH, } from './constants';
 
-console.log(process.cwd());
 const Joi = require('webpack-validator').Joi;
 const schemaExtension = Joi.object({ sassLoader: Joi.any(), });
 
@@ -27,10 +26,7 @@ const common = validate({
         loaders: [ 'babel', ],
       },
 
-      // { test: require.resolve('jquery'), loader: 'expose?jQuery!expose?jquery!expose?$', },
       { test: /\.json$/, loader: 'json-loader', },
-
-      // { test: /\.scss$/, loaders: [ 'style', 'css', 'sass', ], },
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass'), },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&mimetype=application/font-woff', },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file', },

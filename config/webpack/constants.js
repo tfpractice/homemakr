@@ -25,7 +25,7 @@ export const DEV_CONFIG = {
     app: [
       PATHS.app, 'webpack-hot-middleware/client',
     ],
-    vendor: [ 'react', 'jquery', 'materialize-css', 'grommet', 'webpack-hot-middleware/client', ],
+    // vendor: [ 'react', 'jquery', 'materialize-css', 'grommet', 'webpack-hot-middleware/client', ],
   },
   module: {
     loaders: [

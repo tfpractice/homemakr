@@ -34,8 +34,6 @@ RegisterComp.contextTypes = {
   router: React.PropTypes.object,
 };
 
-// const registerFailed= ({registration:{status}})=> status==='failed';
-
 const Register = connect(mapStateToProps, mapDispatchToProps)(RegisterComp);
 
 export { Register, };

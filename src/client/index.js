@@ -10,9 +10,6 @@ import { AUTH_ACTIONS, } from '../imports/modules/auth/constants';
 import { FILTER_FUNCS, } from '../imports/modules/tasks/constants';
 import { setTaskFilter, } from '../imports/modules/tasks/actions';
 
-// import 'materialize-css';
-// import 'jquery';
-
 import 'grommet/scss/vanilla/index.scss';
 
 const history = browserHistory;
