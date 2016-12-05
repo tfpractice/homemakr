@@ -3,8 +3,9 @@ import { reset, } from 'redux-form';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 
-import { LoginForm, } from './form';
+import LoginForm from './login_form';
 import { AuthActions, } from '../../actions';
+import Layer from 'grommet/components/Layer';
 
 const mapStateToProps = ({ auth, }) => ({ auth, });
 const mapDispatchToProps = dispatch =>
@@ -14,6 +15,21 @@ const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
 const LoginC = ({ actions, }, { router, }) => (
   <div className="login">
+    <Layer className="col s12" closer>
+      <p>Login</p>
+      <div className="row">
+        <LoginForm
+          className="col s12"
+          form={'loginForm'}
+          onSubmit={actions.loginUser}
+          onSubmitSuccess={(act, dis) => {
+            resetForm('loginForm')(act, dis);
+            return router.push('/');
+          }}
+
+        />
+      </div>
+    </Layer>
     <LoginForm
       form={'loginForm'}
       onSubmit={actions.loginUser}
@@ -21,7 +37,7 @@ const LoginC = ({ actions, }, { router, }) => (
         resetForm('loginForm')(act, dis);
         return router.push('/');
       }}
-      
+
     />
   </div>);
 
