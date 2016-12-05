@@ -68,7 +68,7 @@ export const requestHandler = (req, res) => {
           <RouterContext {...renderProps} />
         </Provider>
             );
-          
+
       fetchComponentData(store.dispatch, renderProps.components, renderProps.params).then((args) => {
                 // console.log('=========FETCH COMPONENT THEN ARG  0 ========\n', ...args);
         res.send(renderFullPage(markup, store.getState()));
