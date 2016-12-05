@@ -6,7 +6,6 @@ import { connect, } from 'react-redux';
 import LoginForm from './login_form';
 import { AuthActions, } from '../../actions';
 import Layer from 'grommet/components/Layer';
-console.log(Layer);
 const mapStateToProps = ({ auth, }) => ({ auth, });
 const mapDispatchToProps = dispatch =>
   ({ actions: bindActionCreators(AuthActions, dispatch), });
