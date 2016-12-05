@@ -16,14 +16,12 @@ const renderField2 = field => (
 
 const TaskForm = ({ handleSubmit, }) => (
   <form onSubmit={handleSubmit}>
-    <label htmlFor="text">text
-      <Field name="text" component={renderField} id="text" type="text" placeholder="text" />
-    </label>
+    <Field name="text" component="input" id="text" type="text" placeholder="text" />
     <Field
-      name="completed" component={CheckBox} label="completed" type="checkbox" id="completed"
+      name="completed" component={({ input, }) => <CheckBox {...input} label={input.label} />} label="completed" type="checkbox" id="completed"
     />
     <Field
-      name="private" component={CheckBox} label="private" toggle type="checkbox" id="private"
+      name="private" component={({ input, }) => <CheckBox {...input} />} label="private" toggle type="checkbox" id="private"
     />
     <button
       className="waves-effect waves-light btn"
@@ -35,18 +33,18 @@ const TaskForm = ({ handleSubmit, }) => (
 const EditFormC = ({ task: { id, }, handleSubmit, }) => (
   <form onSubmit={handleSubmit}>
     <Field
-      name="text" component={renderField} id={`${id}_text`}
+      name="text" component="input" id={`${id}_text`}
       type="text" placeholder="text"
     />
     <label htmlFor={`${id}_text`}> text </label>
 
     <Field
-      name="completed" component={CheckBox} label="completed"
+      name="completed" component={({ input, }) => <CheckBox {...input} />} label="completed"
       id={`${id}_completed`}
     />
 
     <Field
-      name="private" component={CheckBox} type="checkbox" id={`${id}_private`}
+      name="private" component={({ input, }) => <CheckBox {...input} />} type="checkbox" id={`${id}_private`}
     />
     <button
       className="waves-effect waves-light btn"
@@ -55,32 +53,6 @@ const EditFormC = ({ task: { id, }, handleSubmit, }) => (
   </form>
   );
 
-//
-// <form className="col m6" onSubmit={handleSubmit}>
-//   <div className="row">
-//     <div className="input-field col m6">
-//       <Field name="text" component={renderField} id="text" type="text" placeholder="text" />
-//       <label htmlFor="text"> text </label>
-//     </div>
-//     <div className="input-field col m2">
-//       <Field
-//         name="completed" component={renderField} type="checkbox" id="completed"
-//       />
-//       <label htmlFor="completed">completed</label>
-//     </div>
-//     <div className="input-field col m2">
-//       <Field
-//         name="private" component={renderField} type="checkbox" id="private"
-//       />
-//       <label htmlFor="private">private</label>
-//     </div>
-//   </div>
-//
-//   <button
-//     className="waves-effect waves-light btn"
-//     type="submit"
-//   >Submit</button>
-// </form>
 const mapStateToProps = ({ auth: { user, }, }) =>
   ({});
 export const EditForm = (reduxForm()(EditFormC));

@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { resolve, } from 'path';
 
 // const webpack = require('webpack'); config paths
@@ -17,7 +18,17 @@ export const BUILD = 'build';
 export const CONFIG_EVENTS = new Set([ BUILD, DEV, ]);
 
 export const BUILD_CONFIG =
-{ entry: { vendor: [ 'react', 'jquery', 'materialize-css', 'grommet', ], }, };
+  {
+    entry: { vendor: [ 'react', 'jquery', 'materialize-css', 'grommet', ], },
+    output: {
+      path:       PATHS.dist,
+      filename:   '[name].[chunkhash].bundle.js',
+      publicPath: '/',
+    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({ names: [ 'vendor', 'manifest', ], }),
+      new ExtractTextPlugin('[name].[chunkhash].styles.css'), ],
+  };
 
 export const DEV_CONFIG = {
   devtool: 'eval-source-map',

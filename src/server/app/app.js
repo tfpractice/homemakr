@@ -21,7 +21,7 @@ mongoose.connect(dbConfig.mongoURL, (error) => {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
   }
-  
+
   console.log('mongoose connected');
 });
 
@@ -34,7 +34,8 @@ app.use(bodyParser.urlencoded({ limit: '20mb', extended: false, }));
 app.use(cookieParser());
 
 // Set Static Folder
-app.use(express.static(path.resolve(__dirname, '../../../dist')));
+// app.use(express.static(path.resolve(__dirname, '../../../dist')));
+app.use(express.static(path.resolve(__dirname, 'dist')));
 
 // Express Session
 app.use(session({ secret: 'secret', saveUninitialized: true, resave: true, }));
@@ -45,7 +46,6 @@ app.use(flash());
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // Global Vars
 app.use((req, res, next) => {
