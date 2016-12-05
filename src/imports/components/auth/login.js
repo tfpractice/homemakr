@@ -1,4 +1,4 @@
-import React, { PropTypes, } from 'react';
+import React, { Component, PropTypes, } from 'react';
 import { reset, } from 'redux-form';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
@@ -12,39 +12,45 @@ const mapDispatchToProps = dispatch =>
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
-const LoginC = ({ actions, }, { router, }) => (
-  <div className="login">
-    <Layer className="col s12" peek>
-      <p>Login</p>
-      <t />
-      <div className="row">
-        <LoginForm
-          className="col s12"
-          form={'loginForm'}
-          onSubmit={actions.loginUser}
-          onSubmitSuccess={(act, dis) => {
-            resetForm('loginForm')(act, dis);
-            return router.push('/');
-          }}
-        />
-      </div>
-    </Layer>
+class LoginModal extends Component {
+  state = { open: false, }
+  showForm = () => {
+    this.setState({ open: true, });
+  }
 
-    <LoginForm
-      form={'loginForm'}
-      onSubmit={actions.loginUser}
-      onSubmitSuccess={(act, dis) => {
-        resetForm('loginForm')(act, dis);
-        return router.push('/');
-      }}
-    />
-  </div>);
+  hideForm = () => {
+    this.setState({ open: false, });
+  };
+  render() {
+    const { actions, router, } = this.props;
+    return (
+      <div>
+        <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Hide</a>
+        <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Show</a>
+        <Layer className="col s12" hidden={this.state.open}>
+          <p>Login</p>
+          <t />
+          <div className="row">
+            <LoginForm
+              className="col s12"
+              form={'loginForm'}
+              onSubmit={actions.loginUser}
+              onSubmitSuccess={(act, dis) => {
+                resetForm('loginForm')(act, dis);
+                return router.push('/');
+              }}
+            />
+          </div>
+          <div className="modal-footer">
+            <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Hide</a>
+            <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Show</a>
+          </div>
+        </Layer>
+      </div>);
+  }
 
-LoginC.contextTypes = {
-  muiTheme: React.PropTypes.object,
-  router: React.PropTypes.object,
-};
+}
 
-const Login = connect(mapStateToProps, mapDispatchToProps)(LoginC);
+const Login = connect(mapStateToProps, mapDispatchToProps)(LoginModal);
 
 export { Login, };
