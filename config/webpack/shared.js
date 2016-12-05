@@ -18,30 +18,26 @@ const common = validate({
     path:       PATHS.dist,
     filename:   '[name].bundle.js',
     publicPath: '/',
+
   },
   module: {
-    noParse: [ path.join(ROOT_PATH,
-    'node_modules', 'react', 'dist/react.min.js'), ],
     loaders: [
       {
         test:    /\.jsx?$/,
         exclude: /node_modules/,
         loaders: [ 'babel', ],
       },
-
       { test: /\.json$/, loader: 'json-loader', },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass'), },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&mimetype=application/font-woff', },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file', },
-
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass?outputStyle=compressed'), },
     ],
   },
   plugins: [
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"production"', }, }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false, },
-      mangle: { except: [ 'webpackJsonp', ], },
-    }),
+
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false, },
+    //   mangle: { except: [ 'webpackJsonp', ], },
+    // }),
     new ExtractTextPlugin('[name].styles.css'),
   ],
   node: {

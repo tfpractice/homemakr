@@ -21,6 +21,7 @@ export const build = (common) => {
 
 export const dev = (common) => {
   const dConf = validate(merge(common, DEV_CONFIG), { schemaExtension, });
+  console.log('DEV_CONFIG', dConf.module.loaders);
   return dConf;
 };
 

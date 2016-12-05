@@ -15,7 +15,7 @@ const mapStateToProps = ({ auth: { user, }, tasks, tasksReducer: { filter, }, })
 const TasksView = ({ tasks, actions, canCreate, }) => (
   <div className="tasks-list">
     <h1>
-      TASKS
+      TASKS new text hot?
     </h1>
     <TaskForm
       form={'newTaskForm'}

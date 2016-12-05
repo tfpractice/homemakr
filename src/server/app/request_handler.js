@@ -22,13 +22,12 @@ export const renderFullPage = (markup, preloadedState) => `
         <title>HomeMakr App</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="app.styles.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-         <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-         <link rel="stylesheet" href="app.styles.css">
-
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
       <body>
         <div id="root">${markup}</div>
@@ -69,13 +68,7 @@ export const requestHandler = (req, res) => {
           <RouterContext {...renderProps} />
         </Provider>
             );
-
-            // <script type="text/javascript"
-            // src="https://code.jquery.com/jquery-3.1.1.min.js"></script>   <script
-            // src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.
-            // min.js"></script>         <link rel="stylesheet"
-            // href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materializ
-            // e.min.css"> Send the rendered page back to the client
+          
       fetchComponentData(store.dispatch, renderProps.components, renderProps.params).then((args) => {
                 // console.log('=========FETCH COMPONENT THEN ARG  0 ========\n', ...args);
         res.send(renderFullPage(markup, store.getState()));

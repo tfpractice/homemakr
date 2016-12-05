@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress --color  -p --config ./config/webpack/config.babel.js",
-    "dev": "nodemon .",
+    "dev": "node .",
     "lint": "eslint --fix -c .eslintrc.js . --ext .js --ext .jsx --ignore-path .gitignore --cache"
   },
   "repository": {
