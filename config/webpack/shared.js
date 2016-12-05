@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import path from 'path';
 import validate from 'webpack-validator';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { PATHS, ROOT_PATH, } from './constants';
@@ -19,6 +20,8 @@ const common = validate({
     publicPath: '/',
   },
   module: {
+    noParse: [ path.join(ROOT_PATH,
+    'node_modules', 'react', 'dist/react.min.js'), ],
     loaders: [
       {
         test:    /\.jsx?$/,
