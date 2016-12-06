@@ -33,18 +33,18 @@ const TaskForm = ({ handleSubmit, }) => (
 const EditFormC = ({ task: { id, }, handleSubmit, }) => (
   <form onSubmit={handleSubmit}>
     <Field
-      name="text" component="input" id={`${id}_text`}
+      name={`${id}_text`} component="input" id={`${id}_text`}
       type="text" placeholder="text"
     />
     <label htmlFor={`${id}_text`}> text </label>
 
     <Field
-      name="completed" component={({ input, }) => <CheckBox {...input} />} label="completed"
+      name={`${id}_completed`} component={({ input, }) => <CheckBox {...input} />} label={`${id}_completed`}
       id={`${id}_completed`}
     />
 
     <Field
-      name="private" component={({ input, }) => <CheckBox {...input} />} type="checkbox" id={`${id}_private`}
+      name={`${id}_private`} component={({ input, }) => <CheckBox {...input} />} type="checkbox" id={`${id}_private`}
     />
     <button
       className="waves-effect waves-light btn"

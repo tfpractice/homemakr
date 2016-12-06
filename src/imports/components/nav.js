@@ -17,10 +17,11 @@ const Nav = ({ logout, }) => (
       direction="row"
       justify="end"
       align="end"
+      className="right hide-on-small-only"
     >
-      
       <Register />
       <Login />
+      <a className="waves-effect waves-green btn-flat " onClick={logout}>Logout</a>
     </Box>
   </Header>
 
@@ -29,11 +30,3 @@ const Nav = ({ logout, }) => (
 Nav.contextTypes = { router: React.PropTypes.object, };
 
 export default Nav;
-
-// <div className="nav-wrapper"
-  // <ul id="nav-mobile" className="right hide-on-small-only">
-  //   <li><Link to="/register" >Register</Link></li>
-  //   <li><Link to="/login" >Login</Link></li>
-  //   <li><a onClick={logout}>Logout</a></li>
-  // </ul>
-  // </div>

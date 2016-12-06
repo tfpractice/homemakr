@@ -10,14 +10,18 @@ const resetForm = name => (action, dispatch) => dispatch(reset(name));
 const mapStateToProps = ({ auth: { user, }, }, { task, }) =>
     ({ editable: user && task.author === user.id, });
 
-const TaskC = ({ actions, task, user, editable, }) => (editable ? <EditForm
-  key={task.id}
-  form={`edit_form${task.id}`}
-  task={task}
-  initialValues={task}
-  onSubmit={actions.editTask(task)}
-  onSubmitSuccess={resetForm(`edit_form${task.id}`)}
-/> : '');
+const TaskC = ({ actions, task, user, editable, }) => {
+  if (editable) {
+    return (<EditForm
+      form={`edit_form${task.id}`}
+      task={task}
+      initialValues={task}
+      onSubmit={actions.editTask(task)}
+      onSubmitSuccess={resetForm(`edit_form${task.id}`)}
+    />);
+  }
+  return '';
+};
 
 const Task = connect(mapStateToProps)(TaskC);
 
