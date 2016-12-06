@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch =>
 
 const resetForm = name => (action, dispatch) => dispatch(reset(name));
 
-class LoginModal extends Component {
+class Login extends Component {
   state = { open: false, }
   showForm = () => {
     this.setState({ open: true, });
@@ -23,11 +23,12 @@ class LoginModal extends Component {
   };
   render() {
     const { actions, router, } = this.props;
+    console.log(this.props);
     return (
       <div>
-        <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Hide</a>
-        <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Show</a>
-        <Layer className="col s12" hidden={this.state.open}>
+        <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Login</a>
+        <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Hide</a>
+        <Layer className="col s12" hidden={!this.state.open}>
           <p>Login</p>
           <t />
           <div className="row">
@@ -42,15 +43,14 @@ class LoginModal extends Component {
             />
           </div>
           <div className="modal-footer">
-            <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Hide</a>
-            <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Show</a>
+            <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Login</a>
+            <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Hide</a>
           </div>
         </Layer>
       </div>);
   }
 
 }
+Login.contextTypes = { router: React.PropTypes.object, };
 
-const Login = connect(mapStateToProps, mapDispatchToProps)(LoginModal);
-
-export { Login, };
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -2,6 +2,7 @@ import React, { PropTypes, } from 'react';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import { Link, } from 'react-router';
+import { Login, } from './auth';
 
 import Header from 'grommet/components/Header';
 import Title from 'grommet/components/Title';
@@ -19,12 +20,13 @@ const Nav = ({ logout, }) => (
     >
       <Link to="/register" >Register</Link>
       <Link to="/login" >Login</Link>
+      <Login />
     </Box>
   </Header>
 
   );
 
-Nav.contextTypes = { muiTheme: React.PropTypes.object, };
+Nav.contextTypes = { router: React.PropTypes.object, };
 
 export default Nav;
 
