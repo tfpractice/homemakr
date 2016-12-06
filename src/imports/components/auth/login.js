@@ -2,6 +2,7 @@ import React, { Component, PropTypes, } from 'react';
 import { reset, } from 'redux-form';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
+import Animate from 'grommet/components/Animate';
 
 import LoginForm from './login_form';
 import { AuthActions, } from '../../actions';
@@ -28,25 +29,31 @@ class Login extends Component {
       <div>
         <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Login</a>
         <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Hide</a>
-        <Layer className="col s12" hidden={!this.state.open}>
-          <p>Login</p>
-          <t />
-          <div className="row">
-            <LoginForm
-              className="col s12"
-              form={'loginForm'}
-              onSubmit={actions.loginUser}
-              onSubmitSuccess={(act, dis) => {
-                resetForm('loginForm')(act, dis);
-                return router.push('/');
-              }}
-            />
-          </div>
-          <div className="modal-footer">
-            <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Login</a>
-            <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Hide</a>
-          </div>
-        </Layer>
+
+        <Animate
+          enter={{ animation: 'slide-left', duration: 300, }}
+          leave={{ animation: 'slide-down', duration: 300, }}
+        >
+          <Layer className="col s12" hidden={!this.state.open}>
+            <p>Login</p>
+            <t />
+            <div className="row">
+              <LoginForm
+                className="col s12"
+                form={'loginForm'}
+                onSubmit={actions.loginUser}
+                onSubmitSuccess={(act, dis) => {
+                  resetForm('loginForm')(act, dis);
+                  return router.push('/');
+                }}
+              />
+            </div>
+            <div className="modal-footer">
+              <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Login</a>
+              <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Hide</a>
+            </div>
+          </Layer>
+        </Animate>
       </div>);
   }
 
