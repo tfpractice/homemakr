@@ -2,7 +2,7 @@ import React, { PropTypes, } from 'react';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import { Link, } from 'react-router';
-import { Login, } from './auth';
+import { Login, Register, } from './auth';
 
 import Header from 'grommet/components/Header';
 import Title from 'grommet/components/Title';
@@ -18,8 +18,8 @@ const Nav = ({ logout, }) => (
       justify="end"
       align="end"
     >
-      <Link to="/register" >Register</Link>
-      <Link to="/login" >Login</Link>
+      
+      <Register />
       <Login />
     </Box>
   </Header>

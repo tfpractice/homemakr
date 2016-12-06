@@ -28,7 +28,6 @@ class Login extends Component {
     return (
       <div>
         <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Login</a>
-        <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Hide</a>
 
         <Animate
           enter={{ animation: 'slide-left', duration: 300, }}
@@ -44,13 +43,12 @@ class Login extends Component {
                 onSubmit={actions.loginUser}
                 onSubmitSuccess={(act, dis) => {
                   resetForm('loginForm')(act, dis);
-                  return router.push('/');
+                  this.hideForm();
                 }}
               />
             </div>
             <div className="modal-footer">
-              <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">Login</a>
-              <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Hide</a>
+              <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Back</a>
             </div>
           </Layer>
         </Animate>

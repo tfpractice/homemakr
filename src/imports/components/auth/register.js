@@ -1,7 +1,8 @@
-import React, { PropTypes, } from 'react';
+import React, { Component, PropTypes, } from 'react';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 import { reset, } from 'redux-form';
+import Layer from 'grommet/components/Layer';
 
 import RegisterForm from './register_form';
 import { AuthActions, } from '../../actions';
@@ -14,20 +15,41 @@ const mapStateToProps = ({ auth, }) => ({ auth, });
 const mapDispatchToProps = dispatch =>
   ({ actions: bindActionCreators(AuthActions, dispatch), });
 
-const RegisterComp = ({ auth: { registration, }, actions, }, { router, }) => (
-  <div className="registration">
-    <RegisterForm
-      form={'registerForm'}
-      onSubmit={actions.registerUser}
-      onSubmitSuccess={resetAndRedirect(router)('registerForm')}
-    />
-  </div>);
+class Register extends Component {
+  state = { open: false, }
+  showForm = () => {
+    this.setState({ open: true, });
+  }
 
-RegisterComp.contextTypes = {
-  muiTheme: React.PropTypes.object,
-  router: React.PropTypes.object,
-};
+  hideForm = () => {
+    this.setState({ open: false, });
+  };
 
-const Register = connect(mapStateToProps, mapDispatchToProps)(RegisterComp);
+  render() {
+    const { auth: { registration, }, actions, router, } = this.props;
+    return (
+      <div className="registration">
+        <a href="#!" onClick={this.showForm} className="waves-effect waves-green btn-flat ">REGISTER</a>
+        <Layer className="col s12" hidden={!this.state.open}>
+          <p>REGISTER</p>
+          <div className="row">
+            <RegisterForm
+              form={'registerForm'}
+              onSubmit={actions.registerUser}
+              onSubmitSuccess={(act, dis) => {
+                resetForm('registerForm')(act, dis);
+                this.hideForm();
+              }}
+            />
+          </div>
+          <div className="modal-footer">
+            <a href="#!" onClick={this.hideForm} className="waves-effect waves-green btn-flat ">Back</a>
+          </div>
+        </Layer>
+      </div>);
+  }
+}
 
-export { Register, };
+Register.contextTypes = { router: React.PropTypes.object, };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
