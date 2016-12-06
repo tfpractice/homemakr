@@ -21,7 +21,7 @@ const Nav = ({ logout, }) => (
     >
       <Register />
       <Login />
-      <a className="waves-effect waves-green btn-flat " onClick={logout}>Logout</a>
+      <button className="waves-effect waves-green btn-flat " onClick={logout}>Logout</button>
     </Box>
   </Header>
 
