@@ -9,7 +9,8 @@ import { root, getRoutes, } from '../imports';
 import { AUTH_ACTIONS, } from '../imports/modules/auth/constants';
 import { FILTER_FUNCS, } from '../imports/modules/tasks/constants';
 import { setTaskFilter, } from '../imports/modules/tasks/actions';
-import 'grommet/scss/vanilla/index.scss';
+
+// import 'grommet/scss/vanilla/index.scss';
 
 const history = browserHistory;
 const reducer = root;

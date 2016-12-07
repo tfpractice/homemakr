@@ -22,12 +22,12 @@ export const renderFullPage = (markup, preloadedState) => `
         <title>HomeMakr App</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="app.styles.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="vendor.styles.css">
   </head>
       <body>
         <div id="root">${markup}</div>
@@ -37,7 +37,8 @@ export const renderFullPage = (markup, preloadedState) => `
 
         <script type="application/javascript" src="vendor.bundle.js"></script>
         <script type="application/javascript" src="app.bundle.js"></script>
-           </body>
+
+      </body>
     </html>
     `;
 

@@ -38,7 +38,7 @@ export const CONFIG_EVENTS = new Set([ BUILD, DEV, ]);
 
 export const BUILD_CONFIG =
   {
-    entry: { vendor: [ 'react', 'grommet', ], },
+    entry: { vendor: [ 'react', 'grommet', 'grommet/scss/vanilla/index.scss', ], },
     output: { filename:   '[name].[chunkhash].bundle.js', },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
@@ -55,7 +55,7 @@ export const DEV_CONFIG = {
     app: [
       PATHS.app, 'webpack-hot-middleware/client',
     ],
-    vendor: [ 'react', 'grommet', 'webpack-hot-middleware/client', ],
+    vendor: [ 'react', 'grommet', 'grommet/scss/vanilla/index.scss', 'webpack-hot-middleware/client', ],
   },
   module: {
     loaders: [
